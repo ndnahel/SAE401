@@ -30,10 +30,12 @@ body {
 }
 
 input[type=search] {
-  background-color: var(--color-white);
+  min-width: 256px;
   margin: 0;
-  padding: 0;
-  border: 0;
+  padding: 16px 24px;
+  border: 2px solid var(--color-black);
+  border-radius: 4px;
+  background-color: var(--color-white);
 }
 
 .svg-test-grid {

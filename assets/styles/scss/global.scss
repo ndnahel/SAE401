@@ -24,11 +24,13 @@ body {
 }
 
 input[type="search"] {
-    background-color: $white;
+    min-width: $grup10;
     margin: 0;
-    padding: 0;
+    padding: $grup $grup02;
 
-    border: 0;
+    border: 2px solid $black;
+    border-radius: $grup-03;
+    background-color: $white;
 }
 
 .svg-test-grid {
