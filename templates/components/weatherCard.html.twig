@@ -4,11 +4,11 @@
 
 <div class="weatherCard">
     <div class="weather-container">
-        <img src="{{ asset('images/icons/02d.svg') }}" alt="rain icon">
+        <img src="{{ asset('images/icons/' ~ paris.weather[0].icon ~ '.svg') }}" alt="rain icon">
         <div class="weather">
-            <h2>{{ city }}</h2>
-            <span class="weather-text">Légèrement nuageux</span>
-            <span class="weather-temp">12°C</span>
+            <h2>{{ weather.name }}</h2>
+            <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
+            <span class="weather-temp">{{ weather.main.temp }}°C</span>
         </div>
     </div>
 
@@ -16,12 +16,12 @@
         <div class="rain-container">
             <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
             <div class="rainCard">
-                <span class="rain-title">Précipitations</span>
-                <span class="rain">70%</span>
+                <span class="rain-title">Nuageux à</span>
+                <span class="rain">{{ paris.clouds.all }}%</span>
             </div>
             <div class="rainCard">
                 <span class="rain-title">Humidité</span>
-                <span class="rain">70%</span>
+                <span class="rain">{{ paris.main.humidity }}%</span>
             </div>
         </div>
 
@@ -29,12 +29,12 @@
             <div class="tempCard">
                 <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
                 <span class="temp-title">Min.</span>
-                <span class="temp">7°</span>
+                <span class="temp">{{ paris.main.temp_min|number_format(1, '.', ',') }}°</span>
             </div>
             <div class="tempCard">
                 <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
                 <span class="temp-title">Max.</span>
-                <span class="temp">12°</span>
+                <span class="temp">{{ paris.main.temp_max|number_format(1, '.', ',') }}°</span>
             </div>
         </div>
     </div>

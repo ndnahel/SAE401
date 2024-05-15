@@ -38,12 +38,20 @@ class HomeController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
 
-		$default = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-		$default = json_decode($default, true);
+		$paris = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+		$paris = json_decode($paris, true);
+
+		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
+		$defaultWeathers = [];
+		foreach ($defaultTowns as $town) {
+			$defaultWeathers[$town] = $this->api->getWeather($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+			$defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
+		}
 		
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-			'default' => $default,
+			'paris' => $paris,
+			'defaultWeathers' => $defaultWeathers
         ]);
     }
 }
