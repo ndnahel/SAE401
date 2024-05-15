@@ -29,6 +29,18 @@ $letterSpc: 0.24px;
 $trans01: 0.1s;
 $trans02: 0.2s;
 
-$white: #FFF;
-$black: #000;
-$black-01: #444;
+:root{
+    --color-white: #FFFBF4;
+    --color-black: #161616;
+    --color-black-01: #444;
+    --color-blue: #72B1FB;
+    --color-orange: #FFA825;
+    --color-red: #ff3535;
+}
+
+$white: var(--color-white);
+$black: var(--color-black);
+$black-01: var(--color-black-01);
+$blue: var(--color-blue);
+$orange: var(--color-orange);
+$red: var(--color-red);

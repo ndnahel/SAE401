@@ -1,6 +1,15 @@
 @import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+:root {
+  --color-white: #FFFBF4;
+  --color-black: #161616;
+  --color-black-01: #444;
+  --color-blue: #72B1FB;
+  --color-orange: #FFA825;
+  --color-red: #ff3535;
+}
+
 .mainCard {
-  background-color: #FFF;
+  background-color: var(--color-white);
 }
 .mainCard .date-container {
   display: flex;
