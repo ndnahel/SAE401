@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.34 56.99">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.34 56.99">
   <defs>
     <style>
-      .cls-1 {
-        fill: #c0c8d8;
-        stroke: #a4e55a;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 6px;
+      .svg-raindrop {
+      fill: #FFFBF4;
+      stroke: #72B1FB;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
       }
     </style>
   </defs>
-  <g id="Layer_1-2" data-name="Layer 1">
-    <g>
-      <g id="_Grid_Repeat_" data-name="&amp;lt;Grid Repeat&amp;gt;">
-        <path class="cls-1" d="M23.8,3c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
-      </g>
-      <g id="_Grid_Repeat_-2" data-name="&amp;lt;Grid Repeat&amp;gt;">
-        <path class="cls-1" d="M53.34,3c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
-      </g>
-      <g id="_Grid_Repeat_-3" data-name="&amp;lt;Grid Repeat&amp;gt;">
-        <path class="cls-1" d="M23.8,32.94c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
-      </g>
-      <g id="_Grid_Repeat_-4" data-name="&amp;lt;Grid Repeat&amp;gt;">
-        <path class="cls-1" d="M53.34,32.94c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
-      </g>
+  <g>
+    <g class="svg-raindrop">
+        <path d="M23.8,3c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
+        <path d="M53.34,3c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
+        <path d="M23.8,32.94c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
+        <path d="M53.34,32.94c-1.46.42-20.35,6-20.78,14.49-.03.52-.19,3.78,1.9,5.5,2.3,1.89,5.95.76,7.06.41,8.9-2.76,11.52-18.46,11.83-20.4Z"/>
     </g>
   </g>
 </svg>
