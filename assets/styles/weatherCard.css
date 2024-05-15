@@ -1,0 +1,100 @@
+@import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+.weatherCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 368px;
+  width: fit-content;
+  padding: 16px 24px;
+  border-radius: 4px;
+  background-color: #FFF;
+}
+.weatherCard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.weatherCard-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+.weatherCard .weather {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+  width: fit-content;
+}
+.weatherCard .weather-container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-height: fit-content;
+}
+.weatherCard .weather-container img {
+  width: 64px;
+}
+.weatherCard .weather > h2 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.weatherCard .weather-text {
+  font-size: 24px;
+  line-height: 24px;
+}
+.weatherCard .weather-temp {
+  margin-top: 4px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+}
+.weatherCard .rain {
+  font-size: 24px;
+}
+.weatherCard .rain-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.weatherCard .rain-container .rainCard {
+  display: flex;
+  flex-direction: column;
+}
+.weatherCard .rain-container .rainCard:last-child {
+  margin-left: 12px;
+}
+.weatherCard .rain-container > img {
+  height: 40px;
+}
+.weatherCard .rain-title {
+  font-size: 12px;
+  color: #444;
+  line-height: 12px;
+}
+.weatherCard .temp {
+  font-size: 24px;
+}
+.weatherCard .temp-container {
+  display: flex;
+  gap: 24px;
+}
+.weatherCard .temp-container .tempCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 12px;
+  width: fit-content;
+}
+.weatherCard .temp-container .tempCard > img {
+  grid-row: span 2;
+  height: 40px;
+}
+.weatherCard .temp-title {
+  font-size: 12px;
+  color: #444;
+  line-height: 12px;
+}
+
+/*# sourceMappingURL=weatherCard.css.map */

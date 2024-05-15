@@ -1,0 +1,29 @@
+@import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Otomanopee One", sans-serif;
+}
+
+input[type=search] {
+  background-color: #FFF;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/*# sourceMappingURL=global.css.map */

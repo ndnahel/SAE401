@@ -1,0 +1,41 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
+{% endblock %}
+
+<div class="weatherCard">
+    <div class="weather-container">
+        <img src="{{ asset('images/icons/cloudy.svg') }}" alt="rain icon">
+        <div class="weather">
+            <h2>{{ city }}</h2>
+            <span class="weather-text">Légèrement nuageux</span>
+            <span class="weather-temp">12°C</span>
+        </div>
+    </div>
+
+    <div class="weatherCard-bottom">
+        <div class="rain-container">
+            <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+            <div class="rainCard">
+                <span class="rain-title">Précipitations</span>
+                <span class="rain">70%</span>
+            </div>
+            <div class="rainCard">
+                <span class="rain-title">Humidité</span>
+                <span class="rain">70%</span>
+            </div>
+        </div>
+
+        <div class="temp-container">
+            <div class="tempCard">
+                <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+                <span class="temp-title">Min.</span>
+                <span class="temp">7°</span>
+            </div>
+            <div class="tempCard">
+                <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+                <span class="temp-title">Max.</span>
+                <span class="temp">12°</span>
+            </div>
+        </div>
+    </div>
+</div>
