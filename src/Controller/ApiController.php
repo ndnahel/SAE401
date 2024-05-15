@@ -21,20 +21,10 @@ class ApiController extends AbstractController
 	private Api $api;
 	
 	/**
-	 * @var HttpClientInterface
-	 */
-	private HttpClientInterface $client;
-	
-	/**
 	 * @param Api $api
-	 * @param HttpClientInterface $client
 	 */
-	public function __construct(
-		Api $api,
-		HttpClientInterface $client
-	) {
+	public function __construct(Api $api) {
 		$this->api = $api;
-		$this->client = $client;
 	}
 	
 	/**
@@ -56,7 +46,11 @@ class ApiController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
 
-		$response = $this->api->getWeather($city, $user ? $user->getUnit() : $unit, $user ? $user->getLang() : $lang);
+		$response = $this->api->getWeather(
+			$city,
+			$user ? $user->getUnit() : $unit,
+			$user ? $user->getLang() : $lang
+		);
 
 		return new Response(
 			$response,
