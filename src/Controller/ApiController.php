@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Service\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,22 +53,14 @@ class ApiController extends AbstractController
 		?string $unit = 'metric',
 		?string $lang = 'fr'
 	) : Response {
-		$response = $this->client->request(
-			'GET',
-			'https://api.openweathermap.org/data/2.5/weather',
-			[
-				'query' => [
-					'q' => $city,
-					'appid' => $this->api->getApiKey(),
-					'units' => $unit,
-					'lang' => $lang,
-				],
-			]
-		);
-		
+		/** @var User $user */
+		$user = $this->getUser();
+
+		$response = $this->api->getWeather($city, $user ? $user->getUnit() : $unit, $user ? $user->getLang() : $lang);
+
 		return new Response(
-			$response->getContent(),
-			$response->getStatusCode(),
+			$response,
+			200 ,
 			['content-type' => 'application/json']
 		);
 	}
