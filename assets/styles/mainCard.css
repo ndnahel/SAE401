@@ -1,6 +1,17 @@
 @import url("https://fonts.cdnfonts.com/css/otomanopee-one");
 .mainCard {
+  padding: 16px 24px;
+  border-radius: 4px;
   background-color: #FFF;
+}
+.mainCard-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-top: 48px;
+}
+.mainCard .date {
+  margin-bottom: 24px;
 }
 .mainCard .date-container {
   display: flex;
@@ -40,6 +51,82 @@
   font-size: 40px;
   font-weight: 500;
   line-height: 40px;
+}
+.mainCard .stats {
+  font-size: 24px;
+}
+.mainCard .stats-container {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, auto);
+  align-items: center;
+  gap: 12px;
+}
+.mainCard .stats-container .statCard {
+  display: flex;
+  flex-direction: column;
+}
+.mainCard .stats-container .statCard:nth-child(n) {
+  margin-right: 12px;
+}
+.mainCard .stats-container .statCard .stat {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.mainCard .stats-container .statCard .stat-title {
+  font-size: 12px;
+  color: #444;
+  line-height: 12px;
+}
+.mainCard .stats-container > img {
+  height: 40px;
+}
+.mainCard .temp {
+  font-size: 24px;
+}
+.mainCard .temp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.mainCard .temp-container .tempCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 12px;
+  width: fit-content;
+}
+.mainCard .temp-container .tempCard > img {
+  grid-row: span 2;
+  height: 40px;
+}
+.mainCard .temp-container .uvCard {
+  display: flex;
+  flex-direction: column;
+}
+.mainCard .temp-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.mainCard .temp-title {
+  font-size: 12px;
+  color: #444;
+  line-height: 12px;
+}
+.mainCard .temp-feels {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2px;
+}
+.mainCard .temp-feels .temp-text {
+  font-size: 16px;
+  line-height: 16px;
+}
+.mainCard .temp-feels .temp-stat {
+  font-size: 32px;
+  line-height: 32px;
 }
 
 /*# sourceMappingURL=mainCard.css.map */
