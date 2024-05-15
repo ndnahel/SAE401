@@ -1,0 +1,26 @@
+{
+  "name": "sae401",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass --watch assets/styles/scss:assets/styles",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@symfony/webpack-encore": "^4.6.1"
+  },
+  "devDependencies": {
+    "sass": "^1.77.1",
+    "sass-loader": "^14.2.1",
+    "webpack-notifier": "^1.15.0"
+  }
+}

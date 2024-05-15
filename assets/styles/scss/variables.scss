@@ -1,0 +1,46 @@
+@import url('https://fonts.cdnfonts.com/css/otomanopee-one');
+
+// Variables
+$grup-04: 2px;
+$grup-03: 4px;
+$grup-02: 8px;
+$grup-01: 12px;
+$grup: 16px;
+$grup01: 20px;
+$grup02: 24px;
+$grup03: 32px;
+$grup04: 40px;
+$grup05: 48px;
+$grup06: 56px;
+$grup07: 64px;
+$grup08: 96px;
+$grup09: 128px;
+$grup10: 256px;
+
+$minW01: 480px;
+$minW02: 768px;
+$minW03: 992px;
+$minW04: 1200px;
+$minW05: 1600px;
+$minW06: 1856px;
+
+$letterSpc: 0.24px;
+
+$trans01: 0.1s;
+$trans02: 0.2s;
+
+:root{
+    --color-white: #FFFBF4;
+    --color-black: #161616;
+    --color-black-01: #444;
+    --color-blue: #72B1FB;
+    --color-orange: #FFA825;
+    --color-red: #ff3535;
+}
+
+$white: var(--color-white);
+$black: var(--color-black);
+$black-01: var(--color-black-01);
+$blue: var(--color-blue);
+$orange: var(--color-orange);
+$red: var(--color-red);

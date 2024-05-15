@@ -1,20 +1,110 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
+{% endblock %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}WeatherCompass{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <main>
+        <div class="mainCard">
+            <div class="date-container">
+                <span class="when">Aujourd'hui</span>
+                <span class="date">{{ "now"|date('l j F') }}</span>
+            </div>
+            <div class="weather-container">
+                <img src="{{ asset('images/icons/' ~ paris.weather[0].icon ~ '.svg') }}" alt="rain icon">
+                <div class="weather">
+                    <h2>{{ paris.name }}</h2>
+                    <span class="weather-text">{{ paris.weather[0].description|capitalize }}</span>
+                    <span class="weather-temp">{{ paris.main.temp }}°C</span>
+                </div>
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="mainCard-bottom">
+                <div class="stats-container">
+                    <img src="{{ asset('images/icons/rain.svg') }}" alt="wind icon">
+                    <div class="statCard">
+                        <span class="stat-title">Vitesse</span>
+                        <span class="stat">{{ paris.wind.speed }} m/s</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">Direction</span>
+                        <span class="stat">{{ paris.wind.deg }}</span>
+                    </div>
+                    <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                    <div class="statCard">
+                        <span class="stat-title">Nuageux à</span>
+                        <span class="stat">{{ paris.clouds.all }}%</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">Humidité</span>
+                        <span class="stat">{{ paris.main.humidity }}%</span>
+                    </div>
+                    <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                    <div class="statCard">
+                        <span class="stat-title">Lever</span>
+                        <span class="stat">{{ paris.sys.sunrise|date('H:i') }}</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">Coucher</span>
+                        <span class="stat">{{ paris.sys.sunset|date('H:i') }}</span>
+                    </div>
+                </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/NELLY/PhpstormProjects/SAE401/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Users/NELLY/PhpstormProjects/SAE401/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+                <div class="temp-container">
+                    <div class="temp-feels">
+                        <span class="temp-text">Ressenti</span>
+                        <span class="temp-stat">{{ paris.main.feels_like }}°C</span>
+                    </div>
+                    <div class="temp-wrapper">
+                        <div class="tempCard">
+                            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+                            <span class="temp-title">Min.</span>
+                            <span class="temp">{{ paris.main.temp_min|number_format(1, '.', ',') }}°</span>
+                        </div>
+                        <div class="tempCard">
+                            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+                            <span class="temp-title">Max.</span>
+                            <span class="temp">{{ paris.main.temp_max|number_format(1, '.', ',') }}°</span>
+                        </div>
+                        <div class="uvCard">
+                            <span class="temp-title">UV</span>
+                            <span class="temp">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Aujourd'hui en France</h2>
+        <div class="weatherCard-container">
+            {% for weather in defaultWeathers %}
+                {% include 'components/weatherCard.html.twig' with {
+                    weather: weather
+                } %}
+            {% endfor %}
+        </div>
+
+        <div>
+            <h2>Test SVG</h2>
+            <div class='svg-test-grid'>
+                <img src="{{ asset('images/icons/01d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/02d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/03d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/04d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/09d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/10d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/11d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/13d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/50d.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/rain.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/sun.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="test">
+                <img src="{{ asset('images/icons/windsock.svg') }}" alt="test">
+            </div>
+        </div>
+    </main>
 {% endblock %}

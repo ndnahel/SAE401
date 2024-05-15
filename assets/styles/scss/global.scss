@@ -1,0 +1,47 @@
+@import 'variables';
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Otomanopee One', sans-serif;
+
+    background-color: $white;
+}
+
+input[type="search"] {
+    min-width: $grup10;
+    margin: 0;
+    padding: $grup $grup02;
+
+    border: 2px solid $black;
+    border-radius: $grup-03;
+    background-color: $white;
+}
+
+.svg-test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    margin: 0 0 200px 0;
+
+    img{
+        width: 100%;
+        max-height: 100px;
+    }
+}
