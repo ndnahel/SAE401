@@ -1,9 +1,91 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
+{% endblock %}
 
 {% block title %}WeatherCompass{% endblock %}
 
 {% block body %}
     <main>
+        <div class="mainCard">
+            <div class="date-container">
+                <span class="when">Aujourd'hui</span>
+                <span class="date">Mardi 14 mai</span>
+            </div>
+            <div class="weather-container">
+                <img src="{{ asset('images/icons/cloudy.svg') }}" alt="rain icon">
+                <div class="weather">
+                    <h2>Troyes</h2>
+                    <span class="weather-text">Légèrement nuageux</span>
+                    <span class="weather-temp">12°C</span>
+                </div>
+            </div>
+
+            <div class="weatherCard-bottom">
+                <div class="stats-container">
+                    <div class="stats-wrapper">
+                        <img src="{{ asset('images/icons/rain.svg') }}" alt="wind icon">
+                        <div class="statCard">
+                            <span class="stat-title">Vitesse</span>
+                            <span class="stat">2.6 m/s</span>
+                        </div>
+                        <div class="statCard">
+                            <span class="stat-title">Direction</span>
+                            <span class="stat">Sud</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-wrapper">
+                        <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                        <div class="statCard">
+                            <span class="stat-title">Précipitations</span>
+                            <span class="stat">70%</span>
+                        </div>
+                        <div class="statCard">
+                            <span class="stat-title">Humidité</span>
+                            <span class="stat">70%</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-wrapper">
+                        <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                        <div class="statCard">
+                            <span class="stat-title">Lever</span>
+                            <span class="stat">6h30</span>
+                        </div>
+                        <div class="statCard">
+                            <span class="stat-title">Coucher</span>
+                            <span class="stat">22h12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="temp-container">
+                    <div class="temp-feels">
+                        <span class="temp-text">Ressenti</span>
+                        <span class="temp-stat">22°</span>
+                    </div>
+                    <div class="temp-wrapper">
+                        <div class="tempCard">
+                            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+                            <span class="temp-title">Min.</span>
+                            <span class="temp">7°</span>
+                        </div>
+                        <div class="tempCard">
+                            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+                            <span class="temp-title">Max.</span>
+                            <span class="temp">12°</span>
+                        </div>
+                        <div class="tempCard">
+                            <span class="temp-title">UV</span>
+                            <span class="temp">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h2>Aujourd'hui en France</h2>
         <div class="weatherCard-container">
             {% include 'components/weatherCard.html.twig' with {

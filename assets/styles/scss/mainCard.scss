@@ -1,0 +1,59 @@
+@import 'variables';
+
+.mainCard {
+    background-color: $white;
+
+    .date {
+        &-container {
+            display: flex;
+            flex-direction: column;
+
+            .when {
+                margin-bottom: $grup-03;
+
+                font-size: $grup02;
+                line-height: $grup02;
+            }
+        }
+    }
+
+    .weather {
+        display: flex;
+        flex-direction: column;
+
+        min-width: fit-content;
+        width: fit-content;
+
+        &-container {
+            display: flex;
+            align-items: center;
+            gap: $grup03;
+
+            max-height: fit-content;
+
+            & img {
+                width: $grup09;
+            }
+        }
+
+        & > h2 {
+            margin-bottom: $grup-01;
+
+            font-size: $grup;
+            font-weight: 400;
+        }
+
+        &-text {
+            font-size: $grup02;
+            line-height: $grup02;
+        }
+
+        &-temp {
+            margin-top: $grup-03;
+
+            font-size: $grup04;
+            font-weight: 500;
+            line-height: $grup04;
+        }
+    }
+}

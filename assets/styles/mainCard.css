@@ -1,0 +1,45 @@
+@import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+.mainCard {
+  background-color: #FFF;
+}
+.mainCard .date-container {
+  display: flex;
+  flex-direction: column;
+}
+.mainCard .date-container .when {
+  margin-bottom: 4px;
+  font-size: 24px;
+  line-height: 24px;
+}
+.mainCard .weather {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+  width: fit-content;
+}
+.mainCard .weather-container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-height: fit-content;
+}
+.mainCard .weather-container img {
+  width: 128px;
+}
+.mainCard .weather > h2 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.mainCard .weather-text {
+  font-size: 24px;
+  line-height: 24px;
+}
+.mainCard .weather-temp {
+  margin-top: 4px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+/*# sourceMappingURL=mainCard.css.map */
