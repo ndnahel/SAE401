@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -18,8 +20,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 100)]
     private ?string $username = null;
+	
+	#[ORM\Column(length: 200)]
+	private ?string $email = null;
 
     /**
      * @var list<string> The user roles
@@ -31,26 +36,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	private ?array $preferences = [];
 
     /**
-     * @var string The hashed password
+     * @var string|null The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
-
-    public function getId(): ?int
+	
+	#[ORM\Column(type: 'string', length: 255, nullable: true)]
+	private ?string $resetToken = null;
+	
+	#[ORM\OneToMany(targetEntity: FavoriteCity::class, mappedBy: 'user', fetch: 'EAGER')]
+	private Collection $favoriteCities;
+	
+	public function __construct()
+	{
+		$this->favoriteCities = new ArrayCollection();
+	}
+	
+	/**
+	 * @return int|null
+	 */
+	public function getId(): ?int
     {
         return $this->id;
     }
-
+	
+	/**
+	 * @return string|null
+	 */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-
+	
+	/**
+	 * @param string $username
+	 * @return $this
+	 */
     public function setUsername(string $username): static
     {
         $this->username = $username;
         return $this;
     }
+	
+	/**
+	 * @return string|null
+	 */
+	public function getEmail(): ?string
+	{
+		return $this->email;
+	}
+	
+	/**
+	 * @param string $email
+	 * @return $this
+	 */
+	public function setEmail(string $email): static
+	{
+		$this->email = $email;
+		return $this;
+	}
 
     /**
      * A visual identifier that represents this user.
@@ -91,7 +135,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->password;
     }
-
+	
+	/**
+	 * @param string $password
+	 * @return $this
+	 */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -134,6 +182,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 */
 	public function setPreferences(array $preferences): ?User {
 		$this->preferences = $preferences;
+		return $this;
+	}
+	
+	/**
+	 * @return string|null
+	 */
+	public function getResetToken(): ?string
+	{
+		return $this->resetToken;
+	}
+	
+	/**
+	 * @param string|null $resetToken
+	 * @return $this
+	 */
+	public function setResetToken(?string $resetToken): static
+	{
+		$this->resetToken = $resetToken;
+		return $this;
+	}
+	
+	/**
+	 * @return Collection
+	 */
+	public function getFavoriteCities(): Collection
+	{
+		return $this->favoriteCities;
+	}
+	
+	/**
+	 * @param FavoriteCity $favoriteCity
+	 * @return $this
+	 */
+	public function addFavoriteCity(FavoriteCity $favoriteCity): static
+	{
+		if (!$this->favoriteCities->contains($favoriteCity)) {
+			$this->favoriteCities[] = $favoriteCity;
+			$favoriteCity->setUser($this);
+		}
 		return $this;
 	}
 }
