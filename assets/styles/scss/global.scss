@@ -5,22 +5,23 @@ h2,
 h3,
 h4,
 p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 * {
-    min-width: 0;
-    box-sizing: border-box;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    font-family: 'Otomanopee One', sans-serif;
+  font-family: 'Otomanopee One', sans-serif;
 
-    background-color: $white;
+  background-color: $white;
+  color: $black;
 }
 
 input[type="search"] {
@@ -33,15 +34,18 @@ input[type="search"] {
     background-color: $white;
 }
 
-.svg-test-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    margin: 0 0 200px 0;
+  gap: $grup05;
 
-    img{
-        width: 100%;
-        max-height: 100px;
-    }
+  @include min-width($minW03) {
+    padding: $grup max($grup02, calc(50vw - ($minW05 / 2)));
+  }
+
+  background: $white-01;
+  //background: url('../images/cloud-patern.svg') repeat;
+
 }

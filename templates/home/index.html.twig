@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
 {% endblock %}
 
 {% block title %}WeatherCompass{% endblock %}
 
 {% block body %}
-    <main>
-        <div class="mainCard">
+    <main class='weatherDashboard'>
+        <div class='weatherInformation'>
+            <div class="mainCard">
             <div class="date-container">
                 <span class="when">Aujourd'hui</span>
                 <span class="date">{{ "now"|date('l j F') }}</span>
@@ -69,41 +71,57 @@
                             <span class="temp-title">Max.</span>
                             <span class="temp">{{ paris.main.temp_max|number_format(1, '.', ',') }}°</span>
                         </div>
-                        <div class="uvCard">
-                            <span class="temp-title">UV</span>
-                            <span class="temp">6</span>
+                        <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                        <div class="statCard">
+                            <span class="stat-title">Précipitations</span>
+                            <span class="stat">70%</span>
+                        </div>
+                        <div class="statCard">
+                            <span class="stat-title">Humidité</span>
+                            <span class="stat">70%</span>
+                        </div>
+                        <img src="{{ asset('images/icons/sun.svg') }}" alt="rain icon">
+                        <div class="statCard">
+                            <span class="stat-title">Lever</span>
+                            <span class="stat">6h30</span>
+                        </div>
+                        <div class="statCard">
+                            <span class="stat-title">Coucher</span>
+                            <span class="stat">22h12</span>
+                        </div>
+                    </div>
+
+                    <div class="temp-container">
+                        <div class="temp-feels">
+                            <span class="temp-text">Ressenti</span>
+                            <span class="temp-stat">22°</span>
+                        </div>
+                        <div class="temp-wrapper">
+                            <div class="tempCard">
+                                <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+                                <span class="temp-title">Min.</span>
+                                <span class="temp">7°</span>
+                            </div>
+                            <div class="tempCard">
+                                <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+                                <span class="temp-title">Max.</span>
+                                <span class="temp">12°</span>
+                            </div>
+                            <div class="uvCard">
+                                <span class="temp-title">UV</span>
+                                <span class="temp">6</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <h2>Aujourd'hui en France</h2>
-        <div class="weatherCard-container">
-            {% for weather in defaultWeathers %}
+        <div class='weatherTowns'>
+            <h2>Aujourd'hui en France</h2>
+            <div class="weatherCard-container">
                 {% include 'components/weatherCard.html.twig' with {
-                    weather: weather
+                    city: 'Paris'
                 } %}
-            {% endfor %}
-        </div>
-
-        <div>
-            <h2>Test SVG</h2>
-            <div class='svg-test-grid'>
-                <img src="{{ asset('images/icons/01d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/02d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/03d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/04d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/09d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/10d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/11d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/13d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/50d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/rain.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/sun.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/windsock.svg') }}" alt="test">
             </div>
         </div>
     </main>

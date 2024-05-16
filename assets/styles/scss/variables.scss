@@ -24,21 +24,29 @@ $minW04: 1200px;
 $minW05: 1600px;
 $minW06: 1856px;
 
+@mixin min-width($minW) {
+  @media (min-width: $minW) {
+    @content;
+  }
+}
+
 $letterSpc: 0.24px;
 
 $trans01: 0.1s;
 $trans02: 0.2s;
 
-:root{
-    --color-white: #FFFBF4;
-    --color-black: #161616;
-    --color-black-01: #444;
-    --color-blue: #72B1FB;
-    --color-orange: #FFA825;
-    --color-red: #ff3535;
+:root {
+  --color-white: #FFFBF4;
+  --color-white-01: #f8f2e4;
+  --color-black: #161616;
+  --color-black-01: #444;
+  --color-blue: #72B1FB;
+  --color-orange: #FFA825;
+  --color-red: #ff3535;
 }
 
 $white: var(--color-white);
+$white-01: var(--color-white-01);
 $black: var(--color-black);
 $black-01: var(--color-black-01);
 $blue: var(--color-blue);

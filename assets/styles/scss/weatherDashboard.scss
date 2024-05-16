@@ -1,0 +1,15 @@
+@import 'variables';
+
+.weatherDashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include min-width($minW03) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  padding: $grup $grup02;
+  gap: $grup05;
+
+  background-color: $white;
+}
