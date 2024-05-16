@@ -43,19 +43,19 @@ class Api
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	public function getWeather(string $unit = 'metric', string $lang = 'fr', string $result): string
+	public function getWeather(string $result, string $unit = 'metric', string $lang = 'fr'): string
 	{
 		$apiKey = $this->getApiKey();
 
 		// Construire les paramètres de requête
 		$query = [
-			'appid' => $apiKey,
 			'units' => $unit,
 			'lang' => $lang,
+			'appid' => $apiKey,
 		];
 
 		if(preg_match('/^\d{5}$/', $result)) {
-			$query['zip'] = $result;
+			$query['zip'] = "$result,$lang";
 		} else {
 			$query['q'] = $result;
 		}

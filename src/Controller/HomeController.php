@@ -50,15 +50,15 @@ class HomeController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
 
-		$paris = $this->api->getWeather($user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr', 'Paris');
-		$paris = json_decode($paris, true);
+		$weather = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+		$weather = json_decode($weather, true);
 		
-		$paris = $this->windDirection->addCompasPoint($paris);
+		$weather = $this->windDirection->addCompasPoint($weather);
 
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
 		foreach ($defaultTowns as $town) {
-			$defaultWeathers[$town] = $this->api->getWeather($user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr', $town);
+			$defaultWeathers[$town] = $this->api->getWeather($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
 			$defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
 			$defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
 		}
@@ -69,7 +69,7 @@ class HomeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
 			
-			$weather = $this->api->getWeather($user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr', $data['result']);
+			$weather = $this->api->getWeather($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
 			$weather = json_decode($weather, true);
 			$weather = $this->windDirection->addCompasPoint($weather);
 
@@ -83,7 +83,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-			'paris' => $paris,
+			'weather' => $weather,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
         ]);
