@@ -20,6 +20,7 @@ class WindDirection {
             case ($deg > 280.5 && $deg <= 300.5): return 'Ouest';
             case ($deg > 300.5 && $deg <= 330.5): return 'O/Nord-Ouest';
             case ($deg > 330.5 && $deg <= 350.5): return 'Nord-Ouest';
+            default: return 'Nord';
         }        
     }
 
