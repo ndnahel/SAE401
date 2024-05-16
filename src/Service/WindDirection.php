@@ -5,7 +5,6 @@ class WindDirection {
     public function getCompasPoint(int $deg) : string
     {
         switch ($deg) {
-            case ($deg > 350.5 && $deg <= 10.5): return 'Nord';
             case ($deg > 10.5 && $deg <= 30.5): return 'N/Nord-Est';
             case ($deg > 30.5 && $deg <= 60.5): return 'Nord-Est';
             case ($deg > 60.5 && $deg <= 80.5): return 'E/Nord-Est';
@@ -20,6 +19,7 @@ class WindDirection {
             case ($deg > 280.5 && $deg <= 300.5): return 'Ouest';
             case ($deg > 300.5 && $deg <= 330.5): return 'O/Nord-Ouest';
             case ($deg > 330.5 && $deg <= 350.5): return 'Nord-Ouest';
+            default: return 'Nord';
         }        
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Service\Api;
 use App\Service\WindDirection;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -30,6 +31,7 @@ class HomeController extends AbstractController
 	
     /**
 	 * @param Api $api
+     * @param WindDirection $windDirection
 	 * @param HttpClientInterface $client
 	 */
 	public function __construct(
