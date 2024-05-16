@@ -7,6 +7,14 @@
 {% block title %}WeatherCompass{% endblock %}
 
 {% block body %}
+    <nav>
+        <div class="nav-container">
+            {{ form_start(form) }}
+                {{ form_row(form.result) }}
+                <button type="submit">Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+    </nav>
     <main>
         <div class="mainCard">
             <div class="date-container">

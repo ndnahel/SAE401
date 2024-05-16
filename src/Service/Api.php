@@ -43,23 +43,33 @@ class Api
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	public function getWeather(string $city, string $unit = 'metric', string $lang = 'fr'): string
+	public function getWeather(string $unit = 'metric', string $lang = 'fr', string $result): string
 	{
 		$apiKey = $this->getApiKey();
-		
+
+		// Construire les paramètres de requête
+		$query = [
+			'appid' => $apiKey,
+			'units' => $unit,
+			'lang' => $lang,
+		];
+
+		if(preg_match('/^\d{5}$/', $result)) {
+			$query['zip'] = $result;
+		} else {
+			$query['q'] = $result;
+		}
+
+		// Faire la requête API
 		$response = $this->client->request(
 			'GET',
 			'https://api.openweathermap.org/data/2.5/weather',
 			[
-				'query' => [
-					'q' => $city,
-					'appid' => $apiKey,
-					'units' => $unit,
-					'lang' => $lang
-				]
+				'query' => $query,
 			]
 		);
-		
+
 		return $response->getContent();
 	}
+
 }
