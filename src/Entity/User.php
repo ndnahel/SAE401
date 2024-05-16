@@ -170,10 +170,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	}
 	
 	/**
+	 * @param string $lang
+	 * @return User
+	 */
+	public function setLang(string $lang): static {
+		$this->preferences[0]['lang'] = $lang;
+		return $this;
+	}
+	
+	/**
 	 * @return string
 	 */
 	public function getUnit(): string {
 		return $this->preferences[0]['unit'];
+	}
+	
+	/**
+	 * @param string $unit
+	 * @return User
+	 */
+	public function setUnit(string $unit): static {
+		$this->preferences[0]['unit'] = $unit;
+		return $this;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getCountry(): string {
+		return $this->preferences[0]['country'];
+	}
+	
+	/**
+	 * @param string $country
+	 * @return User
+	 */
+	public function setCountry(string $country): static {
+		$this->preferences[0]['country'] = $country;
+		return $this;
 	}
 	
 	/**

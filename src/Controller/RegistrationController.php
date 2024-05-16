@@ -33,7 +33,8 @@ class RegistrationController extends AbstractController
 			
 			$user->setPreferences([
 				"lang" => "fr",
-				"unit" => "metric"
+				"unit" => "metric",
+				"country" => "fr",
 			]);
 
             $entityManager->persist($user);
@@ -45,7 +46,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
+            'registrationForm' => $form->createView(),
         ]);
     }
 }
