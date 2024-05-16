@@ -50,11 +50,33 @@ class HomeController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
 
+		// Main section weather -> default = Paris
 		$weather = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
 		$weather = json_decode($weather, true);
 		
 		$weather = $this->windDirection->addCompasPoint($weather);
 
+		$forecast = $this->api->getForecast('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+		$forecast = json_decode($forecast, true);
+
+		$forecastList = [];
+
+		$now = new \DateTime();
+		$now = $now->format('Y-m-d');
+
+		foreach ($forecast['list'] as $forecast) {
+			$_date = new \DateTime($forecast['dt_txt']);
+			$date = $_date->format('Y-m-d');
+			$hour = $_date->format('H:i:s');
+
+			if ($now >= $date || $hour != '12:00:00') {
+				continue;
+			}
+
+			$forecastList[] = $forecast;
+		}
+
+		// Right section with weathers around France (default)
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
 		foreach ($defaultTowns as $town) {
