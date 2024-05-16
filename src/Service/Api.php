@@ -43,11 +43,10 @@ class Api
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	public function getWeather(string $result, string $unit = 'metric', string $lang = 'fr'): string
+	public function requestApi(string $endpoint, string $result, string $unit = 'metric', string $lang = 'fr'): string
 	{
 		$apiKey = $this->getApiKey();
 
-		// Construire les paramètres de requête
 		$query = [
 			'units' => $unit,
 			'lang' => $lang,
@@ -60,10 +59,9 @@ class Api
 			$query['q'] = $result;
 		}
 
-		// Faire la requête API
 		$response = $this->client->request(
 			'GET',
-			'https://api.openweathermap.org/data/2.5/weather',
+			'https://api.openweathermap.org/data/2.5/' . $endpoint,
 			[
 				'query' => $query,
 			]
@@ -72,4 +70,13 @@ class Api
 		return $response->getContent();
 	}
 
+	public function getWeather(string $result, string $unit = 'metric', string $lang = 'fr'): string
+	{
+		return $this->requestApi('weather', $result, $unit, $lang);
+	}
+
+	public function getForecast(string $result, string $unit = 'metric', string $lang = 'fr'): string
+	{
+		return $this->requestApi('forecast', $result, $unit, $lang);
+	}
 }

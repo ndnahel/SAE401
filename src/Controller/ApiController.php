@@ -27,7 +27,7 @@ class ApiController extends AbstractController
 	}
 	
 	/**
-	 * @param string $city
+	 * @param string $where
 	 * @param string|null $unit
 	 * @param string|null $lang
 	 * @return Response
@@ -36,20 +36,30 @@ class ApiController extends AbstractController
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	#[Route('/api/weather/{city}/{unit}/{lang}', name: 'api_weather')]
-	public function index(
-		string $city,
+	#[Route('/api/{endpoint}/{where}/{unit}/{lang}', name: 'api_weather')]
+	public function apiRequest(
+		string $endpoint,
+		string $where,
 		?string $unit = 'metric',
 		?string $lang = 'fr'
 	) : Response {
 		/** @var User $user */
 		$user = $this->getUser();
 
-		$response = $this->api->getWeather(
-			$city,
-			$user ? $user->getUnit() : $unit,
-			$user ? $user->getLang() : $lang
-		);
+		$response = '';
+		if ($endpoint === 'weather') {
+			$response = $this->api->getWeather(
+				$where,
+				$user ? $user->getUnit() : $unit,
+				$user ? $user->getLang() : $lang
+			);
+		} elseif ($endpoint === 'forcast') {
+			$response = $this->api->getForecast(
+				$where,
+				$user ? $user->getUnit() : $unit,
+				$user ? $user->getLang() : $lang
+			);
+		}
 
 		return new Response(
 			$response,
