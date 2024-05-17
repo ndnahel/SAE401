@@ -18,78 +18,86 @@ use App\Form\SearchType;
 class HomeController extends AbstractController
 {
     /**
-	 * @var Api
-	 */
-	private Api $api;
+     * @var Api
+     */
+    private Api $api;
 
-	/**
-	 * @var WindDirection
-	 */
-	private WindDirection $windDirection;
-	
     /**
-	 * @param Api $api
+     * @var WindDirection
+     */
+    private WindDirection $windDirection;
+
+    /**
+     * @param Api $api
      * @param WindDirection $windDirection
-	 */
-	public function __construct(
-		Api $api,
-		WindDirection $windDirection,
-	) {
-		$this->api = $api;
-		$this->windDirection = $windDirection;
-	}
-	
-	/**
-	 * @param Request $request
-	 * @return Response
-	 * @throws TransportExceptionInterface
-	 * @throws ClientExceptionInterface
-	 * @throws RedirectionExceptionInterface
-	 * @throws ServerExceptionInterface
-	 */
+     */
+    public function __construct(
+        Api $api,
+        WindDirection $windDirection,
+    ) {
+        $this->api = $api;
+        $this->windDirection = $windDirection;
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws TransportExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     */
     #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
-		/** @var User $user */
-		$user = $this->getUser();
-		$unit = $user ? $user->getUnit() : 'metric';
+        /** @var User $user */
+        $user = $this->getUser();
+        $unit = $user ? $user->getUnit() : 'metric';
 
-		$weather = $this->api->getWeather('Paris', $unit, $user ? $user->getLang() : 'fr');
-		$weather = json_decode($weather, true);
-		
-		$weather = $this->windDirection->addCompasPoint($weather);
+        $weather = $this->api->getWeather('Paris', $unit, $user ? $user->getLang() : 'fr');
+        $weather = json_decode($weather, true);
 
-		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
-		$defaultWeathers = [];
-		foreach ($defaultTowns as $town) {
-			$defaultWeathers[$town] = $this->api->getWeather($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
-			$defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
-		}
+        $weather = $this->windDirection->addCompasPoint($weather);
 
-		$form = $this->createForm(SearchType::class);
-		$form->handleRequest($request);
+        $defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
+        $defaultWeathers = [];
+        foreach ($defaultTowns as $town) {
+            $defaultWeathers[$town] = $this->api->getWeather(
+                $town,
+                $user ? $user->getUnit() : 'metric',
+                $user ? $user->getLang() : 'fr'
+            );
+            $defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
+            $defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
+        }
 
-		if ($form->isSubmitted() && $form->isValid()) {
-			$data = $form->getData();
-			
-			$weather = $this->api->getWeather($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$weather = json_decode($weather, true);
-			$weather = $this->windDirection->addCompasPoint($weather);
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
 
-			return $this->render('home/index.html.twig', [
-				'weather' => $weather,
-				'defaultWeathers' => $defaultWeathers,
-				'form' => $form->createView(),
-				'unit' => $unit
-			]);
-		}
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $weather = $this->api->getWeather(
+                $data['result'],
+                $user ? $user->getUnit() : 'metric',
+                $user ? $user->getLang() : 'fr'
+            );
+            $weather = json_decode($weather, true);
+            $weather = $this->windDirection->addCompasPoint($weather);
+
+            return $this->render('home/index.html.twig', [
+                'weather' => $weather,
+                'defaultWeathers' => $defaultWeathers,
+                'form' => $form->createView(),
+                'unit' => $unit
+            ]);
+        }
 
         return $this->render('home/index.html.twig', [
-			'weather' => $weather,
-			'defaultWeathers' => $defaultWeathers,
-			'form' => $form->createView(),
-	        'unit' => $unit
+            'weather' => $weather,
+            'defaultWeathers' => $defaultWeathers,
+            'form' => $form->createView(),
+            'unit' => $unit
         ]);
     }
 }
