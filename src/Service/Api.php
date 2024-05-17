@@ -34,7 +34,7 @@ class Api
 	}
 	
 	/**
-	 * @param string $city
+	 * @param string $result
 	 * @param string $unit
 	 * @param string $lang
 	 * @return string
@@ -68,6 +68,39 @@ class Api
 		);
 
 		return $response->getContent();
+	}
+	
+	/**
+	 * @throws TransportExceptionInterface
+	 * @throws ServerExceptionInterface
+	 * @throws RedirectionExceptionInterface
+	 * @throws ClientExceptionInterface
+	 */
+	/**
+	 * @throws TransportExceptionInterface
+	 * @throws ServerExceptionInterface
+	 * @throws RedirectionExceptionInterface
+	 * @throws ClientExceptionInterface
+	 */
+	public function getCityById(int $id, string $unit = 'metric', string $lang = 'fr'): array
+	{
+		$apiKey = $this->getApiKey();
+		
+		$response = $this->client->request(
+			'GET',
+			'https://api.openweathermap.org/data/2.5/weather',
+			[
+				'query' => [
+					'id' => $id,
+					'appid' => $apiKey,
+					'lang' => $lang,
+					'units' => $unit,
+				],
+			]
+		);
+
+		$content = $response->getContent();
+		return ['content' => json_decode($content, true)];
 	}
 
 	public function getWeather(string $result, string $unit = 'metric', string $lang = 'fr'): string

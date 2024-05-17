@@ -5,43 +5,69 @@ h2,
 h3,
 h4,
 p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 * {
-    min-width: 0;
-    box-sizing: border-box;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    font-family: 'Otomanopee One', sans-serif;
+  font-family: 'Otomanopee One', sans-serif;
 
-    background-color: $white;
+  background-color: $white;
+  color: $black;
 }
 
 input[type="search"] {
-    min-width: $grup10;
-    margin: 0;
-    padding: $grup $grup02;
+  min-width: $grup10;
+  margin: 0;
+  padding: $grup $grup02;
 
-    border: 2px solid $black;
-    border-radius: $grup-03;
-    background-color: $white;
+  border: 2px solid $black;
+  border-radius: $grup-03;
+  background-color: $white;
 }
 
-.svg-test-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    margin: 0 0 200px 0;
+  padding: $grup $grup02;
+  gap: $grup05;
 
-    img{
-        width: 100%;
-        max-height: 100px;
-    }
+  @include min-width($minW03) {
+    padding: $grup max($grup02, calc(50vw - ($minW05 / 2)));
+  }
+
+  background: $white-01;
+  //background: url('../images/cloud-patern.svg') repeat;
 }
+
+// SVG Animations
+
+.svg-icon {
+  overflow: visible;
+
+  &--sun {
+    transform-origin: center;
+    transform-box: border-box;
+    animation: sun 16s linear infinite;
+  }
+}
+
+@keyframes sun {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/// SAVED FOR LATER
+
+//  box-shadow: rgba(30, 34, 28, 0.17) 0px -23px 25px 0px inset, rgba(30, 34, 28, 0.15) 0px -36px 30px 0px inset, rgba(30, 34, 28, 0.1) 0px -79px 40px 0px inset, rgba(30, 34, 28, 0.06) 0px 2px 1px, rgba(30, 34, 28, 0.09) 0px 4px 2px, rgba(30, 34, 28, 0.09) 0px 8px 4px, rgba(30, 34, 28, 0.09) 0px 16px 8px, rgba(30, 34, 28, 0.09) 0px 32px 16px;

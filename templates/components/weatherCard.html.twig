@@ -4,7 +4,7 @@
 
 <div class="weatherCard">
     <div class="weather-container">
-        <img src="{{ asset('images/icons/' ~ weather.weather[0].icon ~ '.svg') }}" alt="weather icon">
+        {% include "components/icons/" ~ weather.weather[0].icon ~ ".svg" %}
         <div class="weather">
             <h2>{{ weather.name }}</h2>
             <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
