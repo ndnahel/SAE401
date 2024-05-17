@@ -3,12 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Service\Api;
-use App\Service\WindDirection;
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use App\Service\WeatherService;
+use App\Service\ForecastService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,86 +13,77 @@ use App\Form\SearchType;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @var Api
-     */
-    private Api $api;
 
-    /**
-     * @var WindDirection
-     */
-    private WindDirection $windDirection;
+	/**
+	 * @var WeatherService
+	 */
+	private WeatherService $weatherService;
 
+	/**
+	 * @var ForecastService
+	 */
+	private ForecastService $forecastService;
+	
     /**
-     * @param Api $api
-     * @param WindDirection $windDirection
-     */
-    public function __construct(
-        Api $api,
-        WindDirection $windDirection,
-    ) {
-        $this->api = $api;
-        $this->windDirection = $windDirection;
-    }
+	 * @param Api $api
+	 * @param WeatherService $weatherService
+	 * @param ForecastService $forecastService
+	 */
+	public function __construct(
+		WeatherService $weatherService,
+		ForecastService $forecastService
+	) {
+		$this->weatherService = $weatherService;
+		$this->forecastService = $forecastService;
+	}
 
-    /**
-     * @param Request $request
-     * @return Response
-     * @throws TransportExceptionInterface
-     * @throws ClientExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ServerExceptionInterface
-     */
     #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
+		/** @var User $user */
+		$user = $this->getUser();
         $unit = $user ? $user->getUnit() : 'metric';
 
-        $weather = $this->api->getWeather('Paris', $unit, $user ? $user->getLang() : 'fr');
-        $weather = json_decode($weather, true);
+		// Main section weather -> default = Paris
+		$weather = $this->weatherService->getWeatherData('Paris', $unit, $user ? $user->getLang() : 'fr');
 
-        $weather = $this->windDirection->addCompasPoint($weather);
+		$forecast = $this->forecastService->getForecastData('Paris', $unit, $user ? $user->getLang() : 'fr');
+		$forecastList = $this->forecastService->formatForecastData($forecast);
 
-        $defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
-        $defaultWeathers = [];
-        foreach ($defaultTowns as $town) {
-            $defaultWeathers[$town] = $this->api->getWeather(
-                $town,
-                $user ? $user->getUnit() : 'metric',
-                $user ? $user->getLang() : 'fr'
-            );
-            $defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
-            $defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
-        }
+		// Right section with weathers around France (default)
+		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
+		$defaultWeathers = [];
+		foreach ($defaultTowns as $town) {
+			$defaultWeathers[$town] = $this->weatherService->getWeatherData($town, $unit, $user ? $user->getLang() : 'fr');
+		}
 
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+		$form = $this->createForm(SearchType::class);
+		$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+		if ($form->isSubmitted() && $form->isValid()) {
+			$data = $form->getData();
+			
+			$weather = $this->weatherService->getWeatherData($data['result'], $unit, $user ? $user->getLang() : 'fr');
 
-            $weather = $this->api->getWeather(
-                $data['result'],
-                $user ? $user->getUnit() : 'metric',
-                $user ? $user->getLang() : 'fr'
-            );
-            $weather = json_decode($weather, true);
-            $weather = $this->windDirection->addCompasPoint($weather);
+			$forecast = $this->forecastService->getForecastData($data['result'], $unit, $user ? $user->getLang() : 'fr');
+			$forecastList = $this->forecastService->formatForecastData($forecast);
 
-            return $this->render('home/index.html.twig', [
-                'weather' => $weather,
-                'defaultWeathers' => $defaultWeathers,
-                'form' => $form->createView(),
+			return $this->render('home/index.html.twig', [
+				'controller_name' => 'HomeController',
+				'weather' => $weather,
+				'forecastList' => $forecastList,
+				'defaultWeathers' => $defaultWeathers,
+				'form' => $form->createView(),
                 'unit' => $unit
-            ]);
-        }
+			]);
+		}
 
         return $this->render('home/index.html.twig', [
-            'weather' => $weather,
-            'defaultWeathers' => $defaultWeathers,
-            'form' => $form->createView(),
+            'controller_name' => 'HomeController',
+			'weather' => $weather,
+			'forecastList' => $forecastList,
+			'defaultWeathers' => $defaultWeathers,
+			'form' => $form->createView(),
             'unit' => $unit
         ]);
     }
