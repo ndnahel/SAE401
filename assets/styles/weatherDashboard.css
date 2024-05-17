@@ -1,0 +1,27 @@
+@import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+:root {
+  --color-white: #FFFBF4;
+  --color-white-01: #f8f2e4;
+  --color-black: #473B2F;
+  --color-black-01: #675847;
+  --color-blue: #72B1FB;
+  --color-orange: #FFA825;
+  --color-red: #ff3535;
+}
+
+.weatherDashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 16px 24px;
+  gap: 48px;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+}
+@media (min-width: 992px) {
+  .weatherDashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*# sourceMappingURL=weatherDashboard.css.map */

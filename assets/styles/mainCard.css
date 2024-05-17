@@ -1,141 +1,303 @@
 @import url("https://fonts.cdnfonts.com/css/otomanopee-one");
 :root {
   --color-white: #FFFBF4;
-  --color-black: #161616;
-  --color-black-01: #444;
+  --color-white-01: #f8f2e4;
+  --color-black: #473B2F;
+  --color-black-01: #675847;
   --color-blue: #72B1FB;
   --color-orange: #FFA825;
   --color-red: #ff3535;
 }
 
 .mainCard {
-  padding: 16px 24px;
-  border-radius: 4px;
-  background-color: var(--color-white);
-}
-.mainCard-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 48px;
-  margin-top: 48px;
-}
-.mainCard .date {
-  margin-bottom: 24px;
-}
-.mainCard .date-container {
-  display: flex;
-  flex-direction: column;
-}
-.mainCard .date-container .when {
-  margin-bottom: 4px;
-  font-size: 24px;
-  line-height: 24px;
-}
-.mainCard .weather {
-  display: flex;
-  flex-direction: column;
-  min-width: fit-content;
-  width: fit-content;
-}
-.mainCard .weather-container {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  max-height: fit-content;
-}
-.mainCard .weather-container img {
-  width: 128px;
-}
-.mainCard .weather > h2 {
-  margin-bottom: 12px;
-  font-size: 16px;
-  font-weight: 400;
-}
-.mainCard .weather-text {
-  font-size: 24px;
-  line-height: 24px;
-}
-.mainCard .weather-temp {
-  margin-top: 4px;
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 40px;
-}
-.mainCard .stats {
-  font-size: 24px;
-}
-.mainCard .stats-container {
   display: grid;
-  grid-template-columns: 1fr repeat(2, auto);
-  align-items: center;
-  gap: 12px;
+  grid-template-areas: "date date" "tl tr" "bl br";
+  padding: 16px 24px;
+  gap: 32px;
+  border-radius: 4px;
+  /*
+  &-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: $grup05;
+
+      margin-top: $grup05;
+  }
+
+  .date {
+      margin-bottom: $grup02;
+      &-container {
+          display: flex;
+          flex-direction: column;
+
+          .when {
+              margin-bottom: $grup-03;
+
+              font-size: $grup02;
+              line-height: $grup02;
+          }
+      }
+  }
+
+  .weather {
+      display: flex;
+      flex-direction: column;
+
+      min-width: fit-content;
+      width: fit-content;
+
+      &-container {
+          display: flex;
+          align-items: center;
+          gap: $grup03;
+
+          max-height: fit-content;
+
+          & img {
+              width: $grup09;
+          }
+      }
+
+      & > h2 {
+          margin-bottom: $grup-01;
+
+          font-size: $grup;
+          font-weight: 400;
+      }
+
+      &-text {
+          font-size: $grup02;
+          line-height: $grup02;
+      }
+
+      &-temp {
+          margin-top: $grup-03;
+
+          font-size: $grup04;
+          font-weight: 500;
+          line-height: $grup04;
+      }
+  }
+
+  .stats {
+      font-size: $grup02;
+
+      &-container {
+          display: grid;
+          grid-template-columns: 1fr repeat(2, auto);
+          align-items: center;
+          gap: $grup-01;
+
+          .statCard {
+              display: flex;
+              flex-direction: column;
+
+              &:nth-child(n) {
+                  margin-right: $grup-01;
+              }
+
+              .stat {
+                  font-size: $grup01;
+                  font-weight: 700;
+                  line-height: $grup01;
+
+                  &-title {
+                      font-size: $grup-01;
+                      color: $black-01;
+                      line-height: $grup-01;
+                  }
+              }
+          }
+
+          & > img {
+              height: $grup04;
+          }
+      }
+  }
+
+  .temp {
+      font-size: $grup02;
+
+      &-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: $grup02;
+
+          .tempCard {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              align-items: center;
+              column-gap: $grup-01;
+
+              width: fit-content;
+
+              & > img {
+                  grid-row: span 2;
+                  height: $grup04;
+              }
+          }
+
+          .uvCard {
+              display: flex;
+              flex-direction: column;
+          }
+      }
+
+      &-wrapper {
+          display: flex;
+          align-items: center;
+          gap: $grup02;
+      }
+
+      &-title {
+          font-size: $grup-01;
+          color: $black-01;
+          line-height: $grup-01;
+      }
+
+      &-feels {
+          display: flex;
+          flex-direction: column;
+
+          margin-top: $grup-04;
+
+          .temp-text {
+              font-size: $grup;
+              line-height: $grup;
+          }
+
+          .temp-stat {
+              font-size: $grup03;
+              line-height: $grup03;
+          }
+      }
+  }
+  */
 }
-.mainCard .stats-container .statCard {
+.mainCard .statCard {
   display: flex;
   flex-direction: column;
 }
-.mainCard .stats-container .statCard:nth-child(n) {
-  margin-right: 12px;
-}
-.mainCard .stats-container .statCard .stat {
+.mainCard .statCard .stat {
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;
 }
-.mainCard .stats-container .statCard .stat-title {
+.mainCard .statCard .stat-title {
   font-size: 12px;
   color: var(--color-black-01);
   line-height: 12px;
 }
-.mainCard .stats-container > img {
-  height: 40px;
-}
-.mainCard .temp {
-  font-size: 24px;
-}
-.mainCard .temp-container {
+.mainCard .date-container {
+  grid-area: date;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
 }
-.mainCard .temp-container .tempCard {
+.mainCard .date-container .when {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.mainCard .date-container .date {
+  font-size: 20px;
+  line-height: 20px;
+}
+.mainCard .weather-tl {
+  grid-area: tl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mainCard .weather-tl svg {
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+}
+.mainCard .weather-tr {
+  grid-area: tr;
+}
+.mainCard .weather-tr .weather {
+  display: flex;
+  flex-direction: column;
+}
+.mainCard .weather-tr .weather h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.mainCard .weather-tr .weather-text {
+  font-size: 40px;
+  line-height: 40px;
+}
+.mainCard .weather-tr .weather-temp {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+}
+.mainCard .weather-bl {
+  grid-area: bl;
+  display: grid;
+  grid-template-columns: min-content 1fr 1fr;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+}
+.mainCard .weather-bl img {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+}
+.mainCard .weather-br {
+  grid-area: br;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.mainCard .weather-br img {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+}
+.mainCard .weather-br .temp-feels {
+  display: flex;
+  flex-direction: column;
+}
+.mainCard .weather-br .temp-feels .temp-text {
+  font-size: 20px;
+  line-height: 20px;
+}
+.mainCard .weather-br .temp-feels .temp-stat {
+  font-size: 40px;
+  line-height: 40px;
+}
+.mainCard .weather-br .temp-wrapper {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.mainCard .weather-br .temp-wrapper .tempCard {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   column-gap: 12px;
   width: fit-content;
 }
-.mainCard .temp-container .tempCard > img {
-  grid-row: span 2;
-  height: 40px;
+.mainCard .weather-br .temp-wrapper .tempCard .temp {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
 }
-.mainCard .temp-container .uvCard {
-  display: flex;
-  flex-direction: column;
-}
-.mainCard .temp-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.mainCard .temp-title {
+.mainCard .weather-br .temp-wrapper .tempCard .temp-title {
   font-size: 12px;
   color: var(--color-black-01);
   line-height: 12px;
 }
-.mainCard .temp-feels {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2px;
-}
-.mainCard .temp-feels .temp-text {
-  font-size: 16px;
-  line-height: 16px;
-}
-.mainCard .temp-feels .temp-stat {
-  font-size: 32px;
-  line-height: 32px;
+.mainCard .weather-br .temp-wrapper .tempCard img {
+  grid-row: span 2;
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=mainCard.css.map */
