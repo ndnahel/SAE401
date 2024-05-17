@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
 {% endblock %}
 
-<div class="forecastCard" data-location="{{ location }}">
+<div class="forecastCard" data-location="{{ location }}" data-datetime="{{ forecast.dt_txt }}">
     <div>
          {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
         <div class="card-content--wrapper date">
@@ -19,12 +19,12 @@
         <div class="tempCard">
             <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
             <span class="temp-title">Min.</span>
-            <span class="temp">{{ weather.main.temp_min|number_format(1, '.', ',') }}°</span>
+            <span class="temp">{{ forecast.main.temp_min|number_format(1, '.', ',') }}°</span>
         </div>
         <div class="tempCard">
             <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
             <span class="temp-title">Max.</span>
-            <span class="temp">{{ weather.main.temp_max|number_format(1, '.', ',') }}°</span>
+            <span class="temp">{{ forecast.main.temp_max|number_format(1, '.', ',') }}°</span>
         </div>
     </div>
 </div>
