@@ -1,166 +1,342 @@
 @import 'variables';
 
 .mainCard {
-    padding: $grup $grup02;
+  display: grid;
+  grid-template-areas:
+    "date date"
+    "tl tr"
+    "bl br";
 
-    border-radius: $grup-03;
-    background-color: $white;
+  padding: $grup $grup02;
+  gap: $grup03;
 
-    &-bottom {
-        display: flex;
-        justify-content: space-between;
-        gap: $grup05;
+  border-radius: $grup-03;
 
-        margin-top: $grup05;
+  .statCard {
+    display: flex;
+    flex-direction: column;
+
+    .stat {
+      font-size: $grup01;
+      font-weight: 700;
+      line-height: $grup01;
+
+      &-title {
+        font-size: $grup-01;
+        color: $black-01;
+        line-height: $grup-01;
+      }
+    }
+  }
+
+  .date-container {
+    grid-area: date;
+
+    display: flex;
+    flex-direction: column;
+
+    .when {
+      font-size: $grup02;
+      font-weight: 700;
+      line-height: $grup02;
     }
 
     .date {
-        margin-bottom: $grup02;
-        &-container {
-            display: flex;
-            flex-direction: column;
+      font-size: $grup01;
+      line-height: $grup01;
+    }
+  }
 
-            .when {
-                margin-bottom: $grup-03;
+  .weather {
 
-                font-size: $grup02;
-                line-height: $grup02;
-            }
-        }
+
+    &-tl {
+      grid-area: tl;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        height: 80%;
+        width: 80%;
+        object-fit: contain;
+      }
     }
 
-    .weather {
+    &-tr {
+      grid-area: tr;
+
+      .weather {
         display: flex;
         flex-direction: column;
 
-        min-width: fit-content;
-        width: fit-content;
-
-        &-container {
-            display: flex;
-            align-items: center;
-            gap: $grup03;
-
-            max-height: fit-content;
-
-            & img {
-                width: $grup09;
-            }
-        }
-
-        & > h2 {
-            margin-bottom: $grup-01;
-
-            font-size: $grup;
-            font-weight: 400;
+        h2 {
+          font-size: $grup01;
+          font-weight: 400;
         }
 
         &-text {
-            font-size: $grup02;
-            line-height: $grup02;
+          font-size: $grup04;
+          line-height: $grup04;
         }
 
         &-temp {
-            margin-top: $grup-03;
-
-            font-size: $grup04;
-            font-weight: 500;
-            line-height: $grup04;
+          font-size: $grup05;
+          font-weight: 500;
+          line-height: $grup05;
         }
+      }
     }
 
-    .stats {
-        font-size: $grup02;
+    &-bl {
+      grid-area: bl;
 
-        &-container {
-            display: grid;
-            grid-template-columns: 1fr repeat(2, auto);
-            align-items: center;
-            gap: $grup-01;
+      display: grid;
+      grid-template-columns: min-content 1fr 1fr;
+      align-items: center;
+      align-content: center;
 
-            .statCard {
-                display: flex;
-                flex-direction: column;
+      gap: $grup01;
 
-                &:nth-child(n) {
-                    margin-right: $grup-01;
-                }
-
-                .stat {
-                    font-size: $grup01;
-                    font-weight: 700;
-                    line-height: $grup01;
-
-                    &-title {
-                        font-size: $grup-01;
-                        color: $black-01;
-                        line-height: $grup-01;
-                    }
-                }
-            }
-
-            & > img {
-                height: $grup04;
-            }
-        }
+      img {
+        height: $grup06;
+        width: $grup06;
+        object-fit: contain;
+      }
     }
 
-    .temp {
-        font-size: $grup02;
+    &-br {
+      grid-area: br;
 
-        &-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: $grup02;
+      display: flex;
+      flex-direction: column;
 
-            .tempCard {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                align-items: center;
-                column-gap: $grup-01;
+      gap: $grup03;
 
-                width: fit-content;
+      img {
+        height: $grup06;
+        width: $grup06;
+        object-fit: contain;
+      }
 
-                & > img {
-                    grid-row: span 2;
-                    height: $grup04;
-                }
+      .temp {
+        &-feels {
+          display: flex;
+          flex-direction: column;
+
+          .temp {
+            &-text {
+              font-size: $grup01;
+              line-height: $grup01;
             }
 
-            .uvCard {
-                display: flex;
-                flex-direction: column;
+            &-stat {
+              font-size: $grup04;
+              line-height: $grup04;
             }
+          }
         }
 
         &-wrapper {
-            display: flex;
+          grid-column: span 3;
+
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          gap: $grup01;
+
+          .tempCard {
+            display: grid;
+            grid-template-columns: auto 1fr;
             align-items: center;
-            gap: $grup02;
-        }
+            column-gap: $grup-01;
 
-        &-title {
-            font-size: $grup-01;
-            color: $black-01;
-            line-height: $grup-01;
-        }
+            width: fit-content;
 
-        &-feels {
-            display: flex;
-            flex-direction: column;
+            .temp {
+              font-size: $grup01;
+              font-weight: 700;
+              line-height: $grup01;
 
-            margin-top: $grup-04;
-
-            .temp-text {
-                font-size: $grup;
-                line-height: $grup;
+              &-title {
+                font-size: $grup-01;
+                color: $black-01;
+                line-height: $grup-01;
+              }
             }
 
-            .temp-stat {
-                font-size: $grup03;
-                line-height: $grup03;
+
+            img {
+              grid-row: span 2;
+
+              height: $grup06;
+              width: $grup06;
+              object-fit: contain;
             }
+          }
         }
+      }
     }
+  }
+
+  /*
+  &-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: $grup05;
+
+      margin-top: $grup05;
+  }
+
+  .date {
+      margin-bottom: $grup02;
+      &-container {
+          display: flex;
+          flex-direction: column;
+
+          .when {
+              margin-bottom: $grup-03;
+
+              font-size: $grup02;
+              line-height: $grup02;
+          }
+      }
+  }
+
+  .weather {
+      display: flex;
+      flex-direction: column;
+
+      min-width: fit-content;
+      width: fit-content;
+
+      &-container {
+          display: flex;
+          align-items: center;
+          gap: $grup03;
+
+          max-height: fit-content;
+
+          & img {
+              width: $grup09;
+          }
+      }
+
+      & > h2 {
+          margin-bottom: $grup-01;
+
+          font-size: $grup;
+          font-weight: 400;
+      }
+
+      &-text {
+          font-size: $grup02;
+          line-height: $grup02;
+      }
+
+      &-temp {
+          margin-top: $grup-03;
+
+          font-size: $grup04;
+          font-weight: 500;
+          line-height: $grup04;
+      }
+  }
+
+  .stats {
+      font-size: $grup02;
+
+      &-container {
+          display: grid;
+          grid-template-columns: 1fr repeat(2, auto);
+          align-items: center;
+          gap: $grup-01;
+
+          .statCard {
+              display: flex;
+              flex-direction: column;
+
+              &:nth-child(n) {
+                  margin-right: $grup-01;
+              }
+
+              .stat {
+                  font-size: $grup01;
+                  font-weight: 700;
+                  line-height: $grup01;
+
+                  &-title {
+                      font-size: $grup-01;
+                      color: $black-01;
+                      line-height: $grup-01;
+                  }
+              }
+          }
+
+          & > img {
+              height: $grup04;
+          }
+      }
+  }
+
+  .temp {
+      font-size: $grup02;
+
+      &-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: $grup02;
+
+          .tempCard {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              align-items: center;
+              column-gap: $grup-01;
+
+              width: fit-content;
+
+              & > img {
+                  grid-row: span 2;
+                  height: $grup04;
+              }
+          }
+
+          .uvCard {
+              display: flex;
+              flex-direction: column;
+          }
+      }
+
+      &-wrapper {
+          display: flex;
+          align-items: center;
+          gap: $grup02;
+      }
+
+      &-title {
+          font-size: $grup-01;
+          color: $black-01;
+          line-height: $grup-01;
+      }
+
+      &-feels {
+          display: flex;
+          flex-direction: column;
+
+          margin-top: $grup-04;
+
+          .temp-text {
+              font-size: $grup;
+              line-height: $grup;
+          }
+
+          .temp-stat {
+              font-size: $grup03;
+              line-height: $grup03;
+          }
+      }
+  }
+  */
 }
