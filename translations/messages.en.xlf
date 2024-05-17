@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="L3nHBBm" resname="La ville n'a pas été trouvée.">
+        <source>La ville n'a pas été trouvée.</source>
+        <target>The city was not found.</target>
+      </trans-unit>
+      <trans-unit id="kDLhv9t" resname="Vous devez être connecté pour ajouter une ville en favori.">
+        <source>Vous devez être connecté pour ajouter une ville en favori.</source>
+        <target>You must be logged in to add a city as a favorite.</target>
+      </trans-unit>
+      <trans-unit id="r96.Qv0" resname="La ville a bien été ajoutée en favori.">
+        <source>La ville a bien été ajoutée en favori.</source>
+        <target>The city has been added as a favorite.</target>
+      </trans-unit>
+      <trans-unit id="LVWY5b2" resname="Vous devez être connecté pour supprimer une ville en favori.">
+        <source>Vous devez être connecté pour supprimer une ville en favori.</source>
+        <target>You must be logged in to remove a city as a favorite.</target>
+      </trans-unit>
+      <trans-unit id="_4Z1afP" resname="La ville a bien été supprimée des favoris.">
+        <source>La ville a bien été supprimée des favoris.</source>
+        <target>The city has been removed as a favorite.</target>
+      </trans-unit>
+      <trans-unit id="hRdkX4h" resname="Nom d'utilisateur">
+        <source>Nom d'utilisateur</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="szwn32b" resname="Adresse email">
+        <source>Adresse email</source>
+        <target>Mail address</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="4TgMWgZ" resname="Nuageux à">
+        <source>Nuageux à</source>
+        <target>Cloudy to</target>
+      </trans-unit>
+      <trans-unit id="qlGb.VA" resname="Humidité">
+        <source>Humidité</source>
+        <target>Humidity</target>
+      </trans-unit>
+      <trans-unit id="fG..RWR" resname="Min.">
+        <source>Min.</source>
+        <target>Min.</target>
+      </trans-unit>
+      <trans-unit id="A9ZCBUt" resname="Max.">
+        <source>Max.</source>
+        <target>Max.</target>
+      </trans-unit>
+      <trans-unit id="cz0cdCZ" resname="Rechercher">
+        <source>Rechercher</source>
+        <target>Research</target>
+      </trans-unit>
+      <trans-unit id="mQmbbpB" resname="Aujourd'hui">
+        <source>Aujourd'hui</source>
+        <target>Today</target>
+      </trans-unit>
+      <trans-unit id="DpsaM3." resname="Ressenti">
+        <source>Ressenti</source>
+        <target>Feeling</target>
+      </trans-unit>
+      <trans-unit id="PRc5mtz" resname="Vitesse">
+        <source>Vitesse</source>
+        <target>Speed</target>
+      </trans-unit>
+      <trans-unit id="nIqVeav" resname="Direction">
+        <source>Direction</source>
+        <target>Direction</target>
+      </trans-unit>
+      <trans-unit id="LqVBxdT" resname="Lever">
+        <source>Lever</source>
+        <target>Sunrise</target>
+      </trans-unit>
+      <trans-unit id="7cNHv3z" resname="Coucher">
+        <source>Coucher</source>
+        <target>Sunset</target>
+      </trans-unit>
+      <trans-unit id="j8MBClH" resname="Aujourd'hui en France">
+        <source>Aujourd'hui en France</source>
+        <target>Today in France</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

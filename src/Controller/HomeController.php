@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Service\Api;
 use App\Service\WindDirection;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -24,26 +27,26 @@ class HomeController extends AbstractController
 	 */
 	private WindDirection $windDirection;
 	
-	/**
-	 * @var HttpClientInterface
-	 */
-	private HttpClientInterface $client;
-	
     /**
 	 * @param Api $api
      * @param WindDirection $windDirection
-	 * @param HttpClientInterface $client
 	 */
 	public function __construct(
 		Api $api,
 		WindDirection $windDirection,
-		HttpClientInterface $client
 	) {
 		$this->api = $api;
 		$this->windDirection = $windDirection;
-		$this->client = $client;
 	}
-
+	
+	/**
+	 * @param Request $request
+	 * @return Response
+	 * @throws TransportExceptionInterface
+	 * @throws ClientExceptionInterface
+	 * @throws RedirectionExceptionInterface
+	 * @throws ServerExceptionInterface
+	 */
     #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
@@ -74,7 +77,6 @@ class HomeController extends AbstractController
 			$weather = $this->windDirection->addCompasPoint($weather);
 
 			return $this->render('home/index.html.twig', [
-				'controller_name' => 'HomeController',
 				'weather' => $weather,
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
@@ -82,7 +84,6 @@ class HomeController extends AbstractController
 		}
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
 			'weather' => $weather,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
