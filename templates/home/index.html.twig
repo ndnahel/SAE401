@@ -23,7 +23,7 @@
 
                 <div class="date-container">
                     <span class="when">{% trans %}Aujourd'hui{% endtrans %}</span>
-                    <span class="date">{{ "now"|date('l j F') }}</span>
+                    <span class="date">{{ "now"|format_date('full') }}</span>
                 </div>
 
                 <div class='weather-tl'>
