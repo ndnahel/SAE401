@@ -1,0 +1,30 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
+{% endblock %}
+
+<div class="forecastCard">
+    <div>
+        <img src="{{ asset('images/icons/' ~ forecast.weather[0].icon ~ '.svg') }}" alt="weather icon">
+        <div class="card-content--wrapper date">
+            <span class="card-content--date">{{ forecast.dt_txt|date('l') }}</span>
+            <span class="card-content--value">{{ forecast.dt_txt|date('d F') }}</span>
+        </div>
+        <div class="card-content--wrapper weather">
+            <span class="card-content--weather">{{ forecast.weather[0].description }}</span>
+            <span class="card-content--value">{{ forecast.main.temp }}</span>
+        </div>
+    </div>
+
+    <div class="temp-container">
+        <div class="tempCard">
+            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+            <span class="temp-title">Min.</span>
+            <span class="temp">{{ weather.main.temp_min|number_format(1, '.', ',') }}°</span>
+        </div>
+        <div class="tempCard">
+            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+            <span class="temp-title">Max.</span>
+            <span class="temp">{{ weather.main.temp_max|number_format(1, '.', ',') }}°</span>
+        </div>
+    </div>
+</div>
