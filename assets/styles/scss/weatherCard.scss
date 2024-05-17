@@ -92,33 +92,46 @@
       line-height: $grup-01;
     }
   }
+}
 
-  .temp {
-    font-size: $grup02;
+.temp {
+  font-size: $grup02;
 
-    &-container {
-      display: flex;
-      gap: $grup02;
+  &-container {
+    display: flex;
+    gap: $grup02;
 
-      .tempCard {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-        column-gap: $grup-01;
+    .tempCard {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: $grup-01;
 
-        width: fit-content;
+      width: fit-content;
 
-        & > img {
-          grid-row: span 2;
-          height: $grup04;
-        }
+      & > img {
+        grid-row: span 2;
+        height: $grup04;
       }
     }
+  }
 
-    &-title {
-      font-size: $grup-01;
-      color: $black-01;
-      line-height: $grup-01;
-    }
+  &-title {
+    font-size: $grup-01;
+    color: $black-01;
+    line-height: $grup-01;
+  }
+}
+
+.forecastCard {
+  border-top: 1px $black solid;
+  border-bottom: 1px $black solid;
+
+  &:first-of-type {
+    border-top: 2px $black solid;
+  }
+
+  &:last-of-type {
+    border-bottom: 2px $black solid;
   }
 }

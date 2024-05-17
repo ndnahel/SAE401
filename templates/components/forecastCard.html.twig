@@ -4,7 +4,7 @@
 
 <div class="forecastCard">
     <div>
-        <img src="{{ asset('images/icons/' ~ forecast.weather[0].icon ~ '.svg') }}" alt="weather icon">
+         {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
         <div class="card-content--wrapper date">
             <span class="card-content--date">{{ forecast.dt_txt|date('l') }}</span>
             <span class="card-content--value">{{ forecast.dt_txt|date('d F') }}</span>

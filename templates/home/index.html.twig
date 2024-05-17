@@ -90,6 +90,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="forecastCard-container">
+                {% for forecast in forecastList %}
+                    {% include 'components/forecastCard.html.twig' with {
+                        forecast: forecast
+                    } %}
+                {% endfor %}
+            </div>
         </div>
         <div class='weatherTowns'>
             <h2>Aujourd'hui en France</h2>
