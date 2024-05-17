@@ -1,12 +1,14 @@
 @import url("https://fonts.cdnfonts.com/css/otomanopee-one");
 :root {
-  --color-white: #FFFBF4;
-  --color-white-01: #f8f2e4;
-  --color-black: #473B2F;
-  --color-black-01: #675847;
-  --color-blue: #72B1FB;
-  --color-orange: #FFA825;
-  --color-red: #ff3535;
+  --color-white: rgb(255, 255, 255);
+  --color-white-01: rgb(255, 251, 244);
+  --color-white-02: rgb(248, 242, 228);
+  --color-white-03: rgb(238, 229, 215);
+  --color-black: rgb(71, 59, 47);
+  --color-black-01: rgb(103, 88, 71);
+  --color-blue: rgb(114, 177, 251);
+  --color-orange: rgb(255, 168, 37);
+  --color-red: rgb(255, 53, 53);
 }
 
 .weatherDashboard {
@@ -14,9 +16,9 @@
   grid-template-columns: 1fr;
   padding: 16px 24px;
   gap: 48px;
-  background-color: var(--color-white);
-  border-radius: 16px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  background-color: var(--color-white-01);
+  border: 1px solid var(--color-white-03);
+  border-radius: 20px;
 }
 @media (min-width: 992px) {
   .weatherDashboard {

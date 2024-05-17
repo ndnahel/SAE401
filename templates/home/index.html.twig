@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
@@ -86,6 +89,7 @@
         </div>
         <div class='weatherTowns'>
             <h2>Aujourd'hui en France</h2>
+
             <div class="weatherCard-container">
                 {% for weather in defaultWeathers %}
                     {% include 'components/weatherCard.html.twig' with {
@@ -93,6 +97,7 @@
                     } %}
                 {% endfor %}
             </div>
+
         </div>
     </main>
 {% endblock %}

@@ -48,8 +48,6 @@
   }
 
   .weather {
-
-
     &-tl {
       grid-area: tl;
 
@@ -67,6 +65,10 @@
     &-tr {
       grid-area: tr;
 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       .weather {
         display: flex;
         flex-direction: column;
@@ -74,11 +76,12 @@
         h2 {
           font-size: $grup01;
           font-weight: 400;
+          margin-bottom: $grup02;
         }
 
         &-text {
-          font-size: $grup04;
-          line-height: $grup04;
+          font-size: $grup03;
+          line-height: $grup03;
         }
 
         &-temp {

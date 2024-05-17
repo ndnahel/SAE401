@@ -9,7 +9,8 @@
   width: fit-content;
   padding: $grup $grup02;
 
-  border-radius: $grup-03;
+  @include second-background-layer;
+  border-radius: $grup-01;
 
   &-container {
     display: flex;
