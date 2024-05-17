@@ -52,8 +52,9 @@ class HomeController extends AbstractController
     {
 		/** @var User $user */
 		$user = $this->getUser();
+		$unit = $user ? $user->getUnit() : 'metric';
 
-		$weather = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+		$weather = $this->api->getWeather('Paris', $unit, $user ? $user->getLang() : 'fr');
 		$weather = json_decode($weather, true);
 		
 		$weather = $this->windDirection->addCompasPoint($weather);
@@ -80,6 +81,7 @@ class HomeController extends AbstractController
 				'weather' => $weather,
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
+				'unit' => $unit
 			]);
 		}
 
@@ -87,6 +89,7 @@ class HomeController extends AbstractController
 			'weather' => $weather,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
+	        'unit' => $unit
         ]);
     }
 }

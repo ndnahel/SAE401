@@ -8,7 +8,7 @@
         <div class="weather">
             <h2>{{ weather.name }}</h2>
             <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
-            <span class="weather-temp">{{ weather.main.temp }}°C</span>
+            <span class="weather-temp">{{ weather.main.temp }}{{ unit }}</span>
         </div>
     </div>
 
