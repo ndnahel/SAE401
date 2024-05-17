@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
 {% endblock %}
 
-<div class="forecastCard">
+<div class="forecastCard" data-location="{{ location }}">
     <div>
          {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
         <div class="card-content--wrapper date">
