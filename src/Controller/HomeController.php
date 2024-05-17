@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Service\Api;
-use App\Service\WindDirection;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Service\WeatherService;
+use App\Service\ForecastService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,34 +13,28 @@ use App\Form\SearchType;
 
 class HomeController extends AbstractController
 {
-    /**
-	 * @var Api
-	 */
-	private Api $api;
 
 	/**
-	 * @var WindDirection
+	 * @var WeatherService
 	 */
-	private WindDirection $windDirection;
-	
+	private WeatherService $weatherService;
+
 	/**
-	 * @var HttpClientInterface
+	 * @var ForecastService
 	 */
-	private HttpClientInterface $client;
+	private ForecastService $forecastService;
 	
     /**
 	 * @param Api $api
-     * @param WindDirection $windDirection
-	 * @param HttpClientInterface $client
+	 * @param WeatherService $weatherService
+	 * @param ForecastService $forecastService
 	 */
 	public function __construct(
-		Api $api,
-		WindDirection $windDirection,
-		HttpClientInterface $client
+		WeatherService $weatherService,
+		ForecastService $forecastService
 	) {
-		$this->api = $api;
-		$this->windDirection = $windDirection;
-		$this->client = $client;
+		$this->weatherService = $weatherService;
+		$this->forecastService = $forecastService;
 	}
 
     #[Route('/', name: 'app_home')]
@@ -51,38 +44,16 @@ class HomeController extends AbstractController
 		$user = $this->getUser();
 
 		// Main section weather -> default = Paris
-		$weather = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-		$weather = json_decode($weather, true);
-		
-		$weather = $this->windDirection->addCompasPoint($weather);
+		$weather = $this->weatherService->getWeatherData('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
 
-		$forecast = $this->api->getForecast('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-		$forecast = json_decode($forecast, true);
-
-		$forecastList = [];
-
-		$now = new \DateTime();
-		$now = $now->format('Y-m-d');
-
-		foreach ($forecast['list'] as $forecast) {
-			$_date = new \DateTime($forecast['dt_txt']);
-			$date = $_date->format('Y-m-d');
-			$hour = $_date->format('H:i:s');
-
-			if ($now >= $date || $hour != '12:00:00') {
-				continue;
-			}
-
-			$forecastList[] = $forecast;
-		}
+		$forecast = $this->forecastService->getForecastData('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+		$forecastList = $this->forecastService->formatForecastData($forecast);
 
 		// Right section with weathers around France (default)
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
 		foreach ($defaultTowns as $town) {
-			$defaultWeathers[$town] = $this->api->getWeather($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
-			$defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
+			$defaultWeathers[$town] = $this->weatherService->getWeatherData($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
 		}
 
 		$form = $this->createForm(SearchType::class);
@@ -91,13 +62,15 @@ class HomeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
 			
-			$weather = $this->api->getWeather($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$weather = json_decode($weather, true);
-			$weather = $this->windDirection->addCompasPoint($weather);
+			$weather = $this->weatherService->getWeatherData($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+
+			$forecast = $this->forecastService->getForecastData($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
+			$forecastList = $this->forecastService->formatForecastData($forecast);
 
 			return $this->render('home/index.html.twig', [
 				'controller_name' => 'HomeController',
 				'weather' => $weather,
+				'forecastList' => $forecastList,
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
 			]);
@@ -106,6 +79,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
 			'weather' => $weather,
+			'forecastList' => $forecastList,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
         ]);
