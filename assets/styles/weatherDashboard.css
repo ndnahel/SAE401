@@ -22,8 +22,17 @@
 }
 @media (min-width: 992px) {
   .weatherDashboard {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.26fr;
   }
+}
+.weatherDashboard .weatherTowns h2 {
+  margin-bottom: 16px;
+}
+.weatherDashboard .weatherTowns .swiper {
+  overflow: hidden;
+}
+.weatherDashboard .weatherTowns .swiper-wrapper {
+  display: flex;
 }
 
 /*# sourceMappingURL=weatherDashboard.css.map */

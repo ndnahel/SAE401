@@ -5,7 +5,7 @@
   grid-template-columns: 1fr;
 
   @include min-width($minW03) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.26fr;
   }
 
   padding: $grup $grup02;
@@ -13,4 +13,23 @@
 
   @include first-background-layer;
   border-radius: $grup01;
+
+  .weatherTowns {
+    h2 {
+      margin-bottom: $grup;
+    }
+
+    .swiper {
+      overflow: hidden;
+
+      &-wrapper {
+        display: flex;
+
+      }
+
+      &-slide {
+
+      }
+    }
+  }
 }

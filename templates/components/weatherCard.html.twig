@@ -15,10 +15,12 @@
     <div class="weatherCard-bottom">
         <div class="rain-container">
             <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+            {#
             <div class="rainCard">
                 <span class="rain-title">Nuageux à</span>
                 <span class="rain">{{ weather.clouds.all }}%</span>
             </div>
+            #}
             <div class="rainCard">
                 <span class="rain-title">Humidité</span>
                 <span class="rain">{{ weather.main.humidity }}%</span>
