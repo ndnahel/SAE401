@@ -11,25 +11,12 @@
         <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
     {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
 </head>
 <body>
-<nav>
-    <div class="nav-container">
-            <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
-        <a class='nav-logo' href="{{ path('app_home') }}">
-            <span>Weather Compass</span>
-        </a>
-        <input class='nav-search'
-               type="search"
-               aria-label='Search'
-               name="search"
-               id="search"
-               placeholder="Rechercher...">
-    </div>
-</nav>
+
 {% block body %}{% endblock %}
 </body>
 </html>

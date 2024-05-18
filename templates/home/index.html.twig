@@ -20,10 +20,25 @@
     {% endif %}
     <nav>
         <div class="nav-container">
-            {{ form_start(form) }}
+            <a class='nav-logo' href="{{ path('app_home') }}">
+                <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
+                <span>Weather Compass</span>
+            </a>
+            {#
+            <input class='nav-search'
+                   type="search"
+                   aria-label='Search'
+                   name="search"
+                   id="search"
+                   placeholder="Rechercher...">
+            </div>
+            #}
+            <div class="nav-search">
+                {{ form_start(form) }}
                 {{ form_row(form.result) }}
                 <button type="submit">{% trans %}Rechercher{% endtrans %}</button>
-            {{ form_end(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </nav>
     <main class='weatherDashboard'>
