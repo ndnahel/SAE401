@@ -94,8 +94,8 @@
   }
 }
 
-  .temp {
-    font-size: $grup01;
+.temp {
+  font-size: $grup01;
 
   &-container {
     display: flex;
@@ -109,11 +109,10 @@
 
       width: fit-content;
 
-        & > img {
-          grid-row: span 2;
-          height: $grup03;
-          width: $grup03;
-        }
+      & > img {
+        grid-row: span 2;
+        height: $grup03;
+        width: $grup03;
       }
     }
   }
