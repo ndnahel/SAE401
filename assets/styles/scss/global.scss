@@ -1,0 +1,177 @@
+@import 'variables';
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0;
+  padding: $grup $grup02;
+  gap: $grup03;
+
+  @include min-width($minW03) {
+    padding: $grup max($grup02, calc(50vw - ($minW05 / 2)));
+  }
+
+  font-family: 'Otomanopee One', sans-serif;
+  color: $black;
+
+  background: $white-02
+  //background: url('../images/cloud-patern.svg') repeat;
+}
+
+// NAV
+
+.nav {
+  &-container {
+    display: flex;
+    flex-wrap: nowrap;
+    
+    @include min-width($minW01) {
+      gap: $grup;
+    }
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    gap: $grup;
+
+    color: $black;
+    text-decoration: none;
+    line-height: $grup;
+
+    img {
+      height: $grup04;
+      width: $grup04;
+
+      @include min-width($minW01) {
+        height: $grup06;
+        width: $grup06;
+      }
+    }
+
+    span {
+      font-size: 0;
+
+      @include min-width($minW01) {
+        font-size: $grup;
+      }
+    }
+  }
+
+  &-search {
+    width: 100%;
+
+    form {
+      position: relative;
+
+      &:hover, &:focus, &:active {
+        #search_result {
+          border: 1px solid $black-01;
+          outline: none;
+        }
+      }
+
+      #search_result {
+        min-width: $grup10;
+        width: 100%;
+
+        margin: 0;
+        padding: $grup $grup02 $grup $grup02;
+
+        font-size: $grup01;
+        color: $black-01;
+
+        border-radius: $grup06;
+        @include first-background-layer;
+
+
+      }
+
+      button {
+        position: absolute;
+
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        width: $grup06;
+        height: $grup06;
+
+        font-size: 0;
+
+        border: 1px solid $black-01;
+        background: url("../images/icons/maglass.svg") $black no-repeat 14px;
+        background-size: $grup01;
+        border-radius: 0 $grup06 $grup06 0;
+
+        cursor: pointer;
+
+        &:hover, &:focus, &:active {
+          background-color: $black-01;
+          //background-size: $grup02;
+          //background-position: 13px;
+        }
+      }
+    }
+
+    //button[type='submit'] {
+    //  min-width: $grup10;
+    //  width: 100%;
+    //
+    //  margin: 0;
+    //  padding: $grup $grup02 $grup $grup06;
+    //
+    //  font-size: $grup01;
+    //  color: $black-01;
+    //
+    //  @include first-background-layer;
+    //  border-radius: $grup06;
+    //  background: url("../images/icons/maglass.svg") $white-01 no-repeat $grup02;
+    //  background-size: $grup01;
+    //
+    //  &:hover, &:focus {
+    //    border: 1px solid $white-03;
+    //  }
+    // }
+  }
+}
+
+// SVG Animations
+
+.svg-icon {
+  overflow: visible;
+
+  &--sun {
+    transform-origin: center;
+    transform-box: border-box;
+    animation: sun 16s linear infinite;
+  }
+}
+
+
+@keyframes sun {
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
+
+/// SAVED FOR LATER
+
+//  box-shadow: rgba(30, 34, 28, 0.17) 0px -23px 25px 0px inset, rgba(30, 34, 28, 0.15) 0px -36px 30px 0px inset, rgba(30, 34, 28, 0.1) 0px -79px 40px 0px inset, rgba(30, 34, 28, 0.06) 0px 2px 1px, rgba(30, 34, 28, 0.09) 0px 4px 2px, rgba(30, 34, 28, 0.09) 0px 8px 4px, rgba(30, 34, 28, 0.09) 0px 16px 8px, rgba(30, 34, 28, 0.09) 0px 32px 16px;
