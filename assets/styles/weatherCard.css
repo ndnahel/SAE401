@@ -15,8 +15,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  min-width: 368px;
-  width: fit-content;
   padding: 16px 24px;
   background-color: var(--color-white);
   border: 1px solid var(--color-white-02);
@@ -29,9 +27,9 @@
 }
 .weatherCard-bottom {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 48px;
+  gap: 20px;
 }
 .weatherCard .weather {
   display: flex;
@@ -64,7 +62,7 @@
   line-height: 40px;
 }
 .weatherCard .rain {
-  font-size: 24px;
+  font-size: 20px;
 }
 .weatherCard .rain-container {
   display: flex;
@@ -79,7 +77,8 @@
   margin-left: 12px;
 }
 .weatherCard .rain-container > img {
-  height: 40px;
+  height: 32px;
+  width: 32px;
 }
 .weatherCard .rain-title {
   font-size: 12px;
@@ -103,7 +102,8 @@
 }
 .temp-container .tempCard > img {
   grid-row: span 2;
-  height: 40px;
+  height: 32px;
+  width: 32px;
 }
 .temp-title {
   font-size: 12px;

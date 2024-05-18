@@ -5,6 +5,7 @@
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
     <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
 {% endblock %}
@@ -110,9 +111,10 @@
             </div>
         </div>
         <div class='weatherTowns'>
+
             <h2>Aujourd'hui en France</h2>
 
-            <div class='swiper recommendedCities'>
+            <div class='recommendedCities swiper'>
                 <div class="swiper-wrapper">
                     {% for weather in defaultWeathers %}
                         {% include 'components/weatherCard.html.twig' with {
@@ -121,7 +123,6 @@
                     {% endfor %}
                 </div>
             </div>
-
 
         </div>
     </main>
