@@ -11,8 +11,6 @@
   padding: $grup $grup02;
   gap: $grup05;
 
-  background-color: $white;
-  border-radius: $grup;
-
-  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  @include first-background-layer;
+  border-radius: $grup01;
 }

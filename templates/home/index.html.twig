@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('scripts/swipers.js') }}" type="module"></script>
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
@@ -106,14 +110,19 @@
             </div>
         </div>
         <div class='weatherTowns'>
-            <h2>{% trans %}Aujourd'hui en France{% endtrans %}</h2>
-            <div class="weatherCard-container">
-                {% for weather in defaultWeathers %}
-                    {% include 'components/weatherCard.html.twig' with {
-                        weather: weather
-                    } %}
-                {% endfor %}
+            <h2>Aujourd'hui en France</h2>
+
+            <div class='swiper recommendedCities'>
+                <div class="swiper-wrapper">
+                    {% for weather in defaultWeathers %}
+                        {% include 'components/weatherCard.html.twig' with {
+                            weather: weather
+                        } %}
+                    {% endfor %}
+                </div>
             </div>
+
+
         </div>
     </main>
 
