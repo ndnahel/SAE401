@@ -36,19 +36,33 @@ $trans01: 0.1s;
 $trans02: 0.2s;
 
 :root {
-  --color-white: #FFFBF4;
-  --color-white-01: #f8f2e4;
-  --color-black: #473B2F;
-  --color-black-01: #675847;
-  --color-blue: #72B1FB;
-  --color-orange: #FFA825;
-  --color-red: #ff3535;
+  --color-white: rgb(255, 255, 255);
+  --color-white-01: rgb(255, 251, 244);
+  --color-white-02: rgb(248, 242, 228);
+  --color-white-03: rgb(238, 229, 215);
+  --color-black: rgb(71, 59, 47);
+  --color-black-01: rgb(103, 88, 71);
+  --color-blue: rgb(114, 177, 251);
+  --color-orange: rgb(255, 168, 37);
+  --color-red: rgb(255, 53, 53);
 }
 
 $white: var(--color-white);
 $white-01: var(--color-white-01);
+$white-02: var(--color-white-02);
+$white-03: var(--color-white-03);
 $black: var(--color-black);
 $black-01: var(--color-black-01);
 $blue: var(--color-blue);
 $orange: var(--color-orange);
 $red: var(--color-red);
+
+@mixin first-background-layer() {
+  background-color: $white-01;
+  border: 1px solid $white-03;
+}
+
+@mixin second-background-layer() {
+  background-color: $white;
+  border: 1px solid $white-02;
+}

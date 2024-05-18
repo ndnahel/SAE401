@@ -5,11 +5,10 @@
   flex-direction: column;
   gap: $grup02;
 
-  min-width: 368px;
-  width: fit-content;
   padding: $grup $grup02;
 
-  border-radius: $grup-03;
+  @include second-background-layer;
+  border-radius: $grup-01;
 
   &-container {
     display: flex;
@@ -19,9 +18,9 @@
 
   &-bottom {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    gap: $grup05;
+    gap: $grup01;
   }
 
   .weather {
@@ -65,7 +64,7 @@
   }
 
   .rain {
-    font-size: $grup02;
+    font-size: $grup01;
 
     &-container {
       display: flex;
@@ -82,7 +81,8 @@
       }
 
       & > img {
-        height: $grup04;
+        height: $grup03;
+        width: $grup03;
       }
     }
 
@@ -95,7 +95,7 @@
 }
 
 .temp {
-  font-size: $grup02;
+  font-size: $grup01;
 
   &-container {
     display: flex;
@@ -111,7 +111,8 @@
 
       & > img {
         grid-row: span 2;
-        height: $grup04;
+        height: $grup03;
+        width: $grup03;
       }
     }
   }

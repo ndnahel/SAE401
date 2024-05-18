@@ -5,14 +5,31 @@
   grid-template-columns: 1fr;
 
   @include min-width($minW03) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.26fr;
   }
 
   padding: $grup $grup02;
   gap: $grup05;
 
-  background-color: $white;
-  border-radius: $grup;
+  @include first-background-layer;
+  border-radius: $grup01;
 
-  box-shadow: rgba(0, 0, 0, 0.2) 0 20px 30px;
+  .weatherTowns {
+    h2 {
+      margin-bottom: $grup;
+    }
+
+    .swiper {
+      overflow: hidden;
+
+      &-wrapper {
+        display: flex;
+
+      }
+
+      &-slide {
+
+      }
+    }
+  }
 }
