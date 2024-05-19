@@ -1,0 +1,304 @@
+@import "variables.scss";
+
+.svg-icon {
+  overflow: visible;
+
+  &--sun {
+    .rays {
+      fill: $orange;
+      stroke: $orange;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+
+    .core {
+      fill: transparent;
+      stroke: $orange;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+
+    transform-origin: center;
+    transform-box: border-box;
+    animation: rotating 16s linear infinite;
+
+    &.sunrise {
+      animation: rays-scaling 10s linear infinite;
+    }
+  }
+
+  &--cloud {
+    fill: $white;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+
+    animation: cloud 6s ease infinite;
+
+    &:last-child {
+      animation: cloud-reverse 10s ease-in-out infinite;
+    }
+  }
+
+  &--raindrop {
+    .drop {
+      fill: transparent;
+      stroke: $blue;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+
+      opacity: 0;
+      animation: raining 1000ms linear infinite;
+
+      &:nth-child(1) {
+        animation-duration: 1200ms;
+      }
+
+      &:nth-child(2) {
+        animation-duration: 900ms;
+        animation-delay: 250ms;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 100ms;
+      }
+
+      &:nth-child(4) {
+        animation-duration: 800ms;
+        animation-delay: 200ms;
+      }
+    }
+  }
+
+  &--lightning {
+    fill: transparent;
+    stroke: $orange;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+
+    animation: lightning 2s ease-out infinite;
+  }
+
+  &--snowflake {
+    fill: none;
+    stroke: $blue;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+
+    transform-origin: center;
+    transform-box: border-box;
+    animation: rotating 26s linear infinite;
+  }
+
+  &--mist {
+    fill: none;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+
+    path {
+      animation: mist 10s ease infinite;
+
+      &:nth-child(1) {
+        animation-duration: 9500ms;
+        animation-delay: 1000ms;
+      }
+
+      &:nth-child(2) {
+        animation-duration: 11110ms;
+      }
+
+      &:nth-child(3) {
+        animation-duration: 8880ms;
+        animation-delay: 2000ms;
+      }
+
+      &:nth-child(4) {
+        animation-duration: 10500ms;
+        animation-delay: 1500ms;
+      }
+
+      &:nth-child(5) {
+        animation-duration: 12000ms;
+        animation-delay: 500ms;
+      }
+
+      &:nth-child(6) {
+        animation-duration: 8000ms;
+        animation-delay: 2500ms;
+      }
+    }
+  }
+
+  &--temp {
+
+
+    &__hot {
+      &-out {
+        fill: transparent;
+        stroke: $red;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 6px;
+      }
+
+      &-ins {
+        fill: $red;
+      }
+    }
+
+    &__cold {
+      &-out {
+        fill: transparent;
+        stroke: $blue;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 6px;
+      }
+
+      &-ins {
+        fill: $blue;
+      }
+    }
+  }
+
+  &--star {
+    &__filled {
+      path.fill {
+        fill: $orange;
+      }
+
+      path.stroke {
+        fill: $orange;
+      }
+
+      &:hover {
+        path.fill {
+          fill: transparent;
+        }
+      }
+    }
+
+    &__empty {
+      path.stroke {
+        fill: $orange;
+      }
+
+      path.fill {
+        fill: transparent;
+      }
+
+      &:hover {
+        path.fill {
+          fill: $orange;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes rotating {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cloud {
+  0%, 100% {
+    transform: translateX(4%);
+  }
+  50% {
+    transform: translateX(-4%);
+  }
+}
+
+@keyframes cloud-reverse {
+  0%, 100% {
+    transform: translateX(-4%);
+  }
+  50% {
+    transform: translateX(4%);
+  }
+}
+
+@keyframes raining {
+  0% {
+    opacity: 0;
+    transform: translate(5%, -15%);
+  }
+  15%, 85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-15%, 7%);
+  }
+}
+
+@keyframes lightning {
+  0% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  42% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  47% {
+    transform: translate(11%, 0);
+    opacity: 0.6;
+  }
+  51% {
+    transform: translate(11%, 0);
+    opacity: 0.2;
+  }
+  55% {
+    transform: translate(11%, 0);
+    opacity: 1;
+  }
+  65% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  79% {
+    transform: translate(-7%, -3%);
+    opacity: 0;
+  }
+  82% {
+    transform: translate(-7%, -3%);
+    opacity: 0.6;
+  }
+  86% {
+    transform: translate(-7%, -3%);
+    opacity: 0.2;
+  }
+  90% {
+    transform: translate(-7%, -3%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-7%, -3%);
+    opacity: 0;
+  }
+}
+
+@keyframes mist {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(1.5%, -3.5%);
+  }
+  66% {
+    transform: translate(2.5%, 4%);
+  }
+}
+

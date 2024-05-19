@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% trans %}Paramètres{% endtrans %}</h1>
+    {{ form_start(userForm) }}
+    <div>
+        {{ form_label(userForm.username) }}
+        {{ form_widget(userForm.username) }}
+        {{ form_errors(userForm.username) }}
+    </div>
+    <div>
+        {{ form_label(userForm.email) }}
+        {{ form_widget(userForm.email) }}
+        {{ form_errors(userForm.email) }}
+    </div>
+    <div>
+        {{ form_label(userForm.password) }}
+        {{ form_widget(userForm.password) }}
+        {{ form_errors(userForm.password) }}
+    </div>
+    <div>
+        {{ form_label(userForm.newPassword) }}
+        {{ form_widget(userForm.newPassword) }}
+        {{ form_errors(userForm.newPassword) }}
+    </div>
+    <div>
+        {{ form_label(userForm.newPassword2) }}
+        {{ form_widget(userForm.newPassword2) }}
+        {{ form_errors(userForm.newPassword2) }}
+    </div>
+    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    {{ form_end(userForm) }}
+
+    <h1>{% trans %}Préférences par défaut{% endtrans %}</h1>
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.lang) }}
+        {{ form_widget(form.lang) }}
+        {{ form_errors(form.lang) }}
+    </div>
+    <div>
+        {{ form_label(form.unit) }}
+        {{ form_widget(form.unit) }}
+        {{ form_errors(form.unit) }}
+    </div>
+    <div>
+        {{ form_label(form.country) }}
+        {{ form_widget(form.country) }}
+        {{ form_errors(form.country) }}
+    </div>
+    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

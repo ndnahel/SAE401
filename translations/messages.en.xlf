@@ -85,6 +85,58 @@
         <source>Aujourd'hui en France</source>
         <target>Today in France</target>
       </trans-unit>
+      <trans-unit id="X2uqtNv" resname="Langue">
+        <source>Langue</source>
+        <target>Language</target>
+      </trans-unit>
+      <trans-unit id="4DHtMrr" resname="Unité de mesure">
+        <source>Unité de mesure</source>
+        <target>Measure unit</target>
+      </trans-unit>
+      <trans-unit id=".nU._5u" resname="Pays">
+        <source>Pays</source>
+        <target>Country</target>
+      </trans-unit>
+      <trans-unit id="z7GsDIB" resname="Inscription">
+        <source>Inscription</source>
+        <target>Registration</target>
+      </trans-unit>
+      <trans-unit id="YmunqJ." resname="Valider">
+        <source>Valider</source>
+        <target>Confirm</target>
+      </trans-unit>
+      <trans-unit id="pAYANuf" resname="Vous êtes déjà connecté(e) en tant que">
+        <source>Vous êtes déjà connecté(e) en tant que</source>
+        <target>You are already logged in as</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="YdaVBBA" resname="Connexion">
+        <source>Connexion</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="kfb0Cdk" resname="Préférences par défaut">
+        <source>Préférences par défaut</source>
+        <target>Default preferences</target>
+      </trans-unit>
+      <trans-unit id="QAzfTEE" resname="Sauvegarder">
+        <source>Sauvegarder</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
+        <source>Nouveau mot de passe</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="iD6_.__" resname="Confirmer le nouveau mot de passe">
+        <source>Confirmer le nouveau mot de passe</source>
+        <target>Confirm the new password</target>
+      </trans-unit>
+      <trans-unit id="AZI996R" resname="Paramètres">
+        <source>Paramètres</source>
+        <target>Settings</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

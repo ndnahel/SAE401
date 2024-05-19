@@ -1,31 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}WeatherCompass{% endblock %}
+
+  {% block stylesheets %}
+      {{ parent() }}
+      <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
+  {% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <h1 class="h3 mb-3 font-weight-normal">{% trans %}Connexion{% endtrans %}</h1>
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                {% trans %}Vous êtes déjà connecté(e) en tant que {% endtrans %} {{ app.user.userIdentifier }},
+                <a href="{{ path
+                    ('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+            </div>
+        {% endif %}
+
+        <div>
+            <label for="inputUsername">{% trans %}Nom d'utilisateur{% endtrans %}</label>
+            <input type="text"
+                   value="{{ last_username }}"
+                   name="username"
+                   id="inputUsername"
+                   class="form-control"
+                   autocomplete="username"
+                   required
+                   autofocus>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <div>
+            <label for="inputPassword">{% trans %}Mot de passe{% endtrans %}</label>
+            <input type="password"
+                   name="password"
+                   id="inputPassword"
+                   class="form-control"
+                   autocomplete="current-password"
+                   required>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <button class="btn btn-lg btn-primary" type="submit">
+            {% trans %}Valider{% endtrans %}
+        </button>
+        <a href="{{ path('app_register') }}">{% trans %}Créer un compte{% endtrans %}</a>
+    </form>
 {% endblock %}

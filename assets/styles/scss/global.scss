@@ -17,7 +17,6 @@ p {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
   margin: 0;
   padding: $grup $grup02;
@@ -40,7 +39,7 @@ body {
   &-container {
     display: flex;
     flex-wrap: nowrap;
-    
+
     @include min-width($minW01) {
       gap: $grup;
     }
@@ -122,7 +121,7 @@ body {
 
         cursor: pointer;
 
-        &:hover, &:focus, &:active {
+        &:hover, &:focus, &:active, {
           background-color: $black-01;
           //background-size: $grup02;
           //background-position: 13px;
@@ -150,26 +149,6 @@ body {
     //  }
     // }
   }
-}
-
-// SVG Animations
-
-.svg-icon {
-  overflow: visible;
-
-  &--sun {
-    transform-origin: center;
-    transform-box: border-box;
-    animation: sun 16s linear infinite;
-  }
-}
-
-
-@keyframes sun {
-  100% {
-    transform: rotate(360deg);
-  }
-
 }
 
 /// SAVED FOR LATER

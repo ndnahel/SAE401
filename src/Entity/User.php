@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -21,9 +22,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le nom d\'utilisateur ne doit pas être vide.')]
+    #[Assert\Length(max: 25, maxMessage: 'Le nom d\'utilisateur ne peut pas dépasser {{ limit }} caractères.')]
     private ?string $username = null;
 	
 	#[ORM\Column(length: 200)]
+	#[Assert\NotBlank(message: 'L\'adresse email ne doit pas être vide.')]
+	#[Assert\Email(message: 'L\'adresse email n\'est pas valide.')]
 	private ?string $email = null;
 
     /**
@@ -39,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string|null The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le mot de passe ne doit pas être vide.')]
     private ?string $password = null;
 	
 	#[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -159,14 +165,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return array
 	 */
 	public function getPreferences(): array {
-		return $this->preferences[0];
+		return $this->preferences;
 	}
 	
 	/**
 	 * @return string
 	 */
 	public function getLang(): string {
-		return $this->preferences[0]['lang'];
+		return $this->preferences['lang'];
 	}
 	
 	/**
@@ -174,7 +180,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setLang(string $lang): static {
-		$this->preferences[0]['lang'] = $lang;
+		$this->preferences['lang'] = $lang;
 		return $this;
 	}
 	
@@ -182,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return string
 	 */
 	public function getUnit(): string {
-		return $this->preferences[0]['unit'];
+		return $this->preferences['unit'];
 	}
 	
 	/**
@@ -190,7 +196,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setUnit(string $unit): static {
-		$this->preferences[0]['unit'] = $unit;
+		$this->preferences['unit'] = $unit;
 		return $this;
 	}
 	
@@ -198,7 +204,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return string
 	 */
 	public function getCountry(): string {
-		return $this->preferences[0]['country'];
+		return $this->preferences['country'];
 	}
 	
 	/**
@@ -206,7 +212,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setCountry(string $country): static {
-		$this->preferences[0]['country'] = $country;
+		$this->preferences['country'] = $country;
 		return $this;
 	}
 	
@@ -216,6 +222,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 */
 	public function setPreferences(array $preferences): ?User {
 		$this->preferences = $preferences;
+		return $this;
+	}
+	
+	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return $this
+	 */
+	public function addPreference(string $name, string $value): static {
+		$this->preferences[$name] = $value;
 		return $this;
 	}
 	

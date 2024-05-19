@@ -3,28 +3,84 @@
 {% endblock %}
 
 <div class="forecastCard" data-location="{{ location }}" data-datetime="{{ forecast.dt_txt }}">
-    <div>
-         {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
-        <div class="card-content--wrapper date">
-            <span class="card-content--date">{{ forecast.dt_txt|date('l') }}</span>
-            <span class="card-content--value">{{ forecast.dt_txt|date('d F') }}</span>
-        </div>
-        <div class="card-content--wrapper weather">
-            <span class="card-content--weather">{{ forecast.weather[0].description }}</span>
-            <span class="card-content--value">{{ forecast.main.temp }}</span>
+
+    <div class="date-container">
+        <span class="when">{{ forecast.dt_txt|date('l') }}</span>
+        <span class="date">{{ forecast.dt_txt|date('d F') }}</span>
+    </div>
+
+    <div class='weather-tl' id="icon">
+        {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
+    </div>
+
+
+    <div class="weather-tr">
+        <div class="weather">
+            <div class='weather-city'>
+                <h2>{{ weather.name }}</h2>
+                <button class="btn btn-primary" data-location="{{ location }}">
+                    {% include "components/icons/star_filled.svg" %}
+                    {# {% include "components/icons/star_empty.svg" %} #}
+                </button>
+            </div>
+            <span class="weather-text">{{ forecast.weather[0].description|capitalize }}</span>
+            <span class="weather-temp">{{ forecast.main.temp }}{{ unit }}</span>
         </div>
     </div>
 
-    <div class="temp-container">
-        <div class="tempCard">
-            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
-            <span class="temp-title">Min.</span>
-            <span class="temp">{{ forecast.main.temp_min|number_format(1, '.', ',') }}°</span>
+
+    <div class="weather-br">
+        <div class="temp-feels">
+            <span class="temp-text">{% trans %}Ressenti{% endtrans %}</span>
+            <span class="temp-stat">{{ forecast.main.feels_like }}°C</span>
         </div>
-        <div class="tempCard">
-            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
-            <span class="temp-title">Max.</span>
-            <span class="temp">{{ forecast.main.temp_max|number_format(1, '.', ',') }}°</span>
+        <div class="temp-wrapper">
+            <div class="tempCard">
+                {% include "components/icons/tmp_lowest.svg" %}
+                <span class="temp-title">{% trans %}Min.{% endtrans %}</span>
+                <span class="temp">{{ forecast.main.temp_min|number_format(1, '.', ',') }}°</span>
+            </div>
+            <div class="tempCard">
+                {% include "components/icons/tmp_highest.svg" %}
+                <span class="temp-title">{% trans %}Max.{% endtrans %}</span>
+                <span class="temp">{{ forecast.main.temp_max|number_format(1, '.', ',') }}°</span>
+            </div>
         </div>
+    </div>
+
+    <div class="weather-bl">
+        {% include "components/icons/windsock.svg" %}
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Vitesse{% endtrans %}</span>
+            <span class="stat">{{ forecast.wind.speed }} m/s</span>
+        </div>
+
+        {#
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Direction{% endtrans %}</span>
+            <span class="stat">{{ forecast.wind.direction }}</span>
+        </div>
+        #}
+        {% include "components/icons/rain.svg" %}
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Nuageux à{% endtrans %}</span>
+            <span class="stat">{{ forecast.clouds.all }}%</span>
+        </div>
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Humidité{% endtrans %}</span>
+            <span class="stat">{{ forecast.main.humidity }}%</span>
+        </div>
+
+        {#
+        <img src="{{ asset('images/icons/sun.svg') }}" alt="rain icon">
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Lever{% endtrans %}</span>
+            <span class="stat">{{ weather.sys.sunrise|date('H:i') }}</span>
+        </div>
+        <div class="statCard">
+            <span class="stat-title">{% trans %}Coucher{% endtrans %}</span>
+            <span class="stat">{{ weather.sys.sunset|date('H:i') }}</span>
+        </div>
+        #}
     </div>
 </div>

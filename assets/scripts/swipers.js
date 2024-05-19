@@ -15,5 +15,13 @@ let recommendedCities = new Swiper(".recommendedCities", {
         768: {
             slidesPerView: 1.6,
         },
+
+        992: {
+            slidesPerView: 1,
+        },
+
+        1600: {
+            slidesPerView: 1.6,
+        },
     },
 });

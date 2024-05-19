@@ -1,0 +1,71 @@
+@import 'variables';
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: $minW01;
+
+  margin: auto;
+  padding: $grup01 $grup01 $grup06 $grup01;
+  gap: $grup;
+
+  @include first-background-layer;
+  border-radius: $grup;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: $grup-03;
+
+    input[type="text"], input[type="email"], input[type="password"] {
+
+      padding: $grup-02 $grup;
+
+      @include second-background-layer;
+      border-radius: $grup-02;
+
+      &:hover, &:focus, &:active, {
+        border: 1px solid $black-01;
+        outline: none;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    width: fit-content;
+
+    margin: $grup01 auto 0;
+    padding: $grup-01 $grup03;
+
+    font-size: $grup;
+    font-weight: 700;
+    color: $white;
+
+    background-color: $black;
+    border: 1px solid $black-01;
+    border-radius: $grup-02;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: $black-01;
+    }
+  }
+
+  & > a {
+    text-align: center;
+    color: $black-01;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

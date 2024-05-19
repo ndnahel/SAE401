@@ -1,14 +1,15 @@
 @import 'variables';
 
+
 .weatherDashboard {
   display: grid;
   grid-template-columns: 1fr;
-
+  
   @include min-width($minW03) {
-    grid-template-columns: 1fr 1.26fr;
+    grid-template-columns: 1.26fr 1fr;
   }
 
-  padding: $grup $grup02;
+  padding: $grup02;
   gap: $grup05;
 
   @include first-background-layer;
@@ -24,7 +25,6 @@
 
       &-wrapper {
         display: flex;
-
       }
 
       &-slide {

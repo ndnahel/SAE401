@@ -1,0 +1,393 @@
+@import 'variables';
+
+.weatherInformation {
+  display: flex;
+  flex-direction: column;
+
+  gap: $grup;
+
+  .forecastCard {
+    display: grid;
+    grid-template-areas:
+      "date date"
+      "tl tl"
+      "tr tr"
+      "br br"
+      "bl bl";
+
+    @include min-width($minW01) {
+      grid-template-areas:
+      "date date"
+      "tl tr"
+      "br br"
+      "bl bl";
+    }
+
+    @include min-width($minW02) {
+      grid-template-areas:
+      "date date"
+      "tl tr"
+      "bl br";
+    }
+
+    padding: $grup $grup02;
+    gap: $grup03;
+
+    @include second-background-layer;
+    border-radius: $grup-01;
+
+    max-height: 100%;
+    //transition: height ease 1s, max-height ease 1s;
+    overflow: clip;
+
+    .date-container {
+      grid-area: date;
+
+      display: flex;
+      flex-direction: column;
+
+      .when {
+        font-size: $grup02;
+        font-weight: 700;
+        line-height: $grup02;
+      }
+
+      .date {
+        font-size: $grup01;
+        line-height: $grup01;
+      }
+    }
+
+    .statCard {
+      display: flex;
+      flex-direction: column;
+
+      .stat {
+        font-size: $grup01;
+        font-weight: 700;
+        line-height: $grup01;
+
+        &-title {
+          font-size: $grup-01;
+          color: $black-01;
+          line-height: $grup-01;
+        }
+      }
+    }
+
+    .weather {
+      &-tl {
+        grid-area: tl;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img, svg {
+          height: 80%;
+          width: 80%;
+          object-fit: contain;
+        }
+      }
+
+      &-tr {
+        grid-area: tr;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .weather {
+          display: flex;
+          flex-direction: column;
+
+          &-city {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: $grup02;
+            gap: $grup-02;
+
+            h2 {
+              font-size: $grup01;
+              font-weight: 400;
+            }
+
+            button {
+              background: none;
+              border: none;
+
+              cursor: pointer;
+
+              svg {
+                overflow: visible;
+                height: $grup02;
+                width: $grup02;
+              }
+
+              .svg-icon {
+                &--star {
+                  &__filled {
+                    path.fill {
+                      fill: $orange;
+                    }
+
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: transparent;
+                      }
+                    }
+                  }
+
+                  &__empty {
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    path.fill {
+                      fill: transparent;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: $orange;
+                      }
+                    }
+                  }
+                }
+              }
+
+
+              &:hover {
+                svg {
+                  path {
+                    fill: $orange;
+                  }
+                }
+              }
+            }
+
+
+          }
+
+          &-text {
+            font-size: $grup03;
+            line-height: $grup03;
+          }
+
+          &-temp {
+            font-size: $grup05;
+            font-weight: 500;
+            line-height: $grup05;
+          }
+        }
+      }
+
+      &-bl {
+        grid-area: bl;
+
+        display: grid;
+        grid-template-columns: min-content 1fr 1fr;
+        align-items: center;
+        align-content: center;
+
+        gap: $grup01;
+
+        img, svg {
+          height: $grup06;
+          width: $grup06;
+          object-fit: contain;
+        }
+      }
+
+      &-br {
+        grid-area: br;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: $grup03;
+
+        @include min-width($minW03) {
+
+        }
+
+        img, svg {
+          height: $grup06;
+          width: $grup06;
+          object-fit: contain;
+        }
+
+        .temp {
+          &-feels {
+            display: flex;
+            flex-direction: column;
+
+            .temp {
+              &-text {
+                font-size: $grup01;
+                line-height: $grup01;
+              }
+
+              &-stat {
+                font-size: $grup04;
+                line-height: $grup04;
+              }
+            }
+          }
+
+          &-wrapper {
+            grid-column: span 3;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: $grup01;
+
+            .tempCard {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              align-items: center;
+              column-gap: $grup-01;
+
+              width: fit-content;
+
+              .temp {
+                font-size: $grup01;
+                font-weight: 700;
+                line-height: $grup01;
+
+                &-title {
+                  font-size: $grup-01;
+                  color: $black-01;
+                  line-height: $grup-01;
+                }
+              }
+
+              img, svg {
+                grid-row: span 2;
+
+                height: $grup06;
+                object-fit: contain;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.forecastCard-active {
+    }
+
+    &:not(.forecastCard-active) {
+      display: flex;
+
+      gap: $grup;
+
+      cursor: pointer;
+
+      max-height: 90px;
+
+      &:hover {
+        border: 1px solid $black-01;
+      }
+
+      .date-container {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .when {
+          font-size: $grup01;
+          font-weight: 700;
+          line-height: $grup01;
+        }
+
+        .date {
+          font-size: $grup;
+          line-height: $grup;
+        }
+      }
+
+      .weather {
+        &-tl {
+          order: 1;
+
+          img, svg {
+            height: $grup05;
+            width: $grup05;
+            object-fit: contain;
+          }
+        }
+
+        &-tr {
+          order: 3;
+
+          .weather {
+            &-city {
+              display: none;
+            }
+
+            &-text {
+              font-size: $grup;
+              line-height: $grup01;
+            }
+
+            &-temp {
+              font-size: $grup;
+              font-weight: 500;
+              line-height: $grup;
+            }
+          }
+        }
+
+        &-bl {
+          display: none;
+        }
+
+        &-br {
+          margin-left: auto;
+          order: 4;
+
+          .temp {
+            &-feels {
+              display: none;
+            }
+
+            &-wrapper {
+              display: none;
+
+              @include min-width($minW02) {
+                display: grid;
+
+                img, svg {
+                  height: $grup04;
+                  width: $grup04;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:not(.mainCard) {
+      .weather-bl {
+        .statCard:first-of-type {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+}
+
+
+.btn-ajax-response_rm,
+.btn-ajax-response_add {
+  display: none;
+}
