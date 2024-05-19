@@ -36,10 +36,10 @@
     stroke-linejoin: round;
     stroke-width: 6px;
 
-    animation: cloud 10s ease infinite;
+    animation: cloud 6s ease infinite;
 
     &:last-child {
-      animation: cloud-reverse 16s ease infinite;
+      animation: cloud-reverse 10s ease-in-out infinite;
     }
   }
 
