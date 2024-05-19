@@ -82,13 +82,34 @@ class Api
 	 * @throws RedirectionExceptionInterface
 	 * @throws ClientExceptionInterface
 	 */
-	public function getCityById(int $id, string $unit = 'metric', string $lang = 'fr'): array
+	public function getWeatherById(int $id, string $unit = 'metric', string $lang = 'fr'): array
 	{
 		$apiKey = $this->getApiKey();
 		
 		$response = $this->client->request(
 			'GET',
 			'https://api.openweathermap.org/data/2.5/weather',
+			[
+				'query' => [
+					'id' => $id,
+					'appid' => $apiKey,
+					'lang' => $lang,
+					'units' => $unit,
+				],
+			]
+		);
+
+		$content = $response->getContent();
+		return ['content' => json_decode($content, true)];
+	}
+
+	public function getForecastById(int $id, string $unit = 'metric', string $lang = 'fr'): array
+	{
+		$apiKey = $this->getApiKey();
+		
+		$response = $this->client->request(
+			'GET',
+			'https://api.openweathermap.org/data/2.5/forecast',
 			[
 				'query' => [
 					'id' => $id,

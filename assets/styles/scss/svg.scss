@@ -1,0 +1,53 @@
+@import "variables.scss";
+
+.svg-icon {
+  overflow: visible;
+
+  &--sun {
+    transform-origin: center;
+    transform-box: border-box;
+    animation: sun 16s linear infinite;
+  }
+
+  &--star {
+    &__filled {
+      path.fill {
+        fill: $orange;
+      }
+
+      path.stroke {
+        fill: $orange;
+      }
+
+      &:hover {
+        path.fill {
+          fill: transparent;
+        }
+      }
+    }
+
+    &__empty {
+      path.stroke {
+        fill: $orange;
+      }
+
+      path.fill {
+        fill: transparent;
+      }
+
+      &:hover {
+        path.fill {
+          fill: $orange;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes sun {
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
