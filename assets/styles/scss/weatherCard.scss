@@ -80,7 +80,7 @@
         }
       }
 
-      & > img {
+      & > img, & > svg {
         height: $grup03;
         width: $grup03;
       }
@@ -109,7 +109,7 @@
 
       width: fit-content;
 
-      & > img {
+      & > img, & > svg {
         grid-row: span 2;
         height: $grup03;
         width: $grup03;

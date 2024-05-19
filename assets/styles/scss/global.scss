@@ -66,7 +66,7 @@ body {
       order: unset;
     }
 
-    img {
+    img, svg {
       min-height: $grup04;
       min-width: $grup04;
 
@@ -113,7 +113,7 @@ body {
           font-size: $grup01;
           color: $black-01;
 
-          @include first-background-layer;
+          @include second-background-layer;
           border-radius: $grup06 0 0 $grup06;
 
           &:hover, &:focus, &:active {
@@ -157,12 +157,28 @@ body {
     }
 
     a {
-      svg {
+      .svg-icon {
         width: $grup03;
         height: $grup03;
       }
-    }
 
+      &:hover {
+        .svg-icon {
+          &--gear {
+            fill: $black-01;
+            transform: rotate(180deg);
+          }
+
+          &--login, &--logout {
+            stroke: $black-01;
+
+            .arrow {
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+    }
   }
 }
 

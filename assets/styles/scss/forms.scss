@@ -1,5 +1,32 @@
 @import 'variables';
 
+.nav-go-back {
+  width: 100%;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: $grup-02;
+    color: $black;
+    text-decoration: none;
+
+    svg {
+      height: $grup;
+      width: $grup;
+
+      transition: transform $trans01 ease;
+    }
+
+    &:hover {
+      text-decoration: underline;
+
+      svg {
+        transform: translateX(-$grup-03);
+      }
+    }
+  }
+}
+
 h1 {
   text-align: center;
 }
@@ -17,7 +44,7 @@ form {
   max-width: $minW01;
 
   margin: auto;
-  padding: $grup01 $grup01 $grup06 $grup01;
+  padding: $grup02 $grup02 $grup06 $grup02;
   gap: $grup;
 
   @include first-background-layer;
@@ -37,6 +64,18 @@ form {
       border-radius: $grup-02;
 
       &:hover, &:focus, &:active, {
+        border: 1px solid $black-01;
+        outline: none;
+      }
+    }
+
+    select {
+      padding: $grup-02 $grup;
+
+      @include second-background-layer;
+      border-radius: $grup-02;
+
+      &:hover, &:focus, &:active {
         border: 1px solid $black-01;
         outline: none;
       }
