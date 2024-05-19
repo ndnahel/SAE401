@@ -220,6 +220,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	}
 	
 	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return $this
+	 */
+	public function addPreference(string $name, string $value): static {
+		$this->preferences[$name] = $value;
+		return $this;
+	}
+	
+	/**
 	 * @return string|null
 	 */
 	public function getResetToken(): ?string
