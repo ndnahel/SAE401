@@ -86,10 +86,14 @@
   display: flex;
   flex-direction: column;
 }
-.weatherInformation .forecastCard .weather-tr .weather h2 {
+.weatherInformation .forecastCard .weather-tr .weather-city h2 {
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 24px;
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button svg {
+  height: 32px;
+  width: 32px;
 }
 .weatherInformation .forecastCard .weather-tr .weather-text {
   font-size: 32px;

@@ -50,7 +50,13 @@
 
                 <div class="weather-tr">
                     <div class="weather">
-                        <h2>{{ weather.name }}</h2>
+                        <div class='weather-city'>
+                            <h2>{{ weather.name }}</h2>
+                            <button class="btn btn-primary" {# data-location="{{ location }}" #}>
+                                {% include "components/icons/star_empty.svg" %}
+                                {# {% include "components/icons/star_filled.svg" %} #}
+                            </button>
+                        </div>
                         <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
                         <span class="weather-temp">{{ weather.main.temp }}{{ unit }}</span>
                     </div>

@@ -101,10 +101,21 @@
           display: flex;
           flex-direction: column;
 
-          h2 {
-            font-size: $grup01;
-            font-weight: 400;
-            margin-bottom: $grup02;
+          &-city {
+            h2 {
+              font-size: $grup01;
+              font-weight: 400;
+              margin-bottom: $grup02;
+            }
+
+            button {
+              svg {
+                height: $grup03;
+                width: $grup03;
+              }
+            }
+
+
           }
 
           &-text {
