@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
 {% endblock %}
 
-<div class="weatherCard swiper-slide">
+<div class="weatherCard swiper-slide" onclick="selectTown('{{ weather.name }}')">
     <div class="weather-container">
         {% include "components/icons/" ~ weather.weather[0].icon ~ ".svg" %}
         <div class="weather">
