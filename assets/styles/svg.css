@@ -159,6 +159,29 @@
 .svg-icon--star__empty:hover path.fill {
   fill: var(--color-orange);
 }
+.svg-icon--gear {
+  fill: var(--color-black);
+}
+.svg-icon--exit__doorframe {
+  fill: transparent;
+  stroke: var(--color-black-01);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--exit__human {
+  fill: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--login, .svg-icon--logout {
+  fill: transparent;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
 
 @keyframes rotating {
   100% {

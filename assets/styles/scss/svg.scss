@@ -138,8 +138,6 @@
   }
 
   &--temp {
-
-
     &__hot {
       &-out {
         fill: transparent;
@@ -201,6 +199,35 @@
         }
       }
     }
+  }
+
+  &--gear {
+    fill: $black;
+  }
+
+  &--exit {
+    &__doorframe {
+      fill: transparent;
+      stroke: $black-01;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+
+    &__human {
+      fill: $black;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+  }
+
+  &--login, &--logout {
+    fill: transparent;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
   }
 }
 
