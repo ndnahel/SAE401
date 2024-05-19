@@ -2,12 +2,13 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('scripts/swipers.js') }}" type="module"></script>
+    <script src="{{ asset('scripts/forecastListAccordeon.js') }}" type="module"></script>
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
     <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/forecastList.css') }}">
 {% endblock %}
 
 {% block title %}WeatherCompass{% endblock %}
@@ -24,15 +25,6 @@
                 <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
                 <span>Weather Compass</span>
             </a>
-            {#
-            <input class='nav-search'
-                   type="search"
-                   aria-label='Search'
-                   name="search"
-                   id="search"
-                   placeholder="Rechercher...">
-            </div>
-            #}
             <div class="nav-search">
                 {{ form_start(form) }}
                 {{ form_row(form.result) }}
@@ -44,7 +36,7 @@
     <main class='weatherDashboard'>
         <div class='weatherInformation'>
 
-            <div class="mainCard">
+            <div class="mainCard forecastCard forecastCard-active">
 
                 <div class="date-container">
                     <span class="when">{% trans %}Aujourd'hui{% endtrans %}</span>
@@ -52,7 +44,6 @@
                 </div>
 
                 <div class='weather-tl' id="icon">
-                    {# <img src="{{ asset('images/icons/' ~ weather.weather[0].icon ~ '.svg') }}" alt="Current Weather"> #}
                     {% include "components/icons/" ~ weather.weather[0].icon ~ ".svg" %}
                 </div>
 
@@ -73,12 +64,12 @@
                     </div>
                     <div class="temp-wrapper">
                         <div class="tempCard">
-                            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
+                            {% include "components/icons/tmp_lowest.svg" %}
                             <span class="temp-title">{% trans %}Min.{% endtrans %}</span>
                             <span class="temp">{{ weather.main.temp_min|number_format(1, '.', ',') }}°</span>
                         </div>
                         <div class="tempCard">
-                            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
+                            {% include "components/icons/tmp_highest.svg" %}
                             <span class="temp-title">{% trans %}Max.{% endtrans %}</span>
                             <span class="temp">{{ weather.main.temp_max|number_format(1, '.', ',') }}°</span>
                         </div>
@@ -86,7 +77,7 @@
                 </div>
 
                 <div class="weather-bl">
-                    <img src="{{ asset('images/icons/windsock.svg') }}" alt="wind icon">
+                    {% include "components/icons/windsock.svg" %}
                     <div class="statCard">
                         <span class="stat-title">{% trans %}Vitesse{% endtrans %}</span>
                         <span class="stat">{{ weather.wind.speed }} m/s</span>
@@ -95,7 +86,7 @@
                         <span class="stat-title">{% trans %}Direction{% endtrans %}</span>
                         <span class="stat">{{ weather.wind.direction }}</span>
                     </div>
-                    <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
+                    {% include "components/icons/rain.svg" %}
                     <div class="statCard">
                         <span class="stat-title">{% trans %}Nuageux à{% endtrans %}</span>
                         <span class="stat">{{ weather.clouds.all }}%</span>
@@ -104,7 +95,7 @@
                         <span class="stat-title">{% trans %}Humidité{% endtrans %}</span>
                         <span class="stat">{{ weather.main.humidity }}%</span>
                     </div>
-                    <img src="{{ asset('images/icons/sun.svg') }}" alt="rain icon">
+                    {% include "components/icons/sun.svg" %}
                     <div class="statCard">
                         <span class="stat-title">{% trans %}Lever{% endtrans %}</span>
                         <span class="stat">{{ weather.sys.sunrise|date('H:i') }}</span>
@@ -116,14 +107,12 @@
                 </div>
             </div>
 
-            <div class="forecastCard-container">
-                {% for forecast in forecastList %}
-                    {% include 'components/forecastCard.html.twig' with {
-                        forecast: forecast,
-                        location : weather.name
-                    } %}
-                {% endfor %}
-            </div>
+            {% for forecast in forecastList %}
+                {% include 'components/forecastCard.html.twig' with {
+                    forecast: forecast,
+                    location : weather.name
+                } %}
+            {% endfor %}
         </div>
         <div class='weatherTowns'>
 

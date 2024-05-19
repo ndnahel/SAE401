@@ -123,16 +123,3 @@
     line-height: $grup-01;
   }
 }
-
-.forecastCard {
-  border-top: 1px $black solid;
-  border-bottom: 1px $black solid;
-
-  &:first-of-type {
-    border-top: 2px $black solid;
-  }
-
-  &:last-of-type {
-    border-bottom: 2px $black solid;
-  }
-}
