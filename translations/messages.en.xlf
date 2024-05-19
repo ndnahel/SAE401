@@ -125,6 +125,18 @@
         <source>Sauvegarder</source>
         <target>Save</target>
       </trans-unit>
+      <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
+        <source>Nouveau mot de passe</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="iD6_.__" resname="Confirmer le nouveau mot de passe">
+        <source>Confirmer le nouveau mot de passe</source>
+        <target>Confirm the new password</target>
+      </trans-unit>
+      <trans-unit id="AZI996R" resname="Paramètres">
+        <source>Paramètres</source>
+        <target>Settings</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
