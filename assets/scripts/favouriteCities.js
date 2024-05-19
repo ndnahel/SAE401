@@ -1,3 +1,4 @@
+// Adding city to favs (FavoriteCityController)
 function addFavouriteCity(id) {
     fetch(`/add-city/${id}`)
         .then(response => {
@@ -5,10 +6,6 @@ function addFavouriteCity(id) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.text();
-        })
-        .then(data => {
-            // Handle the response data
-            console.log(data);
         })
         .catch(error => {
             // Handle the error
