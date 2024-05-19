@@ -4,7 +4,7 @@
 .weatherDashboard {
   display: grid;
   grid-template-columns: 1fr;
-  
+
   @include min-width($minW03) {
     grid-template-columns: 1.26fr 1fr;
   }
@@ -16,6 +16,11 @@
   border-radius: $grup01;
 
   .weatherTowns {
+    display: flex;
+    flex-direction: column;
+
+    gap: $grup02;
+
     h2 {
       margin-bottom: $grup;
     }
@@ -27,8 +32,24 @@
         display: flex;
       }
 
-      &-slide {
+      button {
+        margin-top: $grup-01;
 
+        background-color: transparent;
+        border: none;
+
+        cursor: pointer;
+
+        .svg-icon {
+          width: $grup03;
+          height: $grup03;
+        }
+
+        &:hover {
+          .svg-icon {
+            stroke: $black-01;
+          }
+        }
       }
     }
   }

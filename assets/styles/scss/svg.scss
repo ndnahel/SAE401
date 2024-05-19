@@ -240,7 +240,7 @@
     stroke: $black;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-width: 6px;
+    stroke-width: 5px;
 
     .arrow {
       transition: ease transform $trans02;
@@ -253,6 +253,14 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 6px;
+  }
+
+  &--arrow-circle {
+    fill: transparent;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 5px;
   }
 }
 
