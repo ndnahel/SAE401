@@ -102,16 +102,72 @@
           flex-direction: column;
 
           &-city {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: $grup02;
+            gap: $grup-02;
+
             h2 {
               font-size: $grup01;
               font-weight: 400;
-              margin-bottom: $grup02;
             }
-
+            
             button {
-              svg {
-                height: $grup03;
-                width: $grup03;
+              background: none;
+              border: none;
+
+              cursor: pointer;
+
+              .svg-icon {
+                svg {
+                  overflow: visible;
+                  height: $grup02;
+                  width: $grup02;
+                }
+
+                &--star {
+                  &__filled {
+                    path.fill {
+                      fill: $orange;
+                    }
+
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: transparent;
+                      }
+                    }
+                  }
+
+                  &__empty {
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    path.fill {
+                      fill: transparent;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: $orange;
+                      }
+                    }
+                  }
+                }
+              }
+
+
+              &:hover {
+                svg {
+                  path {
+                    fill: $orange;
+                  }
+                }
               }
             }
 
@@ -273,7 +329,7 @@
           order: 3;
 
           .weather {
-            h2 {
+            &-city {
               display: none;
             }
 

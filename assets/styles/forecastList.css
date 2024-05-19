@@ -86,14 +86,46 @@
   display: flex;
   flex-direction: column;
 }
+.weatherInformation .forecastCard .weather-tr .weather-city {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 8px;
+}
 .weatherInformation .forecastCard .weather-tr .weather-city h2 {
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 24px;
 }
-.weatherInformation .forecastCard .weather-tr .weather-city button svg {
-  height: 32px;
-  width: 32px;
+.weatherInformation .forecastCard .weather-tr .weather-city button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon svg {
+  overflow: visible;
+  height: 24px;
+  width: 24px;
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__filled path.fill {
+  fill: var(--color-orange);
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__filled path.stroke {
+  fill: var(--color-orange);
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__filled:hover path.fill {
+  fill: transparent;
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__empty path.stroke {
+  fill: var(--color-orange);
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__empty path.fill {
+  fill: transparent;
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon--star__empty:hover path.fill {
+  fill: var(--color-orange);
+}
+.weatherInformation .forecastCard .weather-tr .weather-city button:hover svg path {
+  fill: var(--color-orange);
 }
 .weatherInformation .forecastCard .weather-tr .weather-text {
   font-size: 32px;
@@ -203,7 +235,7 @@
 .weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr {
   order: 3;
 }
-.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather h2 {
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather-city {
   display: none;
 }
 .weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather-text {

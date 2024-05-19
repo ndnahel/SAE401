@@ -115,19 +115,4 @@ body {
   background-color: var(--color-black-01);
 }
 
-.svg-icon {
-  overflow: visible;
-}
-.svg-icon--sun {
-  transform-origin: center;
-  transform-box: border-box;
-  animation: sun 16s linear infinite;
-}
-
-@keyframes sun {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /*# sourceMappingURL=global.css.map */
