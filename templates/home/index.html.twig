@@ -22,7 +22,7 @@
     <nav>
         <div class="nav-container">
             <a class='nav-logo' href="{{ path('app_home') }}">
-                <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
+                {% include "components/icons/logo.svg" %}
                 <span>Weather Compass</span>
             </a>
             <div class="nav-search">

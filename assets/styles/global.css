@@ -68,12 +68,12 @@ body {
     order: unset;
   }
 }
-.nav-logo img {
+.nav-logo img, .nav-logo svg {
   min-height: 40px;
   min-width: 40px;
 }
 @media (min-width: 480px) {
-  .nav-logo img {
+  .nav-logo img, .nav-logo svg {
     min-height: 56px;
     min-width: 56px;
   }
@@ -111,8 +111,8 @@ body {
   padding: 12px 16px 12px 24px;
   font-size: 20px;
   color: var(--color-black-01);
-  background-color: var(--color-white-01);
-  border: 1px solid var(--color-white-03);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white-02);
   border-radius: 56px 0 0 56px;
 }
 .nav-search form > div #search_result:hover, .nav-search form > div #search_result:focus, .nav-search form > div #search_result:active {
@@ -144,9 +144,19 @@ body {
     order: unset;
   }
 }
-.nav-links a svg {
+.nav-links a .svg-icon {
   width: 32px;
   height: 32px;
+}
+.nav-links a:hover .svg-icon--gear {
+  fill: var(--color-black-01);
+  transform: rotate(180deg);
+}
+.nav-links a:hover .svg-icon--login, .nav-links a:hover .svg-icon--logout {
+  stroke: var(--color-black-01);
+}
+.nav-links a:hover .svg-icon--login .arrow, .nav-links a:hover .svg-icon--logout .arrow {
+  transform: translateX(4px);
 }
 
 /*# sourceMappingURL=global.css.map */

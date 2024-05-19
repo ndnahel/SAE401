@@ -2,12 +2,19 @@
 
 {% block title %}{% trans %}Inscription{% endtrans %}{% endblock %}
 
-  {% block stylesheets %}
-      {{ parent() }}
-      <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
-  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
 
 {% block body %}
+    <nav class='nav-go-back'>
+        <a href="{{ path('app_home') }}">
+            {% include "components/icons/arrow_left.svg" %}
+            Retour
+        </a>
+    </nav>
+
     <h1>{% trans %}Inscription{% endtrans %}</h1>
 
     {{ form_errors(registrationForm) }}
