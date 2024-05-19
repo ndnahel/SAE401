@@ -53,7 +53,7 @@
                         <div class='weather-city'>
                             <h2>{{ weather.name }}</h2>
                             {% if userConnected %}
-                                {% if weather.id in favoriteCities %}
+                                {% if favoriteCities and weather.id in favoriteCities %}
                                     <button class="btn-ajax-response" onclick="removeFavouriteCity('{{ weather.id }}')">
                                         {% include "components/icons/star_filled.svg" %}
                                     </button>
