@@ -101,7 +101,7 @@
   border: none;
   cursor: pointer;
 }
-.weatherInformation .forecastCard .weather-tr .weather-city button .svg-icon svg {
+.weatherInformation .forecastCard .weather-tr .weather-city button svg {
   overflow: visible;
   height: 24px;
   width: 24px;

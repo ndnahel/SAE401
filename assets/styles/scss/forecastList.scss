@@ -112,20 +112,20 @@
               font-size: $grup01;
               font-weight: 400;
             }
-            
+
             button {
               background: none;
               border: none;
 
               cursor: pointer;
 
-              .svg-icon {
-                svg {
-                  overflow: visible;
-                  height: $grup02;
-                  width: $grup02;
-                }
+              svg {
+                overflow: visible;
+                height: $grup02;
+                width: $grup02;
+              }
 
+              .svg-icon {
                 &--star {
                   &__filled {
                     path.fill {
