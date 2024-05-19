@@ -1,125 +1,125 @@
 @import 'variables';
 
 .weatherCard {
+  display: flex;
+  flex-direction: column;
+  gap: $grup02;
+
+  padding: $grup $grup02;
+
+  @include second-background-layer;
+  border-radius: $grup-01;
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $grup02;
+  }
+
+  &-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $grup01;
+  }
+
+  .weather {
     display: flex;
     flex-direction: column;
-    gap: $grup02;
 
-    min-width: 368px;
+    min-width: fit-content;
     width: fit-content;
-    padding: $grup $grup02;
-
-    border-radius: $grup-03;
-    background-color: $white;
 
     &-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: $grup02;
+      display: flex;
+      align-items: center;
+      gap: $grup03;
+
+      max-height: fit-content;
+
+      & svg {
+        width: $grup07;
+      }
     }
 
-    &-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: $grup05;
+    & > h2 {
+      margin-bottom: $grup-01;
+
+      font-size: $grup;
+      font-weight: 400;
     }
 
-    .weather {
+    &-text {
+      font-size: $grup02;
+      line-height: $grup02;
+    }
+
+    &-temp {
+      margin-top: $grup-03;
+
+      font-size: $grup04;
+      font-weight: 500;
+      line-height: $grup04;
+    }
+  }
+
+  .rain {
+    font-size: $grup01;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      gap: $grup-01;
+
+      .rainCard {
         display: flex;
         flex-direction: column;
 
-        min-width: fit-content;
-        width: fit-content;
-
-        &-container {
-            display: flex;
-            align-items: center;
-            gap: $grup03;
-
-            max-height: fit-content;
-
-            & img {
-                width: $grup07;
-            }
+        &:last-child {
+          margin-left: $grup-01;
         }
+      }
 
-        & > h2 {
-            margin-bottom: $grup-01;
-
-            font-size: $grup;
-            font-weight: 400;
-        }
-
-        &-text {
-            font-size: $grup02;
-            line-height: $grup02;
-        }
-
-        &-temp {
-            margin-top: $grup-03;
-
-            font-size: $grup04;
-            font-weight: 500;
-            line-height: $grup04;
-        }
+      & > img {
+        height: $grup03;
+        width: $grup03;
+      }
     }
 
-    .rain {
-        font-size: $grup02;
-
-        &-container {
-            display: flex;
-            align-items: center;
-            gap: $grup-01;
-
-            .rainCard {
-                display: flex;
-                flex-direction: column;
-
-                &:last-child {
-                    margin-left: $grup-01;
-                }
-            }
-
-            & > img {
-                height: $grup04;
-            }
-        }
-
-        &-title {
-            font-size: $grup-01;
-            color: $black-01;
-            line-height: $grup-01;
-        }
+    &-title {
+      font-size: $grup-01;
+      color: $black-01;
+      line-height: $grup-01;
     }
+  }
+}
 
-    .temp {
-        font-size: $grup02;
+.temp {
+  font-size: $grup01;
 
-        &-container {
-            display: flex;
-            gap: $grup02;
+  &-container {
+    display: flex;
+    gap: $grup02;
 
-            .tempCard {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                align-items: center;
-                column-gap: $grup-01;
+    .tempCard {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: $grup-01;
 
-                width: fit-content;
+      width: fit-content;
 
-                & > img {
-                    grid-row: span 2;
-                    height: $grup04;
-                }
-            }
-        }
-
-        &-title {
-            font-size: $grup-01;
-            color: $black-01;
-            line-height: $grup-01;
-        }
+      & > img {
+        grid-row: span 2;
+        height: $grup03;
+        width: $grup03;
+      }
     }
+  }
+
+  &-title {
+    font-size: $grup-01;
+    color: $black-01;
+    line-height: $grup-01;
+  }
 }

@@ -1,118 +1,135 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('scripts/swipers.js') }}" type="module"></script>
+    <script src="{{ asset('scripts/forecastListAccordeon.js') }}" type="module"></script>
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/mainCard.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
+    <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/forecastList.css') }}">
 {% endblock %}
 
 {% block title %}WeatherCompass{% endblock %}
 
 {% block body %}
+    {% if unit == 'metric' %}
+        {% set unit = '°C' %}
+    {% else %}
+        {% set unit = '°F' %}
+    {% endif %}
     <nav>
         <div class="nav-container">
-            {{ form_start(form) }}
+            <a class='nav-logo' href="{{ path('app_home') }}">
+                <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
+                <span>Weather Compass</span>
+            </a>
+            <div class="nav-search">
+                {{ form_start(form) }}
                 {{ form_row(form.result) }}
-                <button type="submit">Rechercher</button>
-            {{ form_end(form) }}
+                <button type="submit">{% trans %}Rechercher{% endtrans %}</button>
+                {{ form_end(form) }}
+            </div>
         </div>
     </nav>
-    <main>
-        <div class="mainCard">
-            <div class="date-container">
-                <span class="when">Aujourd'hui</span>
-                <span class="date">{{ "now"|date('l j F') }}</span>
-            </div>
-            <div class="weather-container">
-                <img src="{{ asset('images/icons/' ~ weather.weather[0].icon ~ '.svg') }}" alt="rain icon">
-                <div class="weather">
-                    <h2>{{ weather.name }}</h2>
-                    <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
-                    <span class="weather-temp">{{ weather.main.temp }}°C</span>
-                </div>
-            </div>
+    <main class='weatherDashboard'>
+        <div class='weatherInformation'>
 
-            <div class="mainCard-bottom">
-                <div class="stats-container">
-                    <img src="{{ asset('images/icons/rain.svg') }}" alt="wind icon">
-                    <div class="statCard">
-                        <span class="stat-title">Vitesse</span>
-                        <span class="stat">{{ weather.wind.speed }} m/s</span>
-                    </div>
-                    <div class="statCard">
-                        <span class="stat-title">Direction</span>
-                        <span class="stat">{{ weather.wind.direction }}</span>
-                    </div>
-                    <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
-                    <div class="statCard">
-                        <span class="stat-title">Nuageux à</span>
-                        <span class="stat">{{ weather.clouds.all }}%</span>
-                    </div>
-                    <div class="statCard">
-                        <span class="stat-title">Humidité</span>
-                        <span class="stat">{{ weather.main.humidity }}%</span>
-                    </div>
-                    <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
-                    <div class="statCard">
-                        <span class="stat-title">Lever</span>
-                        <span class="stat">{{ weather.sys.sunrise|date('H:i') }}</span>
-                    </div>
-                    <div class="statCard">
-                        <span class="stat-title">Coucher</span>
-                        <span class="stat">{{ weather.sys.sunset|date('H:i') }}</span>
+            <div class="mainCard forecastCard forecastCard-active">
+
+                <div class="date-container">
+                    <span class="when">{% trans %}Aujourd'hui{% endtrans %}</span>
+                    <span class="date">{{ "now"|format_date('full') }}</span>
+                </div>
+
+                <div class='weather-tl' id="icon">
+                    {% include "components/icons/" ~ weather.weather[0].icon ~ ".svg" %}
+                </div>
+
+
+                <div class="weather-tr">
+                    <div class="weather">
+                        <h2>{{ weather.name }}</h2>
+                        <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
+                        <span class="weather-temp">{{ weather.main.temp }}{{ unit }}</span>
                     </div>
                 </div>
 
-                <div class="temp-container">
+
+                <div class="weather-br">
                     <div class="temp-feels">
-                        <span class="temp-text">Ressenti</span>
+                        <span class="temp-text">{% trans %}Ressenti{% endtrans %}</span>
                         <span class="temp-stat">{{ weather.main.feels_like }}°C</span>
                     </div>
                     <div class="temp-wrapper">
                         <div class="tempCard">
-                            <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="low temperature icon">
-                            <span class="temp-title">Min.</span>
+                            {% include "components/icons/tmp_lowest.svg" %}
+                            <span class="temp-title">{% trans %}Min.{% endtrans %}</span>
                             <span class="temp">{{ weather.main.temp_min|number_format(1, '.', ',') }}°</span>
                         </div>
                         <div class="tempCard">
-                            <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="high temperature icon">
-                            <span class="temp-title">Max.</span>
+                            {% include "components/icons/tmp_highest.svg" %}
+                            <span class="temp-title">{% trans %}Max.{% endtrans %}</span>
                             <span class="temp">{{ weather.main.temp_max|number_format(1, '.', ',') }}°</span>
-                        </div>
-                        <div class="uvCard">
-                            <span class="temp-title">UV</span>
-                            <span class="temp">6</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <h2>Aujourd'hui en France</h2>
-        <div class="weatherCard-container">
-            {% for weather in defaultWeathers %}
-                {% include 'components/weatherCard.html.twig' with {
-                    weather: weather
+                <div class="weather-bl">
+                    {% include "components/icons/windsock.svg" %}
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Vitesse{% endtrans %}</span>
+                        <span class="stat">{{ weather.wind.speed }} m/s</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Direction{% endtrans %}</span>
+                        <span class="stat">{{ weather.wind.direction }}</span>
+                    </div>
+                    {% include "components/icons/rain.svg" %}
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Nuageux à{% endtrans %}</span>
+                        <span class="stat">{{ weather.clouds.all }}%</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Humidité{% endtrans %}</span>
+                        <span class="stat">{{ weather.main.humidity }}%</span>
+                    </div>
+                    {% include "components/icons/sun.svg" %}
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Lever{% endtrans %}</span>
+                        <span class="stat">{{ weather.sys.sunrise|date('H:i') }}</span>
+                    </div>
+                    <div class="statCard">
+                        <span class="stat-title">{% trans %}Coucher{% endtrans %}</span>
+                        <span class="stat">{{ weather.sys.sunset|date('H:i') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            {% for forecast in forecastList %}
+                {% include 'components/forecastCard.html.twig' with {
+                    forecast: forecast,
+                    location : weather.name
                 } %}
             {% endfor %}
         </div>
+        <div class='weatherTowns'>
 
-        <div>
-            <h2>Test SVG</h2>
-            <div class='svg-test-grid'>
-                <img src="{{ asset('images/icons/01d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/02d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/03d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/04d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/09d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/10d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/11d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/13d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/50d.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/rain.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/sun.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/tmp_highest.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/tmp_lowest.svg') }}" alt="test">
-                <img src="{{ asset('images/icons/windsock.svg') }}" alt="test">
+            <h2>Aujourd'hui en France</h2>
+
+            <div class='recommendedCities swiper'>
+                <div class="swiper-wrapper">
+                    {% for weather in defaultWeathers %}
+                        {% include 'components/weatherCard.html.twig' with {
+                            weather: weather
+                        } %}
+                    {% endfor %}
+                </div>
             </div>
+
         </div>
     </main>
+
+    <script src="{{ asset('scripts/forecastController.js') }}"></script>
 {% endblock %}

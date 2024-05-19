@@ -1,0 +1,240 @@
+@import url("https://fonts.cdnfonts.com/css/otomanopee-one");
+:root {
+  --color-white: rgb(255, 255, 255);
+  --color-white-01: rgb(245, 250, 255);
+  --color-white-02: rgb(228, 237, 247);
+  --color-white-03: rgb(213, 225, 237);
+  --color-black: rgb(47, 59, 71);
+  --color-black-01: rgb(70, 86, 102);
+  --color-blue: rgb(114, 177, 251);
+  --color-orange: rgb(255, 168, 37);
+  --color-red: rgb(255, 53, 53);
+}
+
+.weatherInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.weatherInformation .forecastCard {
+  display: grid;
+  grid-template-areas: "date date" "tl tl" "tr tr" "br br" "bl bl";
+  padding: 16px 24px;
+  gap: 32px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white-02);
+  border-radius: 12px;
+  max-height: 100%;
+  overflow: clip;
+}
+@media (min-width: 480px) {
+  .weatherInformation .forecastCard {
+    grid-template-areas: "date date" "tl tr" "br br" "bl bl";
+  }
+}
+@media (min-width: 768px) {
+  .weatherInformation .forecastCard {
+    grid-template-areas: "date date" "tl tr" "bl br";
+  }
+}
+.weatherInformation .forecastCard .date-container {
+  grid-area: date;
+  display: flex;
+  flex-direction: column;
+}
+.weatherInformation .forecastCard .date-container .when {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.weatherInformation .forecastCard .date-container .date {
+  font-size: 20px;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard .statCard {
+  display: flex;
+  flex-direction: column;
+}
+.weatherInformation .forecastCard .statCard .stat {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard .statCard .stat-title {
+  font-size: 12px;
+  color: var(--color-black-01);
+  line-height: 12px;
+}
+.weatherInformation .forecastCard .weather-tl {
+  grid-area: tl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weatherInformation .forecastCard .weather-tl img, .weatherInformation .forecastCard .weather-tl svg {
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+}
+.weatherInformation .forecastCard .weather-tr {
+  grid-area: tr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.weatherInformation .forecastCard .weather-tr .weather {
+  display: flex;
+  flex-direction: column;
+}
+.weatherInformation .forecastCard .weather-tr .weather h2 {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+.weatherInformation .forecastCard .weather-tr .weather-text {
+  font-size: 32px;
+  line-height: 32px;
+}
+.weatherInformation .forecastCard .weather-tr .weather-temp {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+}
+.weatherInformation .forecastCard .weather-bl {
+  grid-area: bl;
+  display: grid;
+  grid-template-columns: min-content 1fr 1fr;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+}
+.weatherInformation .forecastCard .weather-bl img, .weatherInformation .forecastCard .weather-bl svg {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+}
+.weatherInformation .forecastCard .weather-br {
+  grid-area: br;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.weatherInformation .forecastCard .weather-br img, .weatherInformation .forecastCard .weather-br svg {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+}
+.weatherInformation .forecastCard .weather-br .temp-feels {
+  display: flex;
+  flex-direction: column;
+}
+.weatherInformation .forecastCard .weather-br .temp-feels .temp-text {
+  font-size: 20px;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard .weather-br .temp-feels .temp-stat {
+  font-size: 40px;
+  line-height: 40px;
+}
+.weatherInformation .forecastCard .weather-br .temp-wrapper {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.weatherInformation .forecastCard .weather-br .temp-wrapper .tempCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 12px;
+  width: fit-content;
+}
+.weatherInformation .forecastCard .weather-br .temp-wrapper .tempCard .temp {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard .weather-br .temp-wrapper .tempCard .temp-title {
+  font-size: 12px;
+  color: var(--color-black-01);
+  line-height: 12px;
+}
+.weatherInformation .forecastCard .weather-br .temp-wrapper .tempCard img, .weatherInformation .forecastCard .weather-br .temp-wrapper .tempCard svg {
+  grid-row: span 2;
+  height: 56px;
+  object-fit: contain;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) {
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+  max-height: 90px;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active):hover {
+  border: 1px solid var(--color-black-01);
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .date-container {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .date-container .when {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .date-container .date {
+  font-size: 16px;
+  line-height: 16px;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tl {
+  order: 1;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tl img, .weatherInformation .forecastCard:not(.forecastCard-active) .weather-tl svg {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr {
+  order: 3;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather h2 {
+  display: none;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather-text {
+  font-size: 16px;
+  line-height: 20px;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-tr .weather-temp {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-bl {
+  display: none;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-br {
+  margin-left: auto;
+  order: 4;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-br .temp-feels {
+  display: none;
+}
+.weatherInformation .forecastCard:not(.forecastCard-active) .weather-br .temp-wrapper {
+  display: none;
+}
+@media (min-width: 768px) {
+  .weatherInformation .forecastCard:not(.forecastCard-active) .weather-br .temp-wrapper {
+    display: grid;
+  }
+  .weatherInformation .forecastCard:not(.forecastCard-active) .weather-br .temp-wrapper img, .weatherInformation .forecastCard:not(.forecastCard-active) .weather-br .temp-wrapper svg {
+    height: 40px;
+    width: 40px;
+  }
+}
+.weatherInformation .forecastCard:not(.mainCard) .weather-bl .statCard:first-of-type {
+  grid-column: span 2;
+}
+
+/*# sourceMappingURL=forecastList.css.map */

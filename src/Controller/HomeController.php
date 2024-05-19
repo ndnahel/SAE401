@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Service\Api;
-use App\Service\WindDirection;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Service\WeatherService;
+use App\Service\ForecastService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,34 +13,28 @@ use App\Form\SearchType;
 
 class HomeController extends AbstractController
 {
-    /**
-	 * @var Api
-	 */
-	private Api $api;
 
 	/**
-	 * @var WindDirection
+	 * @var WeatherService
 	 */
-	private WindDirection $windDirection;
-	
+	private WeatherService $weatherService;
+
 	/**
-	 * @var HttpClientInterface
+	 * @var ForecastService
 	 */
-	private HttpClientInterface $client;
+	private ForecastService $forecastService;
 	
     /**
 	 * @param Api $api
-     * @param WindDirection $windDirection
-	 * @param HttpClientInterface $client
+	 * @param WeatherService $weatherService
+	 * @param ForecastService $forecastService
 	 */
 	public function __construct(
-		Api $api,
-		WindDirection $windDirection,
-		HttpClientInterface $client
+		WeatherService $weatherService,
+		ForecastService $forecastService
 	) {
-		$this->api = $api;
-		$this->windDirection = $windDirection;
-		$this->client = $client;
+		$this->weatherService = $weatherService;
+		$this->forecastService = $forecastService;
 	}
 
     #[Route('/', name: 'app_home')]
@@ -49,18 +42,19 @@ class HomeController extends AbstractController
     {
 		/** @var User $user */
 		$user = $this->getUser();
+        $unit = $user ? $user->getUnit() : 'metric';
 
-		$weather = $this->api->getWeather('Paris', $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-		$weather = json_decode($weather, true);
-		
-		$weather = $this->windDirection->addCompasPoint($weather);
+		// Main section weather -> default = Paris
+		$weather = $this->weatherService->getWeatherData('Paris', $unit, $user ? $user->getLang() : 'fr');
 
+		$forecast = $this->forecastService->getForecastData('Paris', $unit, $user ? $user->getLang() : 'fr');
+		$forecastList = $this->forecastService->formatForecastData($forecast);
+
+		// Right section with weathers around France (default)
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
 		foreach ($defaultTowns as $town) {
-			$defaultWeathers[$town] = $this->api->getWeather($town, $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$defaultWeathers[$town] = json_decode($defaultWeathers[$town], true);
-			$defaultWeathers[$town] = $this->windDirection->addCompasPoint($defaultWeathers[$town]);
+			$defaultWeathers[$town] = $this->weatherService->getWeatherData($town, $unit, $user ? $user->getLang() : 'fr');
 		}
 
 		$form = $this->createForm(SearchType::class);
@@ -69,23 +63,28 @@ class HomeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
 			
-			$weather = $this->api->getWeather($data['result'], $user ? $user->getUnit() : 'metric', $user ? $user->getLang() : 'fr');
-			$weather = json_decode($weather, true);
-			$weather = $this->windDirection->addCompasPoint($weather);
+			$weather = $this->weatherService->getWeatherData($data['result'], $unit, $user ? $user->getLang() : 'fr');
+
+			$forecast = $this->forecastService->getForecastData($data['result'], $unit, $user ? $user->getLang() : 'fr');
+			$forecastList = $this->forecastService->formatForecastData($forecast);
 
 			return $this->render('home/index.html.twig', [
 				'controller_name' => 'HomeController',
 				'weather' => $weather,
+				'forecastList' => $forecastList,
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
+                'unit' => $unit
 			]);
 		}
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
 			'weather' => $weather,
+			'forecastList' => $forecastList,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
+            'unit' => $unit
         ]);
     }
 }

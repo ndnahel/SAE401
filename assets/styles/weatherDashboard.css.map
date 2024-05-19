@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["scss/variables.scss","scss/weatherDashboard.scss"],"names":[],"mappings":"AAAQ;AAqCR;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AC3CF;EACE;EACA;EAMA,SDFO;ECGP;EDgDA,kBAVS;EAWT;EC9CA,eDPO;;AAmBP;ECxBF;IAKI;;;AAUA;EACE,eDZC;;ACeH;EACE;;AAEA;EACE","file":"weatherDashboard.css"}
