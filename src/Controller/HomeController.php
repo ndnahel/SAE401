@@ -43,6 +43,8 @@ class HomeController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
         $unit = $user ? $user->getUnit() : 'metric';
+		
+		$userConnected = $user ? true : false;
 
 		// Main section weather -> default = Paris
 		$weather = $this->weatherService->getWeatherData('Paris', $unit, $user ? $user->getLang() : 'fr');
@@ -74,7 +76,8 @@ class HomeController extends AbstractController
 				'forecastList' => $forecastList,
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
-                'unit' => $unit
+                'unit' => $unit,
+				'userConnected' => $userConnected
 			]);
 		}
 
@@ -84,7 +87,8 @@ class HomeController extends AbstractController
 			'forecastList' => $forecastList,
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
-            'unit' => $unit
+            'unit' => $unit,
+			'userConnected' => $userConnected
         ]);
     }
 }
