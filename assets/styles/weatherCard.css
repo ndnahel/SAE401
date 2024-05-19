@@ -111,15 +111,4 @@
   line-height: 12px;
 }
 
-.forecastCard {
-  border-top: 1px var(--color-black) solid;
-  border-bottom: 1px var(--color-black) solid;
-}
-.forecastCard:first-of-type {
-  border-top: 2px var(--color-black) solid;
-}
-.forecastCard:last-of-type {
-  border-bottom: 2px var(--color-black) solid;
-}
-
 /*# sourceMappingURL=weatherCard.css.map */
