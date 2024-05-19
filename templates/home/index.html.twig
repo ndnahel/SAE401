@@ -53,9 +53,20 @@
                         <div class='weather-city'>
                             <h2>{{ weather.name }}</h2>
                             {% if userConnected %}
-                                <button class="btn btn-primary" onclick="addFavouriteCity('{{ weather.id }}')" {# data-location="{{ location }}" #}>
+                                {% if weather.id in favoriteCities %}
+                                    <button class="btn-ajax-response" onclick="removeFavouriteCity('{{ weather.id }}')">
+                                        {% include "components/icons/star_filled.svg" %}
+                                    </button>
+                                {% else %}
+                                    <button class="btn-ajax-response" onclick="addFavouriteCity('{{ weather.id }}')">
+                                        {% include "components/icons/star_empty.svg" %}
+                                    </button>
+                                {% endif %}
+                                <button class="btn-ajax-response_rm" onclick="removeFavouriteCity('{{ weather.id }}')">
+                                    {% include "components/icons/star_filled.svg" %}
+                                </button>
+                                <button class="btn-ajax-response_add" onclick="addFavouriteCity('{{ weather.id }}')">
                                     {% include "components/icons/star_empty.svg" %}
-                                    {# {% include "components/icons/star_filled.svg" %} #}
                                 </button>
                             {% endif %}
                         </div>

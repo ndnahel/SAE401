@@ -52,6 +52,14 @@ class HomeController extends AbstractController
 		$forecast = $this->forecastService->getForecastData('Paris', $unit, $user ? $user->getLang() : 'fr');
 		$forecastList = $this->forecastService->formatForecastData($forecast);
 
+		// Checking if city is in favs
+		$favoriteCities = $user ? $user->getFavoriteCities()->toArray() : [];
+		$cityIds = array_map(function($favoriteCity) {
+			return $favoriteCity->getCityId();
+		}, $favoriteCities);
+
+		
+
 		// Right section with weathers around France (default)
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
@@ -77,7 +85,8 @@ class HomeController extends AbstractController
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
                 'unit' => $unit,
-				'userConnected' => $userConnected
+				'userConnected' => $userConnected,
+				'favoriteCities' => $cityIds
 			]);
 		}
 
@@ -88,7 +97,8 @@ class HomeController extends AbstractController
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
             'unit' => $unit,
-			'userConnected' => $userConnected
+			'userConnected' => $userConnected,
+			'favoriteCities' => $cityIds
         ]);
     }
 }
