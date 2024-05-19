@@ -18,10 +18,6 @@
         <div class="weather">
             <div class='weather-city'>
                 <h2>{{ weather.name }}</h2>
-                <button class="btn btn-primary" data-location="{{ location }}">
-                    {% include "components/icons/star_filled.svg" %}
-                    {# {% include "components/icons/star_empty.svg" %} #}
-                </button>
             </div>
             <span class="weather-text">{{ forecast.weather[0].description|capitalize }}</span>
             <span class="weather-temp">{{ forecast.main.temp }}{{ unit }}</span>

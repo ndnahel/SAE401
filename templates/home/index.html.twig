@@ -32,10 +32,22 @@
                 {{ form_end(form) }}
             </div>
             {% if app.user %}
-                <div>
-                    <a href="{{ path('app_preferences') }}">Paramètres</a>
+                <div class='nav-links'>
+                    <a href="{{ path('app_preferences') }}">
+                        {% include "components/icons/gear.svg" %}
+                    </a>
+                    <a href="{{ path('app_logout') }}">
+                        {% include "components/icons/logout.svg" %}
+                    </a>
+                </div>
+            {% else %}
+                <div class='nav-links'>
+                    <a href="{{ path('app_login') }}">
+                        {% include "components/icons/login.svg" %}
+                    </a>
                 </div>
             {% endif %}
+
         </div>
     </nav>
     <main class='weatherDashboard'>
