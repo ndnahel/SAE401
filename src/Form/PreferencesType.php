@@ -29,6 +29,10 @@ class PreferencesType extends AbstractType
 					'Français' => 'fr',
 					'English' => 'en',
 				],
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'lang',
+				],
 			])
 			->add('unit', ChoiceType::class, [
 				'label' => $this->translator->trans('Unité de mesure'),
@@ -36,6 +40,10 @@ class PreferencesType extends AbstractType
 					'Standard' => 'standard',
 					'Métrique' => 'metric',
 					'Impérial' => 'imperial',
+				],
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'unit',
 				],
 			])
 			->add('country', ChoiceType::class, [
@@ -45,6 +53,10 @@ class PreferencesType extends AbstractType
 					'Belgique' => 'be',
 					'Royaume-Uni' => 'uk',
 					'United States' => 'us',
+				],
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'country',
 				],
 			])
 		;

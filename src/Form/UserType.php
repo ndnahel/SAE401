@@ -31,13 +31,25 @@ class UserType extends AbstractType
 		$builder
 			->add('username', TextType::class, [
 				'label' => $this->translator->trans('Nom d\'utilisateur'),
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'username',
+				],
 			])
 			->add('email', EmailType::class, [
 				'label' => $this->translator->trans('Adresse email'),
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'email',
+				],
 			])
 			->add('password', PasswordType::class, [
 				'label' => $this->translator->trans('Mot de passe'),
 				'mapped' => false,
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'new-password',
+				],
 			])
 			->add('newPassword', PasswordType::class, [
 				'label' => $this->translator->trans('Nouveau mot de passe'),
@@ -54,6 +66,10 @@ class UserType extends AbstractType
 						'max' => 4096,
 					]),
 				],
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'new-password',
+				],
 			])
 			->add('newPassword2', PasswordType::class, [
 				'label' => $this->translator->trans('Confirmer le nouveau mot de passe'),
@@ -69,6 +85,10 @@ class UserType extends AbstractType
 						'minMessage' => 'Your password should be at least {{ limit }} characters',
 						'max' => 4096,
 					]),
+				],
+				'attr' => [
+					'class' => 'form-control',
+					'autocomplete' => 'new-password',
 				],
 			])
 		;
