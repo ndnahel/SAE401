@@ -31,9 +31,11 @@
                 <button type="submit">{% trans %}Rechercher{% endtrans %}</button>
                 {{ form_end(form) }}
             </div>
-            <div>
-                <a href="{{ path('app_preferences') }}">Paramètres</a>
-            </div>
+            {% if app.user %}
+                <div>
+                    <a href="{{ path('app_preferences') }}">Paramètres</a>
+                </div>
+            {% endif %}
         </div>
     </nav>
     <main class='weatherDashboard'>

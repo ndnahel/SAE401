@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
 	
 class UserType extends AbstractType
@@ -35,6 +37,39 @@ class UserType extends AbstractType
 			])
 			->add('password', PasswordType::class, [
 				'label' => $this->translator->trans('Mot de passe'),
+				'mapped' => false,
+			])
+			->add('newPassword', PasswordType::class, [
+				'label' => $this->translator->trans('Nouveau mot de passe'),
+				'mapped' => false,
+				'required' => false,
+				'data' => '',
+				'constraints' => [
+					new NotBlank([
+						'message' => 'Please enter a password',
+					]),
+					new Length([
+						'min' => 6,
+						'minMessage' => 'Your password should be at least {{ limit }} characters',
+						'max' => 4096,
+					]),
+				],
+			])
+			->add('newPassword2', PasswordType::class, [
+				'label' => $this->translator->trans('Confirmer le nouveau mot de passe'),
+				'mapped' => false,
+				'required' => false,
+				'data' => '',
+				'constraints' => [
+					new NotBlank([
+						'message' => 'Please enter a password',
+					]),
+					new Length([
+						'min' => 6,
+						'minMessage' => 'Your password should be at least {{ limit }} characters',
+						'max' => 4096,
+					]),
+				],
 			])
 		;
 	}
