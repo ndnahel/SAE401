@@ -9,20 +9,27 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+	public function __construct(private readonly TranslatorInterface $translator)
+	{
+	}
+	
+	#[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
@@ -116,11 +123,15 @@ class SecurityController extends AbstractController
 	/**
 	 * @param Request $request
 	 * @param EntityManagerInterface $entityManager
+	 * @param UserPasswordHasherInterface $userPasswordHasher
 	 * @return Response
 	 */
 	#[Route('/preferences', name: 'app_preferences', methods: ['GET', 'POST'])]
-	public function updatePreferences(Request $request, EntityManagerInterface $entityManager): Response
-	{
+	public function updatePreferences(
+		Request $request,
+		EntityManagerInterface $entityManager,
+		UserPasswordHasherInterface $userPasswordHasher
+	): Response {
 		/** @var User $user */
 		$user = $this->getUser();
 		if (!$user) {
@@ -136,7 +147,27 @@ class SecurityController extends AbstractController
 		
 		$userForm = $this->createForm(UserType::class, $user)->handleRequest($request);
 		if ($userForm->isSubmitted() && $userForm->isValid()) {
-			dd($userForm->getData());
+			if (
+				!empty($userForm->get('newPassword')->getData())
+				|| !empty($userForm->get('newPassword2')->getData())
+			) {
+				if (!$userPasswordHasher->isPasswordValid($user, $userForm->get('password')->getData())) {
+					$userForm->get('password')->addError(new FormError('Mot de passe incorrect.'));
+				} else {
+					if ($userForm->get('newPassword')->getData() !== $userForm->get('newPassword2')->getData()) {
+						$userForm->get('newPassword2')->addError(new FormError('Les mots de passe ne correspondent pas.'));
+					} else {
+						$user->setPassword(
+							$userPasswordHasher->hashPassword(
+								$user,
+								$userForm->get('newPassword')->getData()
+							)
+						);
+						$this->addFlash('success', 'Votre mot de passe a été mis à jour.');
+						return $this->redirectToRoute('app_home');
+					}
+				}
+			}
 			$entityManager->flush();
 			$this->addFlash('success', 'Vos paramètres ont été mis à jour.');
 		}
