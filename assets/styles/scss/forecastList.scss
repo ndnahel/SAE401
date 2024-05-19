@@ -101,10 +101,77 @@
           display: flex;
           flex-direction: column;
 
-          h2 {
-            font-size: $grup01;
-            font-weight: 400;
+          &-city {
+            display: flex;
+            align-items: center;
+
             margin-bottom: $grup02;
+            gap: $grup-02;
+
+            h2 {
+              font-size: $grup01;
+              font-weight: 400;
+            }
+
+            button {
+              background: none;
+              border: none;
+
+              cursor: pointer;
+
+              svg {
+                overflow: visible;
+                height: $grup02;
+                width: $grup02;
+              }
+
+              .svg-icon {
+                &--star {
+                  &__filled {
+                    path.fill {
+                      fill: $orange;
+                    }
+
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: transparent;
+                      }
+                    }
+                  }
+
+                  &__empty {
+                    path.stroke {
+                      fill: $orange;
+                    }
+
+                    path.fill {
+                      fill: transparent;
+                    }
+
+                    &:hover {
+                      path.fill {
+                        fill: $orange;
+                      }
+                    }
+                  }
+                }
+              }
+
+
+              &:hover {
+                svg {
+                  path {
+                    fill: $orange;
+                  }
+                }
+              }
+            }
+
+
           }
 
           &-text {
@@ -262,7 +329,7 @@
           order: 3;
 
           .weather {
-            h2 {
+            &-city {
               display: none;
             }
 
@@ -317,4 +384,10 @@
       }
     }
   }
+}
+
+
+.btn-ajax-response_rm,
+.btn-ajax-response_add {
+  display: none;
 }

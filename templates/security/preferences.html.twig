@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% trans %}Paramètres{% endtrans %}</h1>
+    {{ form_start(userForm) }}
+    {{ form_row(userForm.username) }}
+    {{ form_row(userForm.email) }}
+    {{ form_row(userForm.password) }}
+    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    {{ form_end(userForm) }}
+
+    <h1>{% trans %}Préférences par défaut{% endtrans %}</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.lang) }}
+    {{ form_row(form.unit) }}
+    {{ form_row(form.country) }}
+    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

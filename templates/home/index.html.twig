@@ -26,10 +26,13 @@
                 <span>Weather Compass</span>
             </a>
             <div class="nav-search">
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'id': 'search-form'}}) }}
                 {{ form_row(form.result) }}
                 <button type="submit">{% trans %}Rechercher{% endtrans %}</button>
                 {{ form_end(form) }}
+            </div>
+            <div>
+                <a href="{{ path('app_preferences') }}">Paramètres</a>
             </div>
         </div>
     </nav>
@@ -50,7 +53,26 @@
 
                 <div class="weather-tr">
                     <div class="weather">
-                        <h2>{{ weather.name }}</h2>
+                        <div class='weather-city'>
+                            <h2>{{ weather.name }}</h2>
+                            {% if userConnected %}
+                                {% if favoriteCities and weather.id in favoriteCities %}
+                                    <button class="btn-ajax-response" onclick="removeFavouriteCity('{{ weather.id }}')">
+                                        {% include "components/icons/star_filled.svg" %}
+                                    </button>
+                                {% else %}
+                                    <button class="btn-ajax-response" onclick="addFavouriteCity('{{ weather.id }}')">
+                                        {% include "components/icons/star_empty.svg" %}
+                                    </button>
+                                {% endif %}
+                                <button class="btn-ajax-response_rm" onclick="removeFavouriteCity('{{ weather.id }}')">
+                                    {% include "components/icons/star_filled.svg" %}
+                                </button>
+                                <button class="btn-ajax-response_add" onclick="addFavouriteCity('{{ weather.id }}')">
+                                    {% include "components/icons/star_empty.svg" %}
+                                </button>
+                            {% endif %}
+                        </div>
                         <span class="weather-text">{{ weather.weather[0].description|capitalize }}</span>
                         <span class="weather-temp">{{ weather.main.temp }}{{ unit }}</span>
                     </div>
@@ -131,5 +153,6 @@
         </div>
     </main>
 
-    <script src="{{ asset('scripts/forecastController.js') }}"></script>
+    <script src="{{ asset('scripts/favouriteCities.js') }}"></script>
+    <script src="{{ asset('scripts/cityCards.js') }}"></script>
 {% endblock %}

@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\ForgotPasswordType;
+use App\Form\PreferencesType;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +15,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -51,6 +55,10 @@ class SecurityController extends AbstractController
         EntityManagerInterface $entityManager,
         MailerInterface $mailer
     ): Response {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(ForgotPasswordType::class)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,7 +73,7 @@ class SecurityController extends AbstractController
             $user->setResetToken($token);
             $entityManager->flush();
 
-            //$url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+            $url = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
             $url = null;
 
             $email = (new Email())
@@ -104,4 +112,38 @@ class SecurityController extends AbstractController
             'token' => $token,
         ]);
     }
+	
+	/**
+	 * @param Request $request
+	 * @param EntityManagerInterface $entityManager
+	 * @return Response
+	 */
+	#[Route('/preferences', name: 'app_preferences', methods: ['GET', 'POST'])]
+	public function updatePreferences(Request $request, EntityManagerInterface $entityManager): Response
+	{
+		/** @var User $user */
+		$user = $this->getUser();
+		if (!$user) {
+			return $this->redirectToRoute('app_login');
+		}
+		
+		$form = $this->createForm(PreferencesType::class)->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$user->setPreferences($form->getData());
+			$entityManager->flush();
+			$this->addFlash('success', 'Vos préférences ont été mises à jour.');
+		}
+		
+		$userForm = $this->createForm(UserType::class, $user)->handleRequest($request);
+		if ($userForm->isSubmitted() && $userForm->isValid()) {
+			dd($userForm->getData());
+			$entityManager->flush();
+			$this->addFlash('success', 'Vos paramètres ont été mis à jour.');
+		}
+
+		return $this->render('security/preferences.html.twig', [
+			'form' => $form->createView(),
+			'userForm' => $userForm->createView(),
+		]);
+	}
 }
