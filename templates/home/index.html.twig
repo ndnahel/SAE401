@@ -26,7 +26,7 @@
                 <span>Weather Compass</span>
             </a>
             <div class="nav-search">
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'id': 'search-form'}}) }}
                 {{ form_row(form.result) }}
                 <button type="submit">{% trans %}Rechercher{% endtrans %}</button>
                 {{ form_end(form) }}
@@ -154,4 +154,5 @@
     </main>
 
     <script src="{{ asset('scripts/favouriteCities.js') }}"></script>
+    <script src="{{ asset('scripts/cityCards.js') }}"></script>
 {% endblock %}
