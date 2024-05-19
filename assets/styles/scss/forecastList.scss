@@ -37,7 +37,7 @@
     border-radius: $grup-01;
 
     max-height: 100%;
-    transition: max-height ease 1s;
+    //transition: height ease 1s, max-height ease 1s;
     overflow: clip;
 
     .date-container {
