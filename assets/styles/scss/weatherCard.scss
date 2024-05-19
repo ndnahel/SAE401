@@ -10,6 +10,12 @@
   @include second-background-layer;
   border-radius: $grup-01;
 
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $black-01;
+  }
+
   &-container {
     display: flex;
     flex-wrap: wrap;
@@ -80,7 +86,7 @@
         }
       }
 
-      & > img {
+      & > img, & > svg {
         height: $grup03;
         width: $grup03;
       }
@@ -109,7 +115,7 @@
 
       width: fit-content;
 
-      & > img {
+      & > img, & > svg {
         grid-row: span 2;
         height: $grup03;
         width: $grup03;

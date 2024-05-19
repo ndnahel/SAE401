@@ -8,6 +8,13 @@
   {% endblock %}
 
 {% block body %}
+    <nav class='nav-go-back'>
+        <a href="{{ path('app_home') }}">
+            {% include "components/icons/arrow_left.svg" %}
+            Retour
+        </a>
+    </nav>
+
     <h1 class="h3 mb-3 font-weight-normal">{% trans %}Connexion{% endtrans %}</h1>
 
     <form method="post">
@@ -48,5 +55,6 @@
             {% trans %}Valider{% endtrans %}
         </button>
         <a href="{{ path('app_register') }}">{% trans %}Créer un compte{% endtrans %}</a>
+        <a href="{{ path('app_forgot_password_request') }}">{% trans %}Mot de passe oublié ?{% endtrans %}</a>
     </form>
 {% endblock %}

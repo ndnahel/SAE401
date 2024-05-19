@@ -22,7 +22,7 @@
     <nav>
         <div class="nav-container">
             <a class='nav-logo' href="{{ path('app_home') }}">
-                <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
+                {% include "components/icons/logo.svg" %}
                 <span>Weather Compass</span>
             </a>
             <div class="nav-search">
@@ -32,10 +32,22 @@
                 {{ form_end(form) }}
             </div>
             {% if app.user %}
-                <div>
-                    <a href="{{ path('app_preferences') }}">Paramètres</a>
+                <div class='nav-links'>
+                    <a href="{{ path('app_preferences') }}">
+                        {% include "components/icons/gear.svg" %}
+                    </a>
+                    <a href="{{ path('app_logout') }}">
+                        {% include "components/icons/logout.svg" %}
+                    </a>
+                </div>
+            {% else %}
+                <div class='nav-links'>
+                    <a href="{{ path('app_login') }}">
+                        {% include "components/icons/login.svg" %}
+                    </a>
                 </div>
             {% endif %}
+
         </div>
     </nav>
     <main class='weatherDashboard'>
@@ -58,19 +70,21 @@
                         <div class='weather-city'>
                             <h2>{{ weather.name }}</h2>
                             {% if userConnected %}
-                                {% if favoriteCities and weather.id in favoriteCities %}
+                                {% if favoriteCities and weather.id in favoriteCities|keys %}
                                     <button class="btn-ajax-response" onclick="removeFavouriteCity('{{ weather.id }}')">
                                         {% include "components/icons/star_filled.svg" %}
                                     </button>
                                 {% else %}
-                                    <button class="btn-ajax-response" onclick="addFavouriteCity('{{ weather.id }}')">
+                                    <button class="btn-ajax-response"
+                                            onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
                                         {% include "components/icons/star_empty.svg" %}
                                     </button>
                                 {% endif %}
                                 <button class="btn-ajax-response_rm" onclick="removeFavouriteCity('{{ weather.id }}')">
                                     {% include "components/icons/star_filled.svg" %}
                                 </button>
-                                <button class="btn-ajax-response_add" onclick="addFavouriteCity('{{ weather.id }}')">
+                                <button class="btn-ajax-response_add"
+                                        onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
                                     {% include "components/icons/star_empty.svg" %}
                                 </button>
                             {% endif %}
@@ -140,18 +154,47 @@
         </div>
         <div class='weatherTowns'>
 
-            <h2>Aujourd'hui en France</h2>
+            {% if favoriteCities is not null and favoriteCities is not empty %}
+                <div>
+                    <h2>Favorits</h2>
 
-            <div class='recommendedCities swiper'>
-                <div class="swiper-wrapper">
-                    {% for weather in defaultWeathers %}
-                        {% include 'components/weatherCard.html.twig' with {
-                            weather: weather
-                        } %}
-                    {% endfor %}
+                    <div class='favoriteCities swiper'>
+                        <div class="swiper-wrapper">
+                            {% for weather in favoriteCities %}
+                                {% include 'components/weatherCard.html.twig' with {
+                                    weather: weather
+                                } %}
+                            {% endfor %}
+                        </div>
+                        <button class="favoriteCities-button-prev">
+                            {% include "components/icons/arrow_left_circle.svg" %}
+                        </button>
+                        <button class="favoriteCities-button-next">
+                            {% include "components/icons/arrow_right_circle.svg" %}
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <div>
+                <h2>Aujourd'hui en France</h2>
+
+                <div class='recommendedCities swiper'>
+                    <div class="swiper-wrapper">
+                        {% for weather in defaultWeathers %}
+                            {% include 'components/weatherCard.html.twig' with {
+                                weather: weather
+                            } %}
+                        {% endfor %}
+                    </div>
+                    <button class="recommendedCities-button-prev">
+                        {% include "components/icons/arrow_left_circle.svg" %}
+                    </button>
+                    <button class="recommendedCities-button-next">
+                        {% include "components/icons/arrow_right_circle.svg" %}
+                    </button>
                 </div>
             </div>
-
         </div>
     </main>
 

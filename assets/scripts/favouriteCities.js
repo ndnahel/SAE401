@@ -3,7 +3,7 @@ const btnRm = document.querySelector('.btn-ajax-response_rm');
 const btnAdd = document.querySelector('.btn-ajax-response_add');
 
 // Adding city to favs (FavoriteCityController)
-function addFavouriteCity(id) {
+async function addFavouriteCity(id, unit, lang) {
     fetch(`/add-city/${id}`)
         .then(response => {
             if (!response.ok) {
@@ -13,6 +13,7 @@ function addFavouriteCity(id) {
             primaryDisplayBtn.style.display = 'none';
             btnRm.style.display = 'block';
             btnAdd.style.display = 'none';
+
             return response.text();
         })
         .catch(error => {

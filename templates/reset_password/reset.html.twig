@@ -2,6 +2,11 @@
 
 {% block title %}{% trans %}Définir un nouveau mot de passe{% endtrans %}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>{% trans %}Définir un nouveau mot de passe{% endtrans %}</h1>
 

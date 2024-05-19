@@ -11,7 +11,34 @@
   --color-red: rgb(255, 53, 53);
 }
 
+.nav-go-back {
+  width: 100%;
+}
+.nav-go-back a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-black);
+  text-decoration: none;
+}
+.nav-go-back a svg {
+  height: 16px;
+  width: 16px;
+  transition: transform 0.1s ease;
+}
+.nav-go-back a:hover {
+  text-decoration: underline;
+}
+.nav-go-back a:hover svg {
+  transform: translateX(-4px);
+}
+
 h1 {
+  text-align: center;
+}
+
+.alert-danger {
+  color: var(--color-red);
   text-align: center;
 }
 
@@ -21,7 +48,7 @@ form {
   width: 100%;
   max-width: 480px;
   margin: auto;
-  padding: 20px 20px 56px 20px;
+  padding: 24px 24px 56px 24px;
   gap: 16px;
   background-color: var(--color-white-01);
   border: 1px solid var(--color-white-03);
@@ -39,6 +66,16 @@ form > div input[type=text], form > div input[type=email], form > div input[type
   border-radius: 8px;
 }
 form > div input[type=text]:hover, form > div input[type=text]:focus, form > div input[type=text]:active, form > div input[type=email]:hover, form > div input[type=email]:focus, form > div input[type=email]:active, form > div input[type=password]:hover, form > div input[type=password]:focus, form > div input[type=password]:active {
+  border: 1px solid var(--color-black-01);
+  outline: none;
+}
+form > div select {
+  padding: 8px 16px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white-02);
+  border-radius: 8px;
+}
+form > div select:hover, form > div select:focus, form > div select:active {
   border: 1px solid var(--color-black-01);
   outline: none;
 }

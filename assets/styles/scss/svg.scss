@@ -3,6 +3,14 @@
 .svg-icon {
   overflow: visible;
 
+  &--logo {
+    fill: $white;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 15px;
+  }
+
   &--sun {
     .rays {
       fill: $orange;
@@ -138,8 +146,6 @@
   }
 
   &--temp {
-
-
     &__hot {
       &-out {
         fill: transparent;
@@ -201,6 +207,60 @@
         }
       }
     }
+  }
+
+  &--gear {
+    fill: $black;
+
+    transform-origin: center;
+    transform-box: border-box;
+
+    transition: ease transform $trans10;
+  }
+
+  &--exit {
+    &__doorframe {
+      fill: transparent;
+      stroke: $black-01;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+
+    &__human {
+      fill: $black;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 6px;
+    }
+  }
+
+  &--login, &--logout {
+    fill: transparent;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 5px;
+
+    .arrow {
+      transition: ease transform $trans02;
+    }
+  }
+
+  &--arrow {
+    fill: transparent;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+  }
+
+  &--arrow-circle {
+    fill: transparent;
+    stroke: $black;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 5px;
   }
 }
 

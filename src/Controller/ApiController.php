@@ -11,6 +11,7 @@ use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiController extends AbstractController
 {
@@ -18,12 +19,45 @@ class ApiController extends AbstractController
 	 * @var Api
 	 */
 	private Api $api;
-	
+
 	/**
+	 * @var HttpClientInterface
+	 */
+	private HttpClientInterface $client;
+
+	/**
+	 * @param HttpClientInterface $client
 	 * @param Api $api
 	 */
-	public function __construct(Api $api) {
+	public function __construct(Api $api, HttpClientInterface $client) {
 		$this->api = $api;
+		$this->client = $client;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getApiKey(): string
+	{
+		return $_ENV['API_KEY'];
+	}
+
+	#[Route('/api/weatherById/{id}/{unit}/{lang}', name: 'api_weatherById')]
+	public function weatherById(
+		string $id,
+		?string $unit = 'metric',
+		?string $lang = 'fr'
+	) : Response {
+		/** @var User $user */
+		$user = $this->getUser();
+
+		$response = $this->api->getWeatherById($id, $user ? $user->getUnit() : $unit, $user ? $user->getLang() : $lang);
+
+		return new Response(
+			json_encode($response),
+			200 ,
+			['content-type' => 'application/json']
+		);
 	}
 	
 	/**
@@ -41,6 +75,7 @@ class ApiController extends AbstractController
 		string $endpoint,
 		string $location,
 		?string $unit = 'metric',
+		?string $country = 'fr',
 		?string $lang = 'fr'
 	) : Response {
 		/** @var User $user */
@@ -51,12 +86,14 @@ class ApiController extends AbstractController
 			$response = $this->api->getWeather(
 				$location,
 				$user ? $user->getUnit() : $unit,
+				$user ? $user->getCountry() : $country,
 				$user ? $user->getLang() : $lang
 			);
 		} elseif ($endpoint === 'forecast') {
 			$response = $this->api->getForecast(
 				$location,
 				$user ? $user->getUnit() : $unit,
+				$user ? $user->getCountry() : $country,
 				$user ? $user->getLang() : $lang
 			);
 		}
@@ -66,7 +103,7 @@ class ApiController extends AbstractController
 			200 ,
 			['content-type' => 'application/json']
 		);
-}
+	}
 
 	#[Route('/api/user_preferences', name: 'api_user')]
 	public function apiUserPreferences() : Response {

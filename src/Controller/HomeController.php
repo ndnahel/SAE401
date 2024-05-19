@@ -51,13 +51,18 @@ class HomeController extends AbstractController
 		/** @var User $user */
 		$user = $this->getUser();
         $unit = $user ? $user->getUnit() : 'metric';
+		$lang = $user ? $user->getLang() : 'fr';
 		
 		$userConnected = $user ? true : false;
+		$userPreferences = [
+			'unit' => $unit,
+			'lang' => $lang
+		];
 
 		// Main section weather -> default = Paris
-		$weather = $this->weatherService->getWeatherData('Paris', $unit, $user ? $user->getLang() : 'fr');
+		$weather = $this->weatherService->getWeatherData('Paris', $unit, $lang);
 
-		$forecast = $this->forecastService->getForecastData('Paris', $unit, $user ? $user->getLang() : 'fr');
+		$forecast = $this->forecastService->getForecastData('Paris', $unit, $lang);
 		$forecastList = $this->forecastService->formatForecastData($forecast);
 
 		// Checking if city is in favs
@@ -69,21 +74,16 @@ class HomeController extends AbstractController
 		$favoriteCities = [];
 
 		foreach ($cityIds as $cityId) {
-			$cityWeather = $this->api->getWeatherById($cityId, $unit, $user ? $user->getLang() : 'fr');
-			$cityForecast = $this->api->getForecastById($cityId, $unit, $user ? $user->getLang() : 'fr');
+			$cityWeather = $this->api->getWeatherById($cityId, $unit, $lang);
 
-			$favoriteCities[] = [
-				'id' => $cityId,
-				'weather' => $cityWeather['content'],
-				'forecast' => $cityForecast['content']
-			];
+			$favoriteCities[$cityId] = $cityWeather['content'];
 		}
 
 		// Right section with weathers around France (default)
 		$defaultTowns = ['Lyon', 'Marseille', 'Nice', 'Nantes', 'Bordeaux', 'Lille'];
 		$defaultWeathers = [];
 		foreach ($defaultTowns as $town) {
-			$defaultWeathers[$town] = $this->weatherService->getWeatherData($town, $unit, $user ? $user->getLang() : 'fr');
+			$defaultWeathers[$town] = $this->weatherService->getWeatherData($town, $unit, $lang);
 		}
 
 		$form = $this->createForm(SearchType::class);
@@ -92,9 +92,9 @@ class HomeController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
 			
-			$weather = $this->weatherService->getWeatherData($data['result'], $unit, $user ? $user->getLang() : 'fr');
+			$weather = $this->weatherService->getWeatherData($data['result'], $unit, $lang);
 
-			$forecast = $this->forecastService->getForecastData($data['result'], $unit, $user ? $user->getLang() : 'fr');
+			$forecast = $this->forecastService->getForecastData($data['result'], $unit, $lang);
 			$forecastList = $this->forecastService->formatForecastData($forecast);
 
 			return $this->render('home/index.html.twig', [
@@ -104,8 +104,10 @@ class HomeController extends AbstractController
 				'defaultWeathers' => $defaultWeathers,
 				'form' => $form->createView(),
                 'unit' => $unit,
+				'lang' => $lang,
 				'userConnected' => $userConnected,
-				'favoriteCities' => $favoriteCities
+				'favoriteCities' => $favoriteCities,
+				'userPreferences' => $userPreferences
 			]);
 		}
 
@@ -116,8 +118,10 @@ class HomeController extends AbstractController
 			'defaultWeathers' => $defaultWeathers,
 			'form' => $form->createView(),
             'unit' => $unit,
+			'lang' => $lang,
 			'userConnected' => $userConnected,
-			'favoriteCities' => $favoriteCities
+			'favoriteCities' => $favoriteCities,
+			'userPreferences' => $userPreferences
         ]);
     }
 }

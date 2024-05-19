@@ -43,18 +43,19 @@ class Api
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	public function requestApi(string $endpoint, string $result, string $unit = 'metric', string $lang = 'fr'): string
+	public function requestApi(string $endpoint, string $result, string $unit = 'metric', string $country = 'fr', string $lang = 'fr'): string
 	{
 		$apiKey = $this->getApiKey();
 
 		$query = [
 			'units' => $unit,
+			'country' => $country,
 			'lang' => $lang,
 			'appid' => $apiKey,
 		];
 
 		if(preg_match('/^\d{5}$/', $result)) {
-			$query['zip'] = "$result,$lang";
+			$query['zip'] = "$result,$country";
 		} else {
 			$query['q'] = $result;
 		}
@@ -70,18 +71,6 @@ class Api
 		return $response->getContent();
 	}
 	
-	/**
-	 * @throws TransportExceptionInterface
-	 * @throws ServerExceptionInterface
-	 * @throws RedirectionExceptionInterface
-	 * @throws ClientExceptionInterface
-	 */
-	/**
-	 * @throws TransportExceptionInterface
-	 * @throws ServerExceptionInterface
-	 * @throws RedirectionExceptionInterface
-	 * @throws ClientExceptionInterface
-	 */
 	public function getWeatherById(int $id, string $unit = 'metric', string $lang = 'fr'): array
 	{
 		$apiKey = $this->getApiKey();
@@ -92,9 +81,9 @@ class Api
 			[
 				'query' => [
 					'id' => $id,
-					'appid' => $apiKey,
-					'lang' => $lang,
 					'units' => $unit,
+					'lang' => $lang,
+					'appid' => $apiKey,
 				],
 			]
 		);
@@ -124,13 +113,13 @@ class Api
 		return ['content' => json_decode($content, true)];
 	}
 
-	public function getWeather(string $result, string $unit = 'metric', string $lang = 'fr'): string
+	public function getWeather(string $result, string $unit = 'metric', string $country = 'fr', string $lang = 'fr'): string
 	{
-		return $this->requestApi('weather', $result, $unit, $lang);
+		return $this->requestApi('weather', $result, $unit, $country, $lang);
 	}
 
-	public function getForecast(string $result, string $unit = 'metric', string $lang = 'fr'): string
+	public function getForecast(string $result, string $unit = 'metric', string $country = 'fr', string $lang = 'fr'): string
 	{
-		return $this->requestApi('forecast', $result, $unit, $lang);
+		return $this->requestApi('forecast', $result, $unit, $country, $lang);
 	}
 }

@@ -38,34 +38,49 @@ body {
 .nav {
   &-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 
-    @include min-width($minW01) {
-      gap: $grup;
+    gap: $grup;
+
+    @include min-width($minW03) {
+      flex-wrap: nowrap;
     }
   }
 
   &-logo {
+    order: 1;
     display: flex;
     align-items: center;
+
+    min-width: unset;
+
     gap: $grup;
 
     color: $black;
     text-decoration: none;
     line-height: $grup;
 
-    img {
-      height: $grup04;
-      width: $grup04;
+    @include min-width($minW03) {
+      order: unset;
+    }
+
+    img, svg {
+      min-height: $grup04;
+      min-width: $grup04;
 
       @include min-width($minW01) {
-        height: $grup06;
-        width: $grup06;
+        min-height: $grup06;
+        min-width: $grup06;
       }
     }
 
     span {
       font-size: 0;
+
+      min-width: unset;
+      width: min-content;
 
       @include min-width($minW01) {
         font-size: $grup;
@@ -74,48 +89,48 @@ body {
   }
 
   &-search {
+    order: 3;
     width: 100%;
 
-    form {
-      position: relative;
+    @include min-width($minW03) {
+      order: unset;
+    }
 
-      &:hover, &:focus, &:active {
+    form {
+      display: flex;
+      flex-wrap: nowrap;
+
+      & > div {
+        width: 100%;
+
         #search_result {
-          border: 1px solid $black-01;
-          outline: none;
+          height: $grup06;
+          width: 100%;
+
+          margin: 0;
+          padding: $grup-01 $grup $grup-01 $grup02;
+
+          font-size: $grup01;
+          color: $black-01;
+
+          @include second-background-layer;
+          border-radius: $grup06 0 0 $grup06;
+
+          &:hover, &:focus, &:active {
+            border: 1px solid $black-01;
+            outline: none;
+          }
         }
       }
 
-      #search_result {
-        min-width: $grup10;
-        width: 100%;
-
-        margin: 0;
-        padding: $grup $grup02 $grup $grup02;
-
-        font-size: $grup01;
-        color: $black-01;
-
-        border-radius: $grup06;
-        @include first-background-layer;
-
-
-      }
-
       button {
-        position: absolute;
-
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-
         width: $grup06;
         height: $grup06;
 
         font-size: 0;
 
         border: 1px solid $black-01;
-        background: url("../images/icons/maglass.svg") $black no-repeat 14px;
+        background: url("../images/icons/maglass.svg") $black no-repeat 12px;
         background-size: $grup01;
         border-radius: 0 $grup06 $grup06 0;
 
@@ -123,31 +138,47 @@ body {
 
         &:hover, &:focus, &:active, {
           background-color: $black-01;
-          //background-size: $grup02;
-          //background-position: 13px;
         }
       }
     }
+  }
 
-    //button[type='submit'] {
-    //  min-width: $grup10;
-    //  width: 100%;
-    //
-    //  margin: 0;
-    //  padding: $grup $grup02 $grup $grup06;
-    //
-    //  font-size: $grup01;
-    //  color: $black-01;
-    //
-    //  @include first-background-layer;
-    //  border-radius: $grup06;
-    //  background: url("../images/icons/maglass.svg") $white-01 no-repeat $grup02;
-    //  background-size: $grup01;
-    //
-    //  &:hover, &:focus {
-    //    border: 1px solid $white-03;
-    //  }
-    // }
+  &-links {
+    order: 2;
+    display: flex;
+    align-items: center;
+
+    min-width: unset;
+
+    gap: $grup;
+
+    @include min-width($minW03) {
+      order: unset;
+    }
+
+    a {
+      .svg-icon {
+        width: $grup03;
+        height: $grup03;
+      }
+
+      &:hover {
+        .svg-icon {
+          &--gear {
+            fill: $black-01;
+            transform: rotate(180deg);
+          }
+
+          &--login, &--logout {
+            stroke: $black-01;
+
+            .arrow {
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+    }
   }
 }
 

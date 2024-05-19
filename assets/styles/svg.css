@@ -14,6 +14,13 @@
 .svg-icon {
   overflow: visible;
 }
+.svg-icon--logo {
+  fill: var(--color-white);
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 15px;
+}
 .svg-icon--sun {
   transform-origin: center;
   transform-box: border-box;
@@ -158,6 +165,49 @@
 }
 .svg-icon--star__empty:hover path.fill {
   fill: var(--color-orange);
+}
+.svg-icon--gear {
+  fill: var(--color-black);
+  transform-origin: center;
+  transform-box: border-box;
+  transition: ease transform 1s;
+}
+.svg-icon--exit__doorframe {
+  fill: transparent;
+  stroke: var(--color-black-01);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--exit__human {
+  fill: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--login, .svg-icon--logout {
+  fill: transparent;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+.svg-icon--login .arrow, .svg-icon--logout .arrow {
+  transition: ease transform 0.2s;
+}
+.svg-icon--arrow {
+  fill: transparent;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--arrow-circle {
+  fill: transparent;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
 }
 
 @keyframes rotating {
