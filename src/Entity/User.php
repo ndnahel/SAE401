@@ -159,14 +159,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return array
 	 */
 	public function getPreferences(): array {
-		return $this->preferences[0];
+		return $this->preferences;
 	}
 	
 	/**
 	 * @return string
 	 */
 	public function getLang(): string {
-		return $this->preferences[0]['lang'];
+		return $this->preferences['lang'];
 	}
 	
 	/**
@@ -174,7 +174,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setLang(string $lang): static {
-		$this->preferences[0]['lang'] = $lang;
+		$this->preferences['lang'] = $lang;
 		return $this;
 	}
 	
@@ -182,7 +182,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return string
 	 */
 	public function getUnit(): string {
-		return $this->preferences[0]['unit'];
+		return $this->preferences['unit'];
 	}
 	
 	/**
@@ -190,7 +190,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setUnit(string $unit): static {
-		$this->preferences[0]['unit'] = $unit;
+		$this->preferences['unit'] = $unit;
 		return $this;
 	}
 	
@@ -198,7 +198,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return string
 	 */
 	public function getCountry(): string {
-		return $this->preferences[0]['country'];
+		return $this->preferences['country'];
 	}
 	
 	/**
@@ -206,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 * @return User
 	 */
 	public function setCountry(string $country): static {
-		$this->preferences[0]['country'] = $country;
+		$this->preferences['country'] = $country;
 		return $this;
 	}
 	
@@ -216,6 +216,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 	 */
 	public function setPreferences(array $preferences): ?User {
 		$this->preferences = $preferences;
+		return $this;
+	}
+	
+	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return $this
+	 */
+	public function addPreference(string $name, string $value): static {
+		$this->preferences[$name] = $value;
 		return $this;
 	}
 	
