@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -21,9 +22,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Le nom d\'utilisateur ne doit pas être vide.')]
+    #[Assert\Length(max: 25, maxMessage: 'Le nom d\'utilisateur ne peut pas dépasser {{ limit }} caractères.')]
     private ?string $username = null;
 	
 	#[ORM\Column(length: 200)]
+	#[Assert\NotBlank(message: 'L\'adresse email ne doit pas être vide.')]
+	#[Assert\Email(message: 'L\'adresse email n\'est pas valide.')]
 	private ?string $email = null;
 
     /**
@@ -39,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string|null The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le mot de passe ne doit pas être vide.')]
     private ?string $password = null;
 	
 	#[ORM\Column(type: 'string', length: 255, nullable: true)]
