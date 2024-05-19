@@ -70,18 +70,6 @@ class Api
 		return $response->getContent();
 	}
 	
-	/**
-	 * @throws TransportExceptionInterface
-	 * @throws ServerExceptionInterface
-	 * @throws RedirectionExceptionInterface
-	 * @throws ClientExceptionInterface
-	 */
-	/**
-	 * @throws TransportExceptionInterface
-	 * @throws ServerExceptionInterface
-	 * @throws RedirectionExceptionInterface
-	 * @throws ClientExceptionInterface
-	 */
 	public function getWeatherById(int $id, string $unit = 'metric', string $lang = 'fr'): array
 	{
 		$apiKey = $this->getApiKey();
@@ -92,9 +80,9 @@ class Api
 			[
 				'query' => [
 					'id' => $id,
-					'appid' => $apiKey,
-					'lang' => $lang,
 					'units' => $unit,
+					'lang' => $lang,
+					'appid' => $apiKey,
 				],
 			]
 		);
