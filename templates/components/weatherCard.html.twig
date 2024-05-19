@@ -1,3 +1,4 @@
+{% if weather %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
 {% endblock %}
@@ -15,12 +16,6 @@
     <div class="weatherCard-bottom">
         <div class="rain-container">
             <img src="{{ asset('images/icons/rain.svg') }}" alt="rain icon">
-            {#
-            <div class="rainCard">
-                <span class="rain-title">{% trans %}Nuageux à{% endtrans %}</span>
-                <span class="rain">{{ weather.clouds.all }}%</span>
-            </div>
-            #}
             <div class="rainCard">
                 <span class="rain-title">{% trans %}Humidité{% endtrans %}</span>
                 <span class="rain">{{ weather.main.humidity }}%</span>
@@ -41,3 +36,4 @@
         </div>
     </div>
 </div>
+{% endif %}
