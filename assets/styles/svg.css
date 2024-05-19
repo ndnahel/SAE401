@@ -17,7 +17,129 @@
 .svg-icon--sun {
   transform-origin: center;
   transform-box: border-box;
-  animation: sun 16s linear infinite;
+  animation: rotating 16s linear infinite;
+}
+.svg-icon--sun .rays {
+  fill: var(--color-orange);
+  stroke: var(--color-orange);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--sun .core {
+  fill: transparent;
+  stroke: var(--color-orange);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--sun.sunrise {
+  animation: rays-scaling 10s linear infinite;
+}
+.svg-icon--cloud {
+  fill: var(--color-white);
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+  animation: cloud 10s ease infinite;
+}
+.svg-icon--cloud:last-child {
+  animation: cloud-reverse 16s ease infinite;
+}
+.svg-icon--raindrop .drop {
+  fill: transparent;
+  stroke: var(--color-blue);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+  opacity: 0;
+  animation: raining 1000ms linear infinite;
+}
+.svg-icon--raindrop .drop:nth-child(1) {
+  animation-duration: 1200ms;
+}
+.svg-icon--raindrop .drop:nth-child(2) {
+  animation-duration: 900ms;
+  animation-delay: 250ms;
+}
+.svg-icon--raindrop .drop:nth-child(3) {
+  animation-delay: 100ms;
+}
+.svg-icon--raindrop .drop:nth-child(4) {
+  animation-duration: 800ms;
+  animation-delay: 200ms;
+}
+.svg-icon--lightning {
+  fill: transparent;
+  stroke: var(--color-orange);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+  animation: lightning 2s ease-out infinite;
+}
+.svg-icon--snowflake {
+  fill: none;
+  stroke: var(--color-blue);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+  transform-origin: center;
+  transform-box: border-box;
+  animation: rotating 26s linear infinite;
+}
+.svg-icon--mist {
+  fill: none;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--mist path {
+  animation: mist 10s ease infinite;
+}
+.svg-icon--mist path:nth-child(1) {
+  animation-duration: 9500ms;
+  animation-delay: 1000ms;
+}
+.svg-icon--mist path:nth-child(2) {
+  animation-duration: 11110ms;
+}
+.svg-icon--mist path:nth-child(3) {
+  animation-duration: 8880ms;
+  animation-delay: 2000ms;
+}
+.svg-icon--mist path:nth-child(4) {
+  animation-duration: 10500ms;
+  animation-delay: 1500ms;
+}
+.svg-icon--mist path:nth-child(5) {
+  animation-duration: 12000ms;
+  animation-delay: 500ms;
+}
+.svg-icon--mist path:nth-child(6) {
+  animation-duration: 8000ms;
+  animation-delay: 2500ms;
+}
+.svg-icon--temp__hot-out {
+  fill: transparent;
+  stroke: var(--color-red);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--temp__hot-ins {
+  fill: var(--color-red);
+}
+.svg-icon--temp__cold-out {
+  fill: transparent;
+  stroke: var(--color-blue);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+}
+.svg-icon--temp__cold-ins {
+  fill: var(--color-blue);
 }
 .svg-icon--star__filled path.fill {
   fill: var(--color-orange);
@@ -38,9 +160,95 @@
   fill: var(--color-orange);
 }
 
-@keyframes sun {
+@keyframes rotating {
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes cloud {
+  0%, 100% {
+    transform: translateX(4%);
+  }
+  50% {
+    transform: translateX(-4%);
+  }
+}
+@keyframes cloud-reverse {
+  0%, 100% {
+    transform: translateX(-4%);
+  }
+  50% {
+    transform: translateX(4%);
+  }
+}
+@keyframes raining {
+  0% {
+    opacity: 0;
+    transform: translate(5%, -15%);
+  }
+  15%, 85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-15%, 7%);
+  }
+}
+@keyframes lightning {
+  0% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  42% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  47% {
+    transform: translate(11%, 0);
+    opacity: 0.6;
+  }
+  51% {
+    transform: translate(11%, 0);
+    opacity: 0.2;
+  }
+  55% {
+    transform: translate(11%, 0);
+    opacity: 1;
+  }
+  65% {
+    transform: translate(11%, 0);
+    opacity: 0;
+  }
+  79% {
+    transform: translate(-7%, -3%);
+    opacity: 0;
+  }
+  82% {
+    transform: translate(-7%, -3%);
+    opacity: 0.6;
+  }
+  86% {
+    transform: translate(-7%, -3%);
+    opacity: 0.2;
+  }
+  90% {
+    transform: translate(-7%, -3%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-7%, -3%);
+    opacity: 0;
+  }
+}
+@keyframes mist {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(1.5%, -3.5%);
+  }
+  66% {
+    transform: translate(2.5%, 4%);
   }
 }
 
