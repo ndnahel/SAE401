@@ -75,14 +75,16 @@
                                         {% include "components/icons/star_filled.svg" %}
                                     </button>
                                 {% else %}
-                                    <button class="btn-ajax-response" onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
+                                    <button class="btn-ajax-response"
+                                            onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
                                         {% include "components/icons/star_empty.svg" %}
                                     </button>
                                 {% endif %}
                                 <button class="btn-ajax-response_rm" onclick="removeFavouriteCity('{{ weather.id }}')">
                                     {% include "components/icons/star_filled.svg" %}
                                 </button>
-                                <button class="btn-ajax-response_add" onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
+                                <button class="btn-ajax-response_add"
+                                        onclick="addFavouriteCity('{{ weather.id }}', '{{ userPreferences.unit }}', '{{ userPreferences.lang }}')">
                                     {% include "components/icons/star_empty.svg" %}
                                 </button>
                             {% endif %}
@@ -152,19 +154,28 @@
         </div>
         <div class='weatherTowns'>
 
-            <div>
-                <h2>Favorits</h2>
+            {% if favoriteCities is not null and favoriteCities is not empty %}
+                <div>
+                    <h2>Favorits</h2>
 
-                <div class='recommendedCities swiper'>
-                    <div class="swiper-wrapper">
-                        {% for weather in favoriteCities %}
-                            {% include 'components/weatherCard.html.twig' with {
-                                weather: weather
-                            } %}
-                        {% endfor %}
+                    <div class='favoriteCities swiper'>
+                        <div class="swiper-wrapper">
+                            {% for weather in favoriteCities %}
+                                {% include 'components/weatherCard.html.twig' with {
+                                    weather: weather
+                                } %}
+                            {% endfor %}
+                        </div>
+                        <button class="favoriteCities-button-prev">
+                            {% include "components/icons/arrow_left_circle.svg" %}
+                        </button>
+                        <button class="favoriteCities-button-next">
+                            {% include "components/icons/arrow_right_circle.svg" %}
+                        </button>
                     </div>
                 </div>
-            </div>
+            {% endif %}
+            
             <div>
                 <h2>Aujourd'hui en France</h2>
 
@@ -176,6 +187,12 @@
                             } %}
                         {% endfor %}
                     </div>
+                    <button class="recommendedCities-button-prev">
+                        {% include "components/icons/arrow_left_circle.svg" %}
+                    </button>
+                    <button class="recommendedCities-button-next">
+                        {% include "components/icons/arrow_right_circle.svg" %}
+                    </button>
                 </div>
             </div>
         </div>

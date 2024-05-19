@@ -2,6 +2,11 @@
 
 {% block title %}{% trans %}Réinitialiser le mot de passe{% endtrans %}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>{% trans %}Réinitialiser le mot de passe{% endtrans %}</h1>
 

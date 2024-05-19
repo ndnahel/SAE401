@@ -25,6 +25,11 @@
     grid-template-columns: 1.26fr 1fr;
   }
 }
+.weatherDashboard .weatherTowns {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 .weatherDashboard .weatherTowns h2 {
   margin-bottom: 16px;
 }
@@ -33,6 +38,19 @@
 }
 .weatherDashboard .weatherTowns .swiper-wrapper {
   display: flex;
+}
+.weatherDashboard .weatherTowns .swiper button {
+  margin-top: 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.weatherDashboard .weatherTowns .swiper button .svg-icon {
+  width: 32px;
+  height: 32px;
+}
+.weatherDashboard .weatherTowns .swiper button:hover .svg-icon {
+  stroke: var(--color-black-01);
 }
 
 /*# sourceMappingURL=weatherDashboard.css.map */

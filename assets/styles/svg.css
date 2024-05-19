@@ -190,7 +190,7 @@
   stroke: var(--color-black);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 6px;
+  stroke-width: 5px;
 }
 .svg-icon--login .arrow, .svg-icon--logout .arrow {
   transition: ease transform 0.2s;
@@ -201,6 +201,13 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 6px;
+}
+.svg-icon--arrow-circle {
+  fill: transparent;
+  stroke: var(--color-black);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
 }
 
 @keyframes rotating {
