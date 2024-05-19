@@ -75,6 +75,7 @@ class ApiController extends AbstractController
 		string $endpoint,
 		string $location,
 		?string $unit = 'metric',
+		?string $country = 'fr',
 		?string $lang = 'fr'
 	) : Response {
 		/** @var User $user */
@@ -85,12 +86,14 @@ class ApiController extends AbstractController
 			$response = $this->api->getWeather(
 				$location,
 				$user ? $user->getUnit() : $unit,
+				$user ? $user->getCountry() : $country,
 				$user ? $user->getLang() : $lang
 			);
 		} elseif ($endpoint === 'forecast') {
 			$response = $this->api->getForecast(
 				$location,
 				$user ? $user->getUnit() : $unit,
+				$user ? $user->getCountry() : $country,
 				$user ? $user->getLang() : $lang
 			);
 		}
