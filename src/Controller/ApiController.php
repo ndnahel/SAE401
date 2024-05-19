@@ -27,7 +27,7 @@ class ApiController extends AbstractController
 	}
 	
 	/**
-	 * @param string $city
+	 * @param string $location
 	 * @param string|null $unit
 	 * @param string|null $lang
 	 * @return Response
@@ -36,24 +36,53 @@ class ApiController extends AbstractController
 	 * @throws RedirectionExceptionInterface
 	 * @throws ServerExceptionInterface
 	 */
-	#[Route('/api/weather/{city}/{unit}/{lang}', name: 'api_weather')]
-	public function index(
-		string $city,
+	#[Route('/api/{endpoint}/{location}/{unit}/{lang}', name: 'api_weather')]
+	public function apiRequest(
+		string $endpoint,
+		string $location,
 		?string $unit = 'metric',
 		?string $lang = 'fr'
 	) : Response {
 		/** @var User $user */
 		$user = $this->getUser();
 
-		$response = $this->api->getWeather(
-			$city,
-			$user ? $user->getUnit() : $unit,
-			$user ? $user->getLang() : $lang
-		);
+		$response = '';
+		if ($endpoint === 'weather') {
+			$response = $this->api->getWeather(
+				$location,
+				$user ? $user->getUnit() : $unit,
+				$user ? $user->getLang() : $lang
+			);
+		} elseif ($endpoint === 'forecast') {
+			$response = $this->api->getForecast(
+				$location,
+				$user ? $user->getUnit() : $unit,
+				$user ? $user->getLang() : $lang
+			);
+		}
 
 		return new Response(
 			$response,
 			200 ,
+			['content-type' => 'application/json']
+		);
+}
+
+	#[Route('/api/user_preferences', name: 'api_user')]
+	public function apiUserPreferences() : Response {
+		/** @var User $user */
+		$user = $this->getUser();
+		$unit = $user ? $user->getUnit() : 'metric';
+		$lang = $user ? $user->getLang() : 'fr';
+		
+		$response = [
+			'unit' => $unit,
+			'lang' => $lang
+		];
+		
+		return new Response(
+			json_encode($response),
+			200,
 			['content-type' => 'application/json']
 		);
 	}

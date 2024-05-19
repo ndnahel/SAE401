@@ -17,7 +17,6 @@ p {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
   margin: 0;
   padding: $grup $grup02;
@@ -40,6 +39,10 @@ body {
   &-container {
     display: flex;
     flex-wrap: nowrap;
+
+    @include min-width($minW01) {
+      gap: $grup;
+    }
   }
 
   &-logo {
@@ -52,32 +55,99 @@ body {
     line-height: $grup;
 
     img {
-      height: $grup06;
-      width: $grup06;
+      height: $grup04;
+      width: $grup04;
+
+      @include min-width($minW01) {
+        height: $grup06;
+        width: $grup06;
+      }
     }
 
     span {
+      font-size: 0;
+
+      @include min-width($minW01) {
+        font-size: $grup;
+      }
     }
   }
 
   &-search {
-    min-width: $grup10;
     width: 100%;
 
-    margin: 0;
-    padding: $grup $grup02 $grup $grup06;
+    form {
+      position: relative;
 
-    font-size: $grup01;
-    color: $black-01;
+      &:hover, &:focus, &:active {
+        #search_result {
+          border: 1px solid $black-01;
+          outline: none;
+        }
+      }
 
-    @include first-background-layer;
-    border-radius: $grup06;
-    background: url("../images/icons/maglass.svg") $white-01 no-repeat $grup02;
-    background-size: $grup01;
+      #search_result {
+        min-width: $grup10;
+        width: 100%;
 
-    &:hover, &:focus {
-      border: 1px solid $white-03;
+        margin: 0;
+        padding: $grup $grup02 $grup $grup02;
+
+        font-size: $grup01;
+        color: $black-01;
+
+        border-radius: $grup06;
+        @include first-background-layer;
+
+
+      }
+
+      button {
+        position: absolute;
+
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        width: $grup06;
+        height: $grup06;
+
+        font-size: 0;
+
+        border: 1px solid $black-01;
+        background: url("../images/icons/maglass.svg") $black no-repeat 14px;
+        background-size: $grup01;
+        border-radius: 0 $grup06 $grup06 0;
+
+        cursor: pointer;
+
+        &:hover, &:focus, &:active {
+          background-color: $black-01;
+          //background-size: $grup02;
+          //background-position: 13px;
+        }
+      }
     }
+
+    //button[type='submit'] {
+    //  min-width: $grup10;
+    //  width: 100%;
+    //
+    //  margin: 0;
+    //  padding: $grup $grup02 $grup $grup06;
+    //
+    //  font-size: $grup01;
+    //  color: $black-01;
+    //
+    //  @include first-background-layer;
+    //  border-radius: $grup06;
+    //  background: url("../images/icons/maglass.svg") $white-01 no-repeat $grup02;
+    //  background-size: $grup01;
+    //
+    //  &:hover, &:focus {
+    //    border: 1px solid $white-03;
+    //  }
+    // }
   }
 }
 
@@ -93,10 +163,12 @@ body {
   }
 }
 
+
 @keyframes sun {
   100% {
     transform: rotate(360deg);
   }
+
 }
 
 /// SAVED FOR LATER

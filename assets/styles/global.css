@@ -28,7 +28,6 @@ p {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin: 0;
   padding: 16px 24px;
   gap: 32px;
@@ -46,6 +45,11 @@ body {
   display: flex;
   flex-wrap: nowrap;
 }
+@media (min-width: 480px) {
+  .nav-container {
+    gap: 16px;
+  }
+}
 .nav-logo {
   display: flex;
   align-items: center;
@@ -55,24 +59,60 @@ body {
   line-height: 16px;
 }
 .nav-logo img {
-  height: 56px;
-  width: 56px;
+  height: 40px;
+  width: 40px;
+}
+@media (min-width: 480px) {
+  .nav-logo img {
+    height: 56px;
+    width: 56px;
+  }
+}
+.nav-logo span {
+  font-size: 0;
+}
+@media (min-width: 480px) {
+  .nav-logo span {
+    font-size: 16px;
+  }
 }
 .nav-search {
+  width: 100%;
+}
+.nav-search form {
+  position: relative;
+}
+.nav-search form:hover #search_result, .nav-search form:focus #search_result, .nav-search form:active #search_result {
+  border: 1px solid var(--color-black-01);
+  outline: none;
+}
+.nav-search form #search_result {
   min-width: 256px;
   width: 100%;
   margin: 0;
-  padding: 16px 24px 16px 56px;
+  padding: 16px 24px 16px 24px;
   font-size: 20px;
   color: var(--color-black-01);
+  border-radius: 56px;
   background-color: var(--color-white-01);
   border: 1px solid var(--color-white-03);
-  border-radius: 56px;
-  background: url("../images/icons/maglass.svg") var(--color-white-01) no-repeat 24px;
-  background-size: 20px;
 }
-.nav-search:hover, .nav-search:focus {
-  border: 1px solid var(--color-white-03);
+.nav-search form button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  font-size: 0;
+  border: 1px solid var(--color-black-01);
+  background: url("../images/icons/maglass.svg") var(--color-black) no-repeat 14px;
+  background-size: 20px;
+  border-radius: 0 56px 56px 0;
+  cursor: pointer;
+}
+.nav-search form button:hover, .nav-search form button:focus, .nav-search form button:active {
+  background-color: var(--color-black-01);
 }
 
 .svg-icon {

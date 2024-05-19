@@ -12,26 +12,10 @@
     {% endblock %}
 
     {% block javascripts %}
-        {#
         {% block importmap %}{{ importmap('app') }}{% endblock %}
-        #}
     {% endblock %}
 </head>
 <body>
-<nav>
-    <div class="nav-container">
-        <a class='nav-logo' href="{{ path('app_home') }}">
-            <img src='{{ asset('images/icons/logo.svg') }}' alt='Logo Weather Compass'>
-            <span>Weather Compass</span>
-        </a>
-        <input class='nav-search'
-               aria-label='Search'
-               type="search"
-               name="search"
-               id="search"
-               placeholder="Rechercher...">
-    </div>
-</nav>
 {% block body %}{% endblock %}
 </body>
 </html>
