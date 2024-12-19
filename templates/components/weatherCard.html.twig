@@ -18,7 +18,7 @@
                 {% include "components/icons/rain.svg" %}
             
                 <div class="rainCard">
-                    <span class="rain-title">{% trans %}Humidité{% endtrans %}</span>
+                    <span class="rain-title">{{ 'Humidité'|trans }}</span>
                     <span class="rain">{{ weather.main.humidity }}%</span>
                 </div>
             </div>
@@ -26,12 +26,12 @@
             <div class="temp-container">
                 <div class="tempCard">
                     {% include "components/icons/tmp_lowest.svg" %}
-                    <span class="temp-title">{% trans %}Min.{% endtrans %}</span>
+                    <span class="temp-title">{{ 'Min.'|trans }}</span>
                     <span class="temp">{{ weather.main.temp_min|number_format(1, '.', ',') }}°</span>
                 </div>
                 <div class="tempCard">
                     {% include "components/icons/tmp_highest.svg" %}
-                    <span class="temp-title">{% trans %}Max.{% endtrans %}</span>
+                    <span class="temp-title">{{ 'Max.'|trans }}</span>
                     <span class="temp">{{ weather.main.temp_max|number_format(1, '.', ',') }}°</span>
                 </div>
             </div>
