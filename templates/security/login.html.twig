@@ -15,7 +15,7 @@
         </a>
     </nav>
 
-    <h1 class="h3 mb-3 font-weight-normal">{% trans %}Connexion{% endtrans %}</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Connexion'|trans }}</h1>
 
     <form method="post">
         {% if error %}
@@ -24,14 +24,14 @@
 
         {% if app.user %}
             <div class="mb-3">
-                {% trans %}Vous êtes déjà connecté(e) en tant que {% endtrans %} {{ app.user.userIdentifier }},
+                {{ 'Vous êtes déjà connecté(e) en tant que'|trans ~ ' ' ~ app.user.userIdentifier }},
                 <a href="{{ path
-                    ('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+                    ('app_logout') }}">{{ 'Déconnexion'|trans }}</a>
             </div>
         {% endif %}
 
         <div>
-            <label for="inputUsername">{% trans %}Nom d'utilisateur{% endtrans %}</label>
+            <label for="inputUsername">{{ 'Nom d\'utilisateur'|trans }}</label>
             <input type="text"
                    value="{{ last_username }}"
                    name="username"
@@ -42,7 +42,7 @@
                    autofocus>
         </div>
         <div>
-            <label for="inputPassword">{% trans %}Mot de passe{% endtrans %}</label>
+            <label for="inputPassword">{{ 'Mot de passe'|trans }}</label>
             <input type="password"
                    name="password"
                    id="inputPassword"
@@ -52,9 +52,9 @@
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <button class="btn btn-lg btn-primary" type="submit">
-            {% trans %}Valider{% endtrans %}
+            {{ 'Valider'|trans }}
         </button>
-        <a href="{{ path('app_register') }}">{% trans %}Créer un compte{% endtrans %}</a>
-        <a href="{{ path('app_forgot_password_request') }}">{% trans %}Mot de passe oublié ?{% endtrans %}</a>
+        <a href="{{ path('app_register') }}">{{ 'Créer un compte'|trans }}</a>
+        <a href="{{ path('app_forgot_password_request') }}">{{ 'Mot de passe oublié ?'|trans }}</a>
     </form>
 {% endblock %}

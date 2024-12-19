@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Définir un nouveau mot de passe{% endtrans %}{% endblock %}
+{% block title %}{{ 'Définir un nouveau mot de passe'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -8,11 +8,11 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{% trans %}Définir un nouveau mot de passe{% endtrans %}</h1>
+    <h1>{{ 'Définir un nouveau mot de passe'|trans }}</h1>
 
     {{ form_errors(form) }}
 
     {{ form_start(form) }}
-    <button type="submit" class="btn">{% trans %}Valider{% endtrans %}</button>
+    <button type="submit" class="btn">{{ 'Valider'|trans }}</button>
     {{ form_end(form) }}
 {% endblock %}

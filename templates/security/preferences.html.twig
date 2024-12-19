@@ -9,11 +9,11 @@
     <nav class='nav-go-back'>
         <a href="{{ path('app_home') }}">
             {% include "components/icons/arrow_left.svg" %}
-            Retour
+            {{ 'Retour'|trans }}
         </a>
     </nav>
 
-    <h1>{% trans %}Paramètres du compte{% endtrans %}</h1>
+    <h1>{{ 'Paramètres du compte'|trans }}</h1>
     {{ form_start(userForm) }}
     <div>
         {{ form_label(userForm.username) }}
@@ -40,10 +40,10 @@
         {{ form_widget(userForm.newPassword2) }}
         {{ form_errors(userForm.newPassword2) }}
     </div>
-    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    <button type="submit">{{ 'Sauvegarder'|trans }}</button>
     {{ form_end(userForm) }}
 
-    <h1>{% trans %}Préférences par d'affichage{% endtrans %}</h1>
+    <h1>{{ 'Préférences d\'affichage'|trans }}</h1>
     {{ form_start(form) }}
     <div>
         {{ form_label(form.lang) }}
@@ -60,11 +60,6 @@
         {{ form_widget(form.country) }}
         {{ form_errors(form.country) }}
     </div>
-    <button type="submit">{% trans %}Sauvegarder{% endtrans %}</button>
+    <button type="submit">{{ 'Sauvegarder'|trans }}</button>
     {{ form_end(form) }}
 {% endblock %}
-
-    {% block title %}
-
-    {% endblock %}
-
