@@ -1,11 +1,10 @@
-import './styles/global.css';
-import './styles/svg.css';
-import './styles/weatherCard.css'
-import './styles/weatherDashboard.css';
-import './styles/forecastList.css';
-import './styles/forms.css'
+require('./styles/global.css');
+require('./styles/svg.css');
+require('./styles/weatherCard.css');
+require('./styles/weatherDashboard.css');
+require('./styles/forecastList.css');
 
-import './scripts/cityCards';
-import './scripts/favouriteCities';
-import './scripts/forecastListAccordeon';
-import './scripts/swipers';
+require('./scripts/cityCards');
+require('./scripts/favouriteCities');
+require('./scripts/forecastListAccordeon');
+require('./scripts/swipers');

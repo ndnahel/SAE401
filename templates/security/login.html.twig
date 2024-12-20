@@ -2,10 +2,10 @@
 
 {% block title %}WeatherCompass{% endblock %}
 
-  {% block stylesheets %}
-      {{ parent() }}
-      <link rel="stylesheet" href="{{ asset('styles/forms.css') }}">
-  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('forms') }}
+{% endblock %}
 
 {% block body %}
     <nav class='nav-go-back'>

@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('scripts/swipers.js') }}" type="module"></script>
-    <script src="{{ asset('scripts/forecastListAccordeon.js') }}" type="module"></script>
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
-    <link rel="stylesheet" href="{{ asset('styles/weatherDashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/forecastList.css') }}">
 {% endblock %}
 
 {% block title %}WeatherCompass{% endblock %}
@@ -197,7 +193,4 @@
             </div>
         </div>
     </main>
-
-    <script src="{{ asset('scripts/favouriteCities.js') }}"></script>
-    <script src="{{ asset('scripts/cityCards.js') }}"></script>
 {% endblock %}

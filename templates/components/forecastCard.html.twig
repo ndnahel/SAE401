@@ -1,9 +1,4 @@
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/weatherCard.css') }}">
-{% endblock %}
-
 <div class="forecastCard" data-location="{{ location }}" data-datetime="{{ forecast.dt_txt }}">
-
     <div class="date-container">
         <span class="when">{{ forecast.dt_txt|date('l') }}</span>
         <span class="date">{{ forecast.dt_txt|date('d F') }}</span>
@@ -12,7 +7,6 @@
     <div class='weather-tl' id="icon">
         {% include "components/icons/" ~ forecast.weather[0].icon ~ ".svg" %}
     </div>
-
 
     <div class="weather-tr">
         <div class="weather">
@@ -23,7 +17,6 @@
             <span class="weather-temp">{{ forecast.main.temp }}{{ unit }}</span>
         </div>
     </div>
-
 
     <div class="weather-br">
         <div class="temp-feels">
